@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2023 at 02:04 PM
+-- Generation Time: Feb 17, 2023 at 11:56 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -39,6 +39,15 @@ CREATE TABLE `customer` (
   `cust_pincode` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `cust_name`, `cust_email`, `cust_address_1`, `cust_address_2`, `cust_state`, `cust_country`, `cust_pincode`) VALUES
+(1, 'Samir', 'samir@gmail.com', 'Ek Ford Road', 'Sukchar Girja', 'W.B', 'India', 700115),
+(4, 'Amit', 'amit@gmail.com', 'BT Road', '', 'West Bengal', 'India', 700120),
+(6, 'Sushant', 'sushant@gmail.com', 'sdf', 'refdt', 'West Bengal', 'India', 700115);
+
 -- --------------------------------------------------------
 
 --
@@ -73,9 +82,7 @@ CREATE TABLE `order` (
   `naws_order_id` varchar(255) NOT NULL,
   `order_date` date NOT NULL,
   `product_qty` int(11) NOT NULL,
-  `product_price` float(9,2) NOT NULL,
-  `product_qty_ammended` int(11) NOT NULL,
-  `product_price_ammended` float(9,2) NOT NULL
+  `product_price` float(9,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -93,6 +100,19 @@ CREATE TABLE `product` (
   `product_price` float(9,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`id`, `sku`, `product_title`, `category_id`, `product_price`) VALUES
+(1, 'ups1', 'Ups', 6, 1200.00),
+(3, 'mb1', 'Mother Board', 6, 4599.50),
+(4, 'key1', 'Keyboard', 6, 100.00),
+(5, 'key2', 'Keyboard', 0, 120.00),
+(6, 'asdas', 'afsdf', 0, 0.00),
+(7, 'key3', 'Keyboard', 6, 150.00),
+(8, 'ups2', 'Ups', 6, 1200.80);
+
 -- --------------------------------------------------------
 
 --
@@ -104,6 +124,20 @@ CREATE TABLE `product_category` (
   `id` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product_category`
+--
+
+INSERT INTO `product_category` (`id`, `category_name`) VALUES
+(3, 'Watch111'),
+(4, 'Mobile'),
+(5, 'Headphone'),
+(6, 'Computer'),
+(7, 'Mobile 2'),
+(8, 'Text book'),
+(9, 'Mouse'),
+(13, 'Charger');
 
 -- --------------------------------------------------------
 
@@ -125,7 +159,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `user_type`, `user_name`, `user_email`, `user_pass`) VALUES
-(1, 'Super Admin', 'Amit', 'amit@digeratiwebcrafts.com', 'secret');
+(1, 'Super Admin', 'amit', 'amit@digeratiwebcrafts.com', '5ebe2294ecd0e0f08eab7690d2a6ee69'),
+(2, 'Admin', 'abubakr', 'abubakr@digeratiwebcrafts.com', '5ebe2294ecd0e0f08eab7690d2a6ee69'),
+(3, 'Admin', 'admin', 'anindya@digeratiwebcrafts.com', '5ebe2294ecd0e0f08eab7690d2a6ee69');
 
 --
 -- Indexes for dumped tables
@@ -175,7 +211,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `customer_accounts`
@@ -193,19 +229,19 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
