@@ -1,6 +1,7 @@
 <?php
 // We need to use sessions, so you should always start sessions using the below code.
 session_start();
+$pageTitle = 'Category List';
 include "includes/header.php";
 // If the user is not logged in redirect to the login page...
 if (!isset($_SESSION['loggedin'])) {
@@ -32,7 +33,7 @@ include "includes/top-navbar.php";
             <div class="page-header page-header-light">
                 <div class="page-header-content header-elements-lg-inline">
                     <div class="page-title d-flex w-100">
-                        <h4 class="mr-auto"><span class="font-weight-semibold">Categories List</span></h4>
+                        <h4 class="mr-auto"><span class="font-weight-semibold">Category List</span></h4>
                         <a href="categories-add-edit.php" class="btn btn-primary">Add Category</a>
                     </div>
                 </div>

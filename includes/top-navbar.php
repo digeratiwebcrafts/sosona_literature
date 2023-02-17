@@ -2,7 +2,8 @@
 <div class="navbar navbar-expand-lg navbar-dark navbar-static">
 	<div class="navbar-brand ml-2 ml-lg-0">
 		<a href="index.php" class="d-inline-block">
-			<img src="assets/images/logo_light.png" alt="">
+			<img src="assets/images/na-lgo-white.svg" alt="">
+			<p class="logo-subtitle">Literature Accounts</p>
 		</a>
 	</div>
 
