@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "includes/header.php";
 ?>
 
@@ -23,16 +24,31 @@ include "includes/header.php";
 								<h5 class="mb-0">Login to your account</h5>
 								<span class="d-block text-muted">Enter your credentials below</span>
 							</div>
+							
+                        	<?php 
+							if (isset($_SESSION['message']))
+								{
+								 ?>
+								<div class="alert alert-danger border-0 p-2">
+                        			<span class="font-weight-semibold">
+                        				<?php 
+                        				echo $_SESSION['message']; 
+                        				unset($_SESSION['message']);
+                        				?>	
+                        			</span>
+                    			</div>
+							<?php 	}?>
+                                
 
 							<div class="form-group form-group-feedback form-group-feedback-left">
-								<input type="text" name="username" class="form-control" placeholder="Username">
+								<input type="text" name="username" class="form-control" placeholder="Username" required>
 								<div class="form-control-feedback">
 									<i class="icon-user text-muted"></i>
 								</div>
 							</div>
 
 							<div class="form-group form-group-feedback form-group-feedback-left">
-								<input type="password" name="userpass" class="form-control" placeholder="Password">
+								<input type="password" name="userpass" class="form-control" placeholder="Password" required>
 								<div class="form-control-feedback">
 									<i class="icon-lock2 text-muted"></i>
 								</div>

@@ -1,61 +1,115 @@
 <?php
-require('includes/db-connect.php');
+// We need to use sessions, so you should always start sessions using the below code.
+session_start();
+include "includes/header.php";
+// If the user is not logged in redirect to the login page...
+if (!isset($_SESSION['loggedin'])) {
+    header('Location: login.php');
+    exit;
+}
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Ledger Account</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
+<!-- Main navbar -->
+<?php 
+include "includes/top-navbar.php";
+ ?>
+ <!-- /Main navbar -->
+ <!-- Page content -->
+<div class="page-content">
 
-<div class="container mt-3">
- 
+    <!-- Main sidebar -->
+    <?php 
+    include "includes/left-sidebar.php";
+     ?>
+    <!-- /Main sidebar -->
 
-   <?php
-   if(isset($_GET["id"]) && !empty($_GET["id"])){
+    <!-- Main content -->
+    <div class="content-wrapper">
 
-        $id=$_GET['id'];
-        $sel="SELECT * FROM product_category WHERE id='$id'";
-        $rs=$conn->query($sel);
-        while($row=$rs->fetch_assoc()){
-   ?>
-  <h2>Edit Categories</h2>
- <form action="categories-add-edit-do.php" method="post">
-    <div class="mb-3 mt-3">
-      <label for="categories">Categories:</label>
-      <input type="text" class="form-control" id="cat" placeholder="Enter Categories" name="categories" value="<?php echo $row['category_name']?>">
-      <input type="hidden" name="id" value="<?php echo $row['id']?>">
-    </div>
-    <button type="submit" class="btn btn-primary">Update</button>
-  </form>
-    
-  
-  
-      <?php
-    }
-  }else
-  {
-?>
+        <!-- Inner content -->
+        <div class="content-inner">
 
- <h2>Add Categories</h2>
+            <!-- Page header -->
+            <div class="page-header page-header-light">
+                <div class="page-header-content header-elements-lg-inline">
+                    <div class="page-title d-flex">
+                        <h4><span class="font-weight-semibold">Category Add / Edit</span></h4>
+                    </div>
+                </div>
+            </div>
+            <!-- /page header -->
 
-<form action="categories-add-edit-do.php" method="post">
-    <div class="mb-3 mt-3">
-      <label for="categories">Categories:</label>
-      <input type="text" class="form-control" id="cat" placeholder="Enter Categories" name="categories">
+            <!-- Content area -->
+            <div class="content">
 
-    </div>
-    <button type="submit" class="btn btn-primary">Add</button>
-  </form>
-<?php
-  }
-    ?>
-  
-</div>
+              <div class="row">
+                <div class="col-lg-6">
 
-</body>
-</html>
+                  <?php
+                  if (isset($_SESSION['status']) && $_SESSION['status'] == "error") {
+                      unset($_SESSION['status']);
+                      ?>
+
+                      <div class="alert alert-danger border-0 p-2">
+                          <span class="font-weight-semibold"><?php echo $_SESSION['status_msg']; ?></span>
+                      </div>
+
+                      <?php
+                  } else if (isset($_SESSION['status']) && $_SESSION['status'] == "success") {
+                      unset($_SESSION['status']);
+                      ?>
+
+                      <div class="alert alert-success border-0 p-2">
+                          <span class="font-weight-semibold"><?php echo $_SESSION['status_msg']; ?></span>
+                      </div>
+
+                  <?php } ?>
+                  <!-- Basic layout-->
+                  <div class="card">
+                    <div class="card-body">
+
+                      <?php
+                       if(isset($_GET["id"]) && !empty($_GET["id"])){
+
+                            $id=$_GET['id'];
+                            $sel="SELECT * FROM product_category WHERE id='$id'";
+                            $rs=$conn->query($sel);
+                            while($row=$rs->fetch_assoc()){
+                       ?>
+                      <form action="controllers/categories-add-edit-do.php" method="post">
+                        <div class="form-group">
+                          <label>Category Name:<span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" placeholder="Enter category name" name="categories" value="<?php echo $row['category_name']?>" required>
+                        </div>
+                        <input type="hidden" name="id" value="<?php echo $row['id']?>">
+                        <div class="">
+                          <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                      </form>
+                      <?php
+                          }
+                        }else
+                        {
+                      ?>
+                      <form action="controllers/categories-add-edit-do.php" method="post">
+                        <div class="form-group">
+                          <label>Category Name:<span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" placeholder="Enter category name" name="categories" required>
+                        </div>
+                        <div class="">
+                          <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                      </form>
+                      <?php
+                        }
+                      ?>
+
+                    </div>
+                  </div>
+                  <!-- /basic layout -->
+                </div>  
+              </div>
+
+            </div>
+            <!-- /content area -->
+
+<?php include "includes/footer.php"; ?>

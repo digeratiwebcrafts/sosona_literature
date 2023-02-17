@@ -21,6 +21,10 @@ include "includes/db-connect.php";
 	<!-- /core JS files -->
 
 	<!-- Theme JS files -->
+	<!-- select2 dropdown -->
+	<script src="assets/js/plugins/forms/selects/select2.min.js"></script>
+	<script src="assets/js/demo_pages/form_select2.js"></script>
+	<!-- /select2 dropdown -->
 	<script src="assets/js/app.js"></script>
 	<!-- /theme JS files -->
 

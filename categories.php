@@ -1,45 +1,110 @@
 <?php
-require('includes/db-connect.php');
+// We need to use sessions, so you should always start sessions using the below code.
+session_start();
+include "includes/header.php";
+// If the user is not logged in redirect to the login page...
+if (!isset($_SESSION['loggedin'])) {
+    header('Location: login.php');
+    exit;
+}
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Ledger Account</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-<div class="container">
- <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Categories</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php
-	    $sel="SELECT * FROM product_category";
-		$rs=$conn->query($sel);
-		while($row=$rs->fetch_assoc()){
-			?>
-      <tr>
-        <td><?php echo $row['category_name'];?></td>
-        <td><a href="categories-add-edit.php?id=<?php echo $row['id'];?>">Edit</a>
-        <a href="category-del.php?id=<?php echo $row['id']?>" onclick="return confirm('Are you sure?');">Delete</a>
-        </td>
-      </tr>
-		<?php
-		}
-		?>
-    </tbody>
-  </table>
-  <div>
-  	<a href="categories-add-edit.php" class="btn btn-primary">Add</a>
+<!-- Main navbar -->
+<?php 
+include "includes/top-navbar.php";
+ ?>
+ <!-- /Main navbar -->
+ <!-- Page content -->
+<div class="page-content">
 
-  </div>
-</div>
-</body>
-</html>
+    <!-- Main sidebar -->
+    <?php 
+    include "includes/left-sidebar.php";
+     ?>
+    <!-- /Main sidebar -->
+
+    <!-- Main content -->
+    <div class="content-wrapper">
+
+        <!-- Inner content -->
+        <div class="content-inner">
+
+            <!-- Page header -->
+            <div class="page-header page-header-light">
+                <div class="page-header-content header-elements-lg-inline">
+                    <div class="page-title d-flex w-100">
+                        <h4 class="mr-auto"><span class="font-weight-semibold">Categories List</span></h4>
+                        <a href="categories-add-edit.php" class="btn btn-primary">Add Category</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /page header -->
+
+            <!-- Content area -->
+            <div class="content">
+
+            <!-- Striped rows -->
+            <div class="card">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Category Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                      $sel="SELECT * FROM product_category";
+                      $counter = 0;
+                      $rs=$conn->query($sel);
+                      while($row=$rs->fetch_assoc()){
+                    ?>
+                    <tr>
+                      <td><?php echo ++$counter; ?></td>
+                      <td><?php echo $row['category_name'];?></td>
+                      <td>
+                        <div class="list-icons">
+                          <a href="categories-add-edit.php?id=<?php echo $row['id'];?>" class="list-icons-item text-primary"><i class="icon-pencil7"></i></a>
+                          <a href="#" data-toggle="modal" data-target="#confirmDeletet" class="list-icons-item text-danger"><i class="icon-trash"></i></a>
+                        </div>
+                      </td>
+                    </tr>
+                    <?php
+                    }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- /striped rows -->
+
+            <!-- Basic modal -->
+            <div id="confirmDeletet" class="modal fade" tabindex="-1">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title w-100 text-center mb-2">Are your sure want to delete</h5>
+                  </div>
+
+                  <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <?php
+                      $sel="SELECT * FROM product_category";
+                      $rs=$conn->query($sel);
+                      while($row=$rs->fetch_assoc()){
+                    ?>
+                    <a href="controllers/category-del.php?id=<?php echo $row['id']?>" class="btn btn-danger">Yes</a>
+                    <?php
+                    }
+                    ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /basic modal -->
+
+            </div>
+            <!-- /content area -->
+
+<?php include "includes/footer.php"; ?>
