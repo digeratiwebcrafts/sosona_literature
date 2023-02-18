@@ -59,7 +59,7 @@ include "includes/top-navbar.php";
                   </thead>
                   <tbody>
                     <?php
-                      $sel="SELECT * FROM product";
+                      $sel="SELECT * ,product_category.category_name FROM product,product_category WHERE product_category.id=product.category_id";
                       $counter = 0;
                       $rs=$conn->query($sel);
                       while($row=$rs->fetch_assoc()){
@@ -68,7 +68,7 @@ include "includes/top-navbar.php";
                       <td><?php echo ++$counter; ?></td>
                       <td><?php echo $row['sku'];?></td>
                       <td><?php echo $row['product_title'];?></td>
-                      <td><?php echo $row['category_id'];?></td>
+                      <td><?php echo $row['category_name'];?></td>
                       <td><?php echo $row['product_price'];?></td>
                       <td>
                         <div class="list-icons">
