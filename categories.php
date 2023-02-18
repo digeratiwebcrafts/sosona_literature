@@ -67,10 +67,26 @@ include "includes/top-navbar.php";
                       <td>
                         <div class="list-icons">
                           <a href="categories-add-edit.php?id=<?php echo $row['id'];?>" class="list-icons-item text-primary"><i class="icon-pencil7"></i></a>
-                          <a href="#" data-toggle="modal" data-target="#confirmDeletet" class="list-icons-item text-danger"><i class="icon-trash"></i></a>
+                          <a href="#" data-toggle="modal" data-target="#confirmDeletet<?php echo $row['id'] ?>" class="list-icons-item text-danger"><i class="icon-trash"></i></a>
                         </div>
                       </td>
                     </tr>
+                    <!-- Basic modal -->
+                    <div id="confirmDeletet<?php echo $row['id'] ?>" class="modal fade" tabindex="-1">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title w-100 text-center mb-2">Are your sure want to delete</h5>
+                          </div>
+
+                          <div class="modal-footer justify-content-center">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                            <a href="controllers/category-del.php?id=<?php echo $row['id']?>" class="btn btn-danger">Yes</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /basic modal -->
                     <?php
                     }
                     ?>
@@ -79,31 +95,6 @@ include "includes/top-navbar.php";
               </div>
             </div>
             <!-- /striped rows -->
-
-            <!-- Basic modal -->
-            <div id="confirmDeletet" class="modal fade" tabindex="-1">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title w-100 text-center mb-2">Are your sure want to delete</h5>
-                  </div>
-
-                  <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <?php
-                      $sel="SELECT * FROM product_category";
-                      $rs=$conn->query($sel);
-                      while($row=$rs->fetch_assoc()){
-                    ?>
-                    <a href="controllers/category-del.php?id=<?php echo $row['id']?>" class="btn btn-danger">Yes</a>
-                    <?php
-                    }
-                    ?>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- /basic modal -->
 
             </div>
             <!-- /content area -->
