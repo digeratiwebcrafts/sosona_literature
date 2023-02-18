@@ -58,9 +58,9 @@ include "includes/top-navbar.php";
                       <th>Action</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody> 
                     <?php
-                      $sel="SELECT * FROM `order` INNER JOIN `product` ON product.id=order.product_id";
+                      $sel="SELECT * FROM `product` INNER JOIN `order` ON product.id=order.product_id";
                       $counter = 0;
                       $rs=$conn->query($sel);
                       while($row=$rs->fetch_assoc()){
