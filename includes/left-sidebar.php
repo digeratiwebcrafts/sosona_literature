@@ -40,7 +40,7 @@
 					<a href="#" class="nav-link"><i class="icon-coin-dollar"></i> <span>Finance</span></a>
 
 					<ul class="nav nav-group-sub" data-submenu-title="Finance">
-						<li class="nav-item"><a href="#" class="nav-link">Orders</a></li>
+						<li class="nav-item"><a href="order.php" class="nav-link">Orders</a></li>
 						<li class="nav-item"><a href="#" class="nav-link">Payments Received</a></li>
 					</ul>
 				</li>
