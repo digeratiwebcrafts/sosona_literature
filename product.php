@@ -59,11 +59,12 @@ include "includes/top-navbar.php";
                   </thead>
                   <tbody>
                     <?php
-                      $sel="SELECT * ,product_category.category_name FROM product,product_category WHERE product_category.id=product.category_id";
+                      $sel="SELECT *  FROM product_category INNER JOIN product ON product_category.id=product.category_id";
                       $counter = 0;
                       $rs=$conn->query($sel);
                       while($row=$rs->fetch_assoc()){
                     ?>
+
                     <tr>
                       <td><?php echo ++$counter; ?></td>
                       <td><?php echo $row['sku'];?></td>
