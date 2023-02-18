@@ -34,7 +34,7 @@ include "includes/top-navbar.php";
                 <div class="page-header-content header-elements-lg-inline">
                     <div class="page-title d-flex w-100">
                         <h4 class="mr-auto"><span class="font-weight-semibold">Order List</span></h4>
-                        <a href="product-add-edit.php" class="btn btn-primary">Add Order</a>
+                        <a href="order-add-edit.php" class="btn btn-primary">Add Order</a>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@ include "includes/top-navbar.php";
                       <td><?php echo $row['product_price'];?></td>
                       <td>
                         <div class="list-icons">
-                          <a href="order-add-edit?id=<?php echo $row['id'];?>" class="list-icons-item text-primary"><i class="icon-pencil7"></i></a>
+                          <a href="order-add-edit.php?id=<?php echo $row['id'];?>" class="list-icons-item text-primary"><i class="icon-pencil7"></i></a>
                           <a href="#" data-toggle="modal" data-target="#confirmDeletet<?php echo $row['id'] ?>" class="list-icons-item text-danger"><i class="icon-trash"></i></a>
                         </div>
                       </td>

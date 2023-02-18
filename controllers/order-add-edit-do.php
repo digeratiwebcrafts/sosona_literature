@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('../includes/db-connect.php');
 if(isset($_POST["id"]) && !empty($_POST["id"])){
   $id=$_POST['id'];
@@ -11,9 +12,15 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
   $upd="UPDATE `order` SET `id`='$id', `product_id`='$product_title',`naws_order_id`='$order_id',`order_date`='$order_date',`product_qty`='$prod_quantity',`product_price`='$product_price' WHERE `id`='$id'";
 
 if ($conn->query($upd) === TRUE) {
-  echo "Record updated successfully";
+  //echo "Record updated successfully";
+  $_SESSION['status'] = "success";
+  $_SESSION['status_msg'] = "Record updated successfully.";
+  header("Location: ../order-add-edit.php");
 } else {
-  echo "Error: " . $udp . "<br>" . $conn->error;
+  //echo "Error: " . $udp . "<br>" . $conn->error;
+  $_SESSION['status'] = "error";
+  $_SESSION['status_msg'] = "Something is wrong.";
+  header("Location: ../order-add-edit.php");
 }
 
 }else
@@ -28,9 +35,15 @@ if ($conn->query($upd) === TRUE) {
   $ins="INSERT INTO `order`(`product_id`, `naws_order_id`, `order_date`, `product_qty`, `product_price`) VALUES ('$product_title','$order_id','$order_date','$prod_quantity','$product_price')";
 
   if ($conn->query($ins) === TRUE) {
-    echo "New record created successfully";
+    //echo "New record created successfully";
+    $_SESSION['status'] = "success";
+    $_SESSION['status_msg'] = "New record created successfully.";
+    header("Location: ../order-add-edit.php");
   } else {
-    echo "Error: " . $ins . "<br>" . $conn->error;
+    //echo "Error: " . $ins . "<br>" . $conn->error;
+    $_SESSION['status'] = "error";
+    $_SESSION['status_msg'] = "Something is wrong.";
+    header("Location: ../order-add-edit.php");
   }
 
 }
