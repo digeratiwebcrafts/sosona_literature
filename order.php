@@ -9,7 +9,7 @@ if (!isset($_SESSION['loggedin'])) {
     exit;
 }
 ?>
-<!-- Main navbar -->
+<!-- Main navbar --> 
 <?php 
 include "includes/top-navbar.php";
  ?>
@@ -60,14 +60,14 @@ include "includes/top-navbar.php";
                   </thead>
                   <tbody>
                     <?php
-                      $sel="SELECT `id`, `product_id`, `naws_order_id`, `order_date`, `product_qty`, `product_price` FROM `order`";
+                      $sel="SELECT * FROM `order` INNER JOIN `product` ON product.id=order.product_id";
                       $counter = 0;
                       $rs=$conn->query($sel);
                       while($row=$rs->fetch_assoc()){
                     ?>
                     <tr>
                       <td><?php echo ++$counter; ?></td>
-                      <td><?php echo $row['product_id'];?></td>
+                      <td><?php echo $row['product_title'];?></td>
                       <td><?php echo $row['naws_order_id'];?></td>
                       <td><?php echo $row['order_date'];?></td>
                       <td><?php echo $row['product_qty'];?></td>
