@@ -34,6 +34,7 @@ include "includes/top-navbar.php";
                 <div class="page-header-content header-elements-lg-inline">
                     <div class="page-title d-flex w-100">
                         <h4 class="mr-auto"><span class="font-weight-semibold">Product List</span></h4>
+                        <a href="product-edit-all.php" class="btn btn-primary mr-3">Edit All</a>
                         <a href="product-add-edit.php" class="btn btn-primary">Add Product</a>
                     </div>
                 </div>
