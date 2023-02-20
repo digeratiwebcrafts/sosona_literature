@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2023 at 11:56 AM
+-- Generation Time: Feb 20, 2023 at 01:21 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -20,6 +20,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `sosona_literature`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `consignee`
+--
+
+DROP TABLE IF EXISTS `consignee`;
+CREATE TABLE `consignee` (
+  `id` int(11) NOT NULL,
+  `entry_type` varchar(255) NOT NULL COMMENT '1=sosona,2=area,3=group',
+  `city` varchar(255) NOT NULL,
+  `opening_bal_amt` float(9,2) NOT NULL,
+  `comments` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -72,6 +87,19 @@ CREATE TABLE `customer_accounts` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `lds_share`
+--
+
+DROP TABLE IF EXISTS `lds_share`;
+CREATE TABLE `lds_share` (
+  `id` int(11) NOT NULL,
+  `sosona_share_pct` float(9,2) NOT NULL,
+  `area_share_pct` float(9,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `order`
 --
 
@@ -83,6 +111,43 @@ CREATE TABLE `order` (
   `order_date` date NOT NULL,
   `product_qty` int(11) NOT NULL,
   `product_price` float(9,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_new`
+--
+
+DROP TABLE IF EXISTS `order_new`;
+CREATE TABLE `order_new` (
+  `id` int(11) NOT NULL,
+  `consignee_id` int(11) NOT NULL,
+  `naws_order_id` varchar(255) NOT NULL,
+  `order_date` date NOT NULL,
+  `order_total` float(9,2) NOT NULL,
+  `area_share_amt` float(9,2) NOT NULL,
+  `area_billing_amt` float(9,2) NOT NULL,
+  `sosona_share_amt` float(9,2) NOT NULL,
+  `sosona_billing_amt` float(9,2) NOT NULL,
+  `comments` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+DROP TABLE IF EXISTS `payment`;
+CREATE TABLE `payment` (
+  `id` int(11) NOT NULL,
+  `payment_by` int(11) NOT NULL COMMENT '1=sosona,2=area,3=group',
+  `payment_date` date NOT NULL,
+  `payment_amt` float(9,2) NOT NULL,
+  `payment_mode` int(11) NOT NULL COMMENT '1=cash deposit,2=bank transfer',
+  `payment_ref_number` varchar(255) NOT NULL,
+  `comments` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -168,6 +233,12 @@ INSERT INTO `user` (`id`, `user_type`, `user_name`, `user_email`, `user_pass`) V
 --
 
 --
+-- Indexes for table `consignee`
+--
+ALTER TABLE `consignee`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
@@ -180,9 +251,27 @@ ALTER TABLE `customer_accounts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `lds_share`
+--
+ALTER TABLE `lds_share`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `order`
 --
 ALTER TABLE `order`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_new`
+--
+ALTER TABLE `order_new`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -208,6 +297,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `consignee`
+--
+ALTER TABLE `consignee`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
@@ -220,9 +315,27 @@ ALTER TABLE `customer_accounts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `lds_share`
+--
+ALTER TABLE `lds_share`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order_new`
+--
+ALTER TABLE `order_new`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
