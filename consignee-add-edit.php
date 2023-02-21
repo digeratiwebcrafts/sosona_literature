@@ -68,7 +68,11 @@ include "includes/top-navbar.php";
                   <div class="card">
                     <div class="card-body">
 
-                      <form action="controllers/consignee-do.php" method="post">
+                      <form action="controllers/consignee-add-edit-do.php" method="post">
+                        <div class="form-group">
+                          <label>Name:<span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" placeholder="Enter name" name="name" required>
+                        </div>
                         <div class="form-group">
                           <label>Entry Type:<span class="text-danger">*</span></label>
                           <select class="form-control select-search" data-fouc data-placeholder="-Select Area-" name="area_type" required>
