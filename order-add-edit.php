@@ -77,8 +77,8 @@ include "includes/top-navbar.php";
                       ?>
                       <form action="controllers/order-add-edit-do.php" method="post">
                         <div class="form-group">
-                          <label>Product Name:<span class="text-danger">*</span></label>
-                          <select class="form-control select-search product-title" data-fouc data-placeholder="-Select product-" name="product_title" id="product-title" required>
+                          <label>Consignee Name:<span class="text-danger">*</span></label>
+                          <select class="form-control select-search consignee-title" data-fouc data-placeholder="-Select Consignee-" name="consignee_title" id="consignee-title" required>
                             <option></option>
                             <?php
                             $sel="SELECT * FROM `product` LEFT JOIN `order` ON product.id=order.product_id";
@@ -100,12 +100,12 @@ include "includes/top-navbar.php";
                           <input type="date" class="form-control" placeholder="" name="order-date" value="<?php echo $prow['order_date'];?>" required>
                         </div>
                         <div class="form-group">
-                          <label>Product Quantity:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="Enter product quantity" name="prod-quantity" value="<?php echo $prow['product_qty'];?>" required>
+                          <label>Order Total:<span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" placeholder="Enter order total" name="order-total" value="<?php echo $prow['product_price'];?>" required>
                         </div>
                         <div class="form-group">
-                          <label>Product Price:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="Enter product price" name="product-price" value="<?php echo $prow['product_price'];?>" required>
+                          <label>Comments:</label>
+                          <textarea rows="5" cols="5" class="form-control" placeholder="Enter your comments here" name="comments"></textarea>
                         </div>
                         <input type="hidden" name="id" value="<?php echo $prow['id']?>">
                         <div class="">
@@ -119,16 +119,16 @@ include "includes/top-navbar.php";
                       ?>
                       <form action="controllers/order-add-edit-do.php" method="post">
                         <div class="form-group">
-                          <label>Product Name:<span class="text-danger">*</span></label>
-                          <select class="form-control select-search product-title" data-fouc data-placeholder="-Select product-" name="product_title" id="product-title" required>
+                          <label>Consignee Name:<span class="text-danger">*</span></label>
+                          <select class="form-control select-search consignee-title" data-fouc data-placeholder="-Select Consignee-" name="consignee_title" id="consignee-title" required>
                             <option></option>
                             <?php
-                              $sel="SELECT * FROM product";
+                              $sel="SELECT * FROM consignee";
                                $rs=$conn->query($sel);
                                 while($row=$rs->fetch_assoc()){
 
                             ?>
-                            <option value="<?php echo $row['id'];?>"><?php echo $row['product_title'];?></option>
+                            <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
                             <?php
                             }
                             ?>
@@ -143,12 +143,12 @@ include "includes/top-navbar.php";
                           <input type="date" class="form-control" placeholder="" name="order-date" required>
                         </div>
                         <div class="form-group">
-                          <label>Product Quantity:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="Enter product quantity" name="prod-quantity" required>
+                          <label>Order Total:<span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" placeholder="Enter order total" name="order-total" required>
                         </div>
                         <div class="form-group">
-                          <label>Product Price:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="Enter product price" name="product-price" required>
+                          <label>Comments:</label>
+                          <textarea rows="5" cols="5" class="form-control" placeholder="Enter your comments here" name="comments"></textarea>
                         </div>
                         <div class="">
                           <button type="submit" class="btn btn-primary">Add</button>
@@ -161,7 +161,7 @@ include "includes/top-navbar.php";
                       <script type="text/javascript">
                         $(document).ready(function()
                         {
-                        $(".product-title").change(function()
+                        $(".consignee-title").change(function()
                         {
                         var id=$(this).val();
                         var post_id = 'pid='+ id;
