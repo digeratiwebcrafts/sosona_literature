@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2023 at 01:17 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- Generation Time: Feb 21, 2023 at 02:22 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -162,7 +162,7 @@ CREATE TABLE `payment` (
   `payment_by` int(11) NOT NULL COMMENT '1=sosona,2=area,3=group',
   `payment_date` date NOT NULL,
   `payment_amt` float(9,2) NOT NULL,
-  `payment_mode` int(11) NOT NULL COMMENT '1=cash deposit,2=bank transfer',
+  `payment_mode` varchar(255) NOT NULL COMMENT '1=cash deposit,2=bank transfer',
   `payment_ref_number` varchar(255) NOT NULL,
   `comments` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
