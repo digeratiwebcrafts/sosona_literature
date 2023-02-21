@@ -50,28 +50,28 @@ include "includes/top-navbar.php";
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Consignee Name</th>
+                      <th>Product Name</th>
                       <th>Naws Order Id</th>
                       <th>Order Date</th>
-                      <th>Order Total</th>
-                       <th>Comments</th>
+                      <th>Product Qty</th>
+                      <th>Product Price</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody> 
                     <?php
-                      $sel="SELECT * FROM `order_new` INNER JOIN `consignee` ON consignee.id=order.consignee_id";
+                      $sel="SELECT * FROM `product` INNER JOIN `order` ON product.id=order.product_id";
                       $counter = 0;
                       $rs=$conn->query($sel);
                       while($row=$rs->fetch_assoc()){
                     ?>
                     <tr>
                       <td><?php echo ++$counter; ?></td>
-                      <td><?php echo $row['name'];?></td>
+                      <td><?php echo $row['product_title'];?></td>
                       <td><?php echo $row['naws_order_id'];?></td>
                       <td><?php echo $row['order_date'];?></td>
-                      <td><?php echo $row['order_total'];?></td>
-                      <td><?php echo $row['comments'];?></td>
+                      <td><?php echo $row['product_qty'];?></td>
+                      <td><?php echo $row['product_price'];?></td>
                       <td>
                         <div class="list-icons">
                           <a href="order-add-edit.php?id=<?php echo $row['id'];?>" class="list-icons-item text-primary"><i class="icon-pencil7"></i></a>

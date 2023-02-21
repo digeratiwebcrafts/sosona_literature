@@ -27,11 +27,12 @@ if ($conn->query($upd) === TRUE) {
 
 {
 
-  $consignee_title=$_POST['consignee_title'];
+  $product_title=$_POST['product_title'];
   $order_id=$_POST['order-id'];
   $order_date=$_POST['order-date'];
-  $order_total=$_POST['order-total'];
-  $ins="INSERT INTO `order_new`(`consignee_id`, `naws_order_id`, `order_date`, `order_total`) VALUES ('$consignee_title','$order_id','$order_date','$order_total')";
+  $prod_quantity=$_POST['prod-quantity'];
+  $product_price=$_POST['product-price'];
+  $ins="INSERT INTO `order`(`product_id`, `naws_order_id`, `order_date`, `product_qty`, `product_price`) VALUES ('$product_title','$order_id','$order_date','$prod_quantity','$product_price')";
 
   if ($conn->query($ins) === TRUE) {
     //echo "New record created successfully";
