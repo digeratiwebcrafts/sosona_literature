@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2023 at 10:04 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.0.19
+-- Generation Time: Feb 21, 2023 at 01:17 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,6 +36,15 @@ CREATE TABLE `consignee` (
   `opening_bal_amt` float(9,2) NOT NULL,
   `comments` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `consignee`
+--
+
+INSERT INTO `consignee` (`id`, `name`, `entry_type`, `city`, `opening_bal_amt`, `comments`) VALUES
+(1, 'Sosona', 'Region', 'Kolkata', 6000.00, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+(5, 'Abu', 'Area', 'kolkata', 200000.00, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+(10, 'Amit', 'Group', 'kolkata', 6000.00, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
 
 -- --------------------------------------------------------
 
@@ -205,8 +214,6 @@ CREATE TABLE `product_category` (
 INSERT INTO `product_category` (`id`, `category_name`) VALUES
 (3, 'Watch111'),
 (4, 'Mobile'),
-(5, 'Headphone'),
-(6, 'Computer'),
 (7, 'Mobile 2'),
 (8, 'Text book'),
 (9, 'Mouse'),
@@ -308,7 +315,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `consignee`
 --
 ALTER TABLE `consignee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `customer`
