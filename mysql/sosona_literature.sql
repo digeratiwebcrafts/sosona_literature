@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2023 at 01:21 PM
+-- Generation Time: Feb 21, 2023 at 10:04 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `consignee`;
 CREATE TABLE `consignee` (
   `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `entry_type` varchar(255) NOT NULL COMMENT '1=sosona,2=area,3=group',
   `city` varchar(255) NOT NULL,
   `opening_bal_amt` float(9,2) NOT NULL,
@@ -96,6 +97,13 @@ CREATE TABLE `lds_share` (
   `sosona_share_pct` float(9,2) NOT NULL,
   `area_share_pct` float(9,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `lds_share`
+--
+
+INSERT INTO `lds_share` (`id`, `sosona_share_pct`, `area_share_pct`) VALUES
+(3, 20.00, 6.67);
 
 -- --------------------------------------------------------
 
@@ -318,7 +326,7 @@ ALTER TABLE `customer_accounts`
 -- AUTO_INCREMENT for table `lds_share`
 --
 ALTER TABLE `lds_share`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `order`
