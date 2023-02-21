@@ -43,6 +43,11 @@ include "includes/top-navbar.php";
             <!-- Content area -->
             <div class="content">
                 <div class="row">
+                      <?php
+                      $sel="SELECT *  FROM  consignee";
+                      $rs=$conn->query($sel);
+                      while($row=$rs->fetch_assoc()){
+                    ?>
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-body">
@@ -51,7 +56,7 @@ include "includes/top-navbar.php";
                                        <label class="font-weight-bold">Name:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                       <p>Test</p>   
+                                       <p><?php echo $row['name']; ?></p>   
                                     </div>  
                                 </div>
                                 <div class="row">
@@ -59,7 +64,7 @@ include "includes/top-navbar.php";
                                        <label class="font-weight-bold">Type:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                       <p>Area</p>   
+                                       <p><?php echo $row['entry_type']; ?></p>   
                                     </div>  
                                 </div>
                                 <div class="row">
@@ -67,7 +72,7 @@ include "includes/top-navbar.php";
                                        <label class="font-weight-bold">City:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                       <p>Kolkata</p>   
+                                       <p><?php echo $row['city']; ?></p>   
                                     </div>  
                                 </div>
                                 <div class="row">
@@ -75,7 +80,7 @@ include "includes/top-navbar.php";
                                        <label class="font-weight-bold">Opening Balance:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                       <p>10000</p>   
+                                       <p><?php echo $row['opening_bal_amt']; ?></p>   
                                     </div>  
                                 </div>
                                 <div class="row">
@@ -83,17 +88,12 @@ include "includes/top-navbar.php";
                                        <label class="font-weight-bold">Comments:</label>
                                     </div>
                                     <div class="col-sm-12">
-                                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                       quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                       consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                       cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                       proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>   
+                                       <p><?php echo $row['comments']; ?></p>   
                                     </div>  
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6 mb-2 mb-sm-0">
-                                       <a href="#" class="btn btn-primary w-100">Edit</a>
+                                       <a href="consignee-add-edit.php?id=<?php echo $row['id'];?>" class="btn btn-primary w-100">Edit</a>
                                     </div>
                                     <div class="col-sm-6">
                                        <a href="#" class="btn btn-danger w-100" data-toggle="modal" data-target="#confirmDeletet<?php echo $row['id'] ?>">Delete</a>
@@ -111,13 +111,18 @@ include "includes/top-navbar.php";
 
                               <div class="modal-footer justify-content-center">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                <a href="controllers/category-del.php?id=<?php echo $row['id']?>" class="btn btn-danger">Yes</a>
+                                <a href="controllers/consignee-del.php?id=<?php echo $row['id']?>" class="btn btn-danger">Yes</a>
                               </div>
                             </div>
                           </div>
                         </div>
                         <!-- /basic modal --> 
-                    </div>  
+                    </div> 
+                    <?php
+                    }
+                    ?>
+
+
                 </div>  
             
             </div>

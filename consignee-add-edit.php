@@ -79,24 +79,39 @@ include "includes/top-navbar.php";
                           <label>Name:<span class="text-danger">*</span></label>
                           <input type="text" class="form-control" placeholder="Enter name" name="name" value="<?php echo $row['name'];?>" required>
                         </div>
+                        <?php
+                        if ($row['entry_type']!=='Region') {
+                          
+                        ?>
                         <div class="form-group">
                           <label>Entry Type:<span class="text-danger">*</span></label>
                           <select class="form-control select-search" data-fouc data-placeholder="-Select Area-" name="entry_type" required>
-                              <option></option>
+                                  <option></option>
                               <option value="Area"<?php if($row['entry_type'] == 'Area') echo "selected"; ?>>Area</option>
                               <option value="Group"<?php if($row['entry_type'] == 'Group') echo "selected"; ?>>Group</option>
+                              
                           </select>
                         </div>
+                      <?php }else{ ?>
                         <div class="form-group">
-                          <label>City:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="Enter city name" name="city_name" value="<?php echo $row['city'];?>" required>
+                          <label>Entry Type:<span class="text-danger">*</span></label>
+                          <select class="form-control select-search" data-fouc data-placeholder="-Select Area-" name="entry_type" required>
+                          
+                              <option value="Region"<?php if($row['entry_type'] == 'Region') echo "selected"; ?>>Region</option>
+                          </select>
+                        </div>
+                      <?php
+                      } ?>
+                        <div class="form-group">
+                          <label>City:<span class="text-danger"></span></label>
+                          <input type="text" class="form-control" placeholder="Enter city name" name="city_name" value="<?php echo $row['city'];?>" >
                         </div>
                         <div class="form-group">
                           <label>Opening Balance:<span class="text-danger">*</span></label>
                           <input type="text" class="form-control" placeholder="Enter opening balance amt" name="opening_bal_amt" value="<?php echo $row['opening_bal_amt'];?>" required>
                         </div>
                         <div class="form-group">
-                          <label>Comments:<span class="text-danger">*</span></label>
+                          <label>Comments:<span class="text-danger"></span></label>
                           <textarea rows="5" cols="5" class="form-control" placeholder="Enter your message here" name="msg_comments"  ><?php echo $row['comments'];?></textarea>
                           <input type="hidden" name="id" value="<?php echo $row['id']?>">
                         </div>
