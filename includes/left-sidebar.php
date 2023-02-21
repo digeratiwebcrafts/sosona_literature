@@ -31,7 +31,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="consignee-add-edit.php" class="nav-link">
+					<a href="consignee.php" class="nav-link">
 						<i class="icon-user"></i> 
 						<span>Consignee</span>
 					</a>
