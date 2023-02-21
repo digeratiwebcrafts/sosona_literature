@@ -31,9 +31,9 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="customer.php" class="nav-link">
+					<a href="consignee.php" class="nav-link">
 						<i class="icon-user"></i> 
-						<span>Area</span>
+						<span>Consignee</span>
 					</a>
 				</li>
 				<li class="nav-item nav-item-submenu">
@@ -59,7 +59,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link">
+					<a href="settings.php" class="nav-link">
 						<i class="icon-gear"></i> 
 						<span>Settings</span>
 					</a>
