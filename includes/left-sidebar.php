@@ -41,7 +41,7 @@
 
 					<ul class="nav nav-group-sub" data-submenu-title="Finance">
 						<li class="nav-item"><a href="order.php" class="nav-link">Orders</a></li>
-						<li class="nav-item"><a href="payment-add-edit.php" class="nav-link">Payments Received</a></li>
+						<li class="nav-item"><a href="payment.php" class="nav-link">Payments Received</a></li>
 					</ul>
 				</li>
 				<li class="nav-item nav-item-submenu">

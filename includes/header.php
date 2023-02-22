@@ -28,6 +28,10 @@ include "includes/db-connect.php";
 	<script src="assets/js/plugins/forms/selects/select2.min.js"></script>
 	<script src="assets/js/demo_pages/form_select2.js"></script>
 	<!-- /select2 dropdown -->
+	<!-- datatable -->
+	<script src="assets/js/plugins/tables/datatables/datatables.min.js"></script>
+	<script src="assets/js/demo_pages/datatables_basic.js"></script>
+	<!-- /datatable -->
 	<script src="assets/js/app.js"></script>
 	<!-- /theme JS files -->
 

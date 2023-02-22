@@ -33,7 +33,7 @@ include "includes/top-navbar.php";
             <div class="page-header page-header-light">
                 <div class="page-header-content header-elements-lg-inline">
                     <div class="page-title d-flex">
-                        <h4><span class="font-weight-semibold">Consignee Add</span></h4>
+                        <h4><span class="font-weight-semibold">Consignee Add / Edit</span></h4>
                     </div>
                 </div>
             </div>

@@ -42,88 +42,70 @@ include "includes/top-navbar.php";
 
             <!-- Content area -->
             <div class="content">
-                <div class="row">
-                      <?php
-                      $sel="SELECT *  FROM  consignee";
-                      $rs=$conn->query($sel);
-                      while($row=$rs->fetch_assoc()){
-                    ?>
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-5">
-                                       <label class="font-weight-bold">Name:</label>
-                                    </div>
-                                    <div class="col-sm-7">
-                                       <p><?php echo $row['name']; ?></p>   
-                                    </div>  
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-5">
-                                       <label class="font-weight-bold">Type:</label>
-                                    </div>
-                                    <div class="col-sm-7">
-                                       <p><?php echo $row['entry_type']; ?></p>   
-                                    </div>  
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-5">
-                                       <label class="font-weight-bold">City:</label>
-                                    </div>
-                                    <div class="col-sm-7">
-                                       <p><?php echo $row['city']; ?></p>   
-                                    </div>  
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-5">
-                                       <label class="font-weight-bold">Opening Balance:</label>
-                                    </div>
-                                    <div class="col-sm-7">
-                                       <p><?php echo $row['opening_bal_amt']; ?></p>   
-                                    </div>  
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                       <label class="font-weight-bold">Comments:</label>
-                                    </div>
-                                    <div class="col-sm-12">
-                                       <p><?php echo $row['comments']; ?></p>   
-                                    </div>  
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 mb-2 mb-sm-0">
-                                       <a href="consignee-add-edit.php?id=<?php echo $row['id'];?>" class="btn btn-primary w-100">Edit</a>
-                                    </div>
-                                    <div class="col-sm-6">
-                                       <a href="#" class="btn btn-danger w-100" data-toggle="modal" data-target="#confirmDeletet<?php echo $row['id'] ?>">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Basic modal -->
-                        <div id="confirmDeletet<?php echo $row['id'] ?>" class="modal fade" tabindex="-1">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title w-100 text-center mb-2">Are your sure want to delete</h5>
-                              </div>
+                <!-- Basic datatable -->
+                <div class="card">
 
-                              <div class="modal-footer justify-content-center">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                <a href="controllers/consignee-del.php?id=<?php echo $row['id']?>" class="btn btn-danger">Yes</a>
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>City</th>
+                                <th>Opening Bal.</th>
+                                <th>Comments</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                              $sel="SELECT *  FROM  consignee";
+                              $rs=$conn->query($sel);
+                              while($row=$rs->fetch_assoc()){
+                            ?>
+                            <tr>
+                                <td><?php echo $row['name']; ?></td>
+                                <td><?php echo $row['entry_type']; ?></td>
+                                <td><?php echo $row['city']; ?></td>
+                                <td><?php echo $row['opening_bal_amt']; ?></td>
+                                <td><?php echo $row['comments']; ?></td>
+                                <td class="text-center">
+                                    <div class="list-icons">
+                                        <div class="dropdown">
+                                            <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                                <i class="icon-menu9"></i>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a href="consignee-add-edit.php?id=<?php echo $row['id'];?>" class="dropdown-item"><i class="icon-pencil7"></i> Edit</a>
+                                                <a href="#" class="dropdown-item" data-toggle="modal" data-target="#confirmDeletet<?php echo $row['id'] ?>"><i class="icon-trash"></i> Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Basic modal -->
+                            <div id="confirmDeletet<?php echo $row['id'] ?>" class="modal fade" tabindex="-1">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title w-100 text-center mb-2">Are your sure want to delete</h5>
+                                  </div>
+
+                                  <div class="modal-footer justify-content-center">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                    <a href="controllers/consignee-del.php?id=<?php echo $row['id']?>" class="btn btn-danger">Yes</a>
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
-                        <!-- /basic modal --> 
-                    </div> 
-                    <?php
-                    }
-                    ?>
-
-
-                </div>  
+                            <!-- /basic modal --> 
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /basic datatable -->
             
             </div>
             <!-- /content area -->
