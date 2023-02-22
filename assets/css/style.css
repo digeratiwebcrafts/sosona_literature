@@ -6,3 +6,15 @@
     font-size: 12px;
     margin-bottom: 0;
 }
+.sm-lh{
+    line-height: 1.2em;
+}
+.alternate-row{
+    padding: 6px 0px;
+}
+.alternate-row:nth-child(even){
+    background: #f4f4f4;
+}
+.bb-1{
+    border-bottom: 1px solid #ddd;
+}
