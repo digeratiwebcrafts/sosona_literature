@@ -3,7 +3,7 @@
 
 	<div id="navbar-footer">
 		<span class="navbar-text">
-			&copy; 2023. Sosona Literature by <a href="https://digeratiwebcrafts.com/" target="_blank">Digeratiwebcrafts</a>
+			&copy; <?php echo date("Y"); ?>. Society Of Service Of Narcotics Anonymous by <a href="https://digeratiwebcrafts.com/" target="_blank">Digeratiwebcrafts</a>
 		</span>
 	</div>
 </div>

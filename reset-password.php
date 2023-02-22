@@ -19,8 +19,8 @@ include "includes/header.php";
 					<div class="card mb-0">
 						<div class="card-body">
 							<div class="text-center mb-3">
-								<img src="assets/images/na-lgo-blue.svg" class="w-25 mb-3" alt="">
-								<h5 class="mb-0">Password recovery</h5>
+								<img src="assets/images/na-lgo-blue.svg" class="w-25 mb-2" alt="">
+								<h5 class="mb-0 font-weight-bold">Password recovery</h5>
 								<span class="d-block text-muted">We'll send you instructions in email</span>
 							</div>
 

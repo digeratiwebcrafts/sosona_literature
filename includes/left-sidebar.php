@@ -54,14 +54,26 @@
 				</li>
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-						<i class="icon-graph"></i> 
-						<span>Reports</span>
+						<i class="icon-notebook"></i> 
+						<span>Accounts</span>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a href="settings.php" class="nav-link">
 						<i class="icon-gear"></i> 
 						<span>Settings</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<i class="icon-lock2"></i> 
+						<span>Change Password</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="logout.php" class="nav-link">
+						<i class="icon-switch2"></i> 
+						<span>Logout</span>
 					</a>
 				</li>
 

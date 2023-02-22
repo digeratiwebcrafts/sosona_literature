@@ -43,7 +43,112 @@ include "includes/top-navbar.php";
             <!-- Content area -->
             <div class="content">
 
-            
+                <div class="card">
+                    <div class="card-body">
+                        <form action="" method="">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                      <label>Payment By:</label>
+                                      <select class="form-control select-search" data-fouc data-placeholder="-Select Option-">
+                                        <option></option>
+                                        <option>Region</option>
+                                        <option>Area</option>
+                                        <option>Group</option>
+                                      </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                      <label>From Date:</label>
+                                      <input type="date" class="form-control" placeholder="" name="from-date">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                      <label>To Date:</label>
+                                      <input type="date" class="form-control" placeholder="" name="to-date">
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 mt-1">
+                                  <button type="submit" class="btn btn-primary">Filter</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>  
+
+                <!-- Striped rows -->
+                <div class="card">
+                  <div class="table-responsive">
+                    <table class="table table-striped datatable-basic">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Payment By</th>
+                          <th>Payment Date</th>
+                          <th>Payment Amount</th>
+                          <th>Payment Mode</th>
+                          <th>Payment Ref. No</th>
+                          <th>Comments</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody> 
+                        <?php
+                          $sel="SELECT *  FROM `consignee` INNER JOIN `order_new` ON order_new.consignee_id=consignee.id ";
+                          $counter = 0;
+                          $rs=$conn->query($sel);
+                          while($row=$rs->fetch_assoc()){
+                        ?>
+                        
+                        <tr>
+                          <td><?php echo ++$counter; ?></td>
+                          <td><?php echo $row['name'];?></td>
+                          <td><?php echo $row['naws_order_id'];?></td>
+                          <td><?php echo $row['order_date'];?></td>
+                          <td><?php echo $row['order_total'];?></td>
+                          <td><?php echo $row['comments'];?></td>
+                          <td><?php echo $row['comments'];?></td>
+                          <td class="text-center">
+                            <div class="list-icons">
+                                <div class="dropdown">
+                                    <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                        <i class="icon-menu9"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="payment-add-edit.php?id=<?php echo $row['id'];?>" class="dropdown-item"><i class="icon-pencil7"></i> Edit</a>
+                                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#confirmDeletet<?php echo $row['id'] ?>"><i class="icon-trash"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        </tr>
+                        <!-- Basic modal -->
+                        <div id="confirmDeletet<?php echo $row['id'] ?>" class="modal fade" tabindex="-1">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title w-100 text-center mb-2">Are your sure want to delete</h5>
+                              </div>
+
+                              <div class="modal-footer justify-content-center">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                <a href="controllers/payment-del.php?id=<?php echo $row['id']?>" class="btn btn-danger">Yes</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /basic modal -->
+                        <?php
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- /striped rows -->
 
             </div>
             <!-- /content area -->

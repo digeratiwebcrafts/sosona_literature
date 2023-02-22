@@ -73,7 +73,7 @@ include "includes/top-navbar.php";
                         <div class="card bg-warning text-white h-100">
                             <div class="card-body">
                                 <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i>38,289</h3>
-                                <p class="mb-0">Total receivable from All Groups</p>
+                                <p class="mb-0">Total receivable from Others</p>
                                 <p class="mb-0 sm-lh opacity-75"><small>Last Receipt: <span class="">1000.00</span> | <span class="">Name</span> | <span class="">22-02-23</span></small></p>
                             </div>
                         </div>  
@@ -136,7 +136,7 @@ include "includes/top-navbar.php";
                     <div class="col-sm-6 mb-3">
                         <div class="card h-100">
                             <div class="">
-                                <h5 class="card-title bb-1 mb-0 px-3 py-2">Groups</h5>
+                                <h5 class="card-title bb-1 mb-0 px-3 py-2">Others</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -144,7 +144,7 @@ include "includes/top-navbar.php";
                                         <label class="font-weight-bold">#</label>
                                     </div>
                                     <div class="col-6">
-                                        <label class="font-weight-bold">Group Name</label>
+                                        <label class="font-weight-bold">Other Name</label>
                                     </div>
                                     <div class="col-5">
                                         <label class="font-weight-bold">Total Receivable</label>
