@@ -181,7 +181,7 @@ include "includes/top-navbar.php";
                         $.ajax
                         ({
                         type: "POST",
-                        url: "controllers/ajax-consignee-add-edit.php",
+                        url: "controllers/ajax-order-add.php",
                         data: post_id,
                         cache: false,
                         success: function(cons)
@@ -204,7 +204,7 @@ include "includes/top-navbar.php";
                         $.ajax
                         ({
                         type: "POST",
-                        url: "controllers/ajax-consignee-add-edit.php",
+                        url: "controllers/ajax-order-edit.php",
                         data: post_id,
                         cache: false,
                         success: function(updcons)
