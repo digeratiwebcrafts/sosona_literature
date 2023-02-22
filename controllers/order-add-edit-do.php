@@ -48,7 +48,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
       $sosona_shr_amount=round(($sosona_shr / 100) * $order_total,2);
       $sosona_bill=round($order_total - $sosona_shr_amount,2);
 
-      $upd="UPDATE order_new SET consignee_id='$consignee_title',naws_order_id='$order_id',order_date='$order_date',order_total='$order_total',area_billing_amt='$area_bill',sosona_share_amt='$sosona_shr_amount',sosona_billing_amt='$sosona_bill',comments='$comments' WHERE id='$id'";
+      $upd="UPDATE order_new SET consignee_id='$consignee_title',naws_order_id='$order_id',order_date='$order_date',order_total='$order_total',area_share_amt='0',area_billing_amt='$area_bill',sosona_share_amt='$sosona_shr_amount',sosona_billing_amt='$sosona_bill',comments='$comments' WHERE id='$id'";
 
   if ($conn->query($upd) === TRUE) {
     //echo "New record created successfully";
@@ -111,7 +111,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
       $sosona_shr_amount=round(($sosona_shr / 100) * $order_total,2);
       $sosona_bill=round($order_total - $sosona_shr_amount,2);
 
-      $ins="INSERT INTO `order_new`(`consignee_id`, `naws_order_id`, `order_date`, `order_total`,`area_billing_amt`,`sosona_share_amt`,`sosona_billing_amt`,`comments`) VALUES ('$consignee_title','$order_id','$order_date','$order_total','$area_bill','$sosona_shr_amount','$sosona_bill','$comments')";
+      $ins="INSERT INTO `order_new`(`consignee_id`, `naws_order_id`, `order_date`, `order_total`,`area_share_amt`,`area_billing_amt`,`sosona_share_amt`,`sosona_billing_amt`,`comments`) VALUES ('$consignee_title','$order_id','$order_date','$order_total','0','$area_bill','$sosona_shr_amount','$sosona_bill','$comments')";
 
   if ($conn->query($ins) === TRUE) {
     //echo "New record created successfully";
