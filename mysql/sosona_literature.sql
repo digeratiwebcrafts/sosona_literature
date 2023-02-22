@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2023 at 02:22 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.0.19
+-- Generation Time: Feb 22, 2023 at 01:30 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -150,6 +150,16 @@ CREATE TABLE `order_new` (
   `comments` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `order_new`
+--
+
+INSERT INTO `order_new` (`id`, `consignee_id`, `naws_order_id`, `order_date`, `order_total`, `area_share_amt`, `area_billing_amt`, `sosona_share_amt`, `sosona_billing_amt`, `comments`) VALUES
+(11, 5, 'order-00-2', '2023-02-23', 2000.00, 133.40, 1866.60, 400.00, 1466.60, 'test update'),
+(13, 10, 'order-003', '2023-02-22', 1000.00, 1000.00, 0.00, 266.70, 733.30, 'test for group'),
+(14, 5, 'order-004', '2023-02-22', 999.00, 66.63, 932.37, 199.80, 732.57, 'test'),
+(15, 10, 'order-005', '2023-02-22', 6000.00, 0.00, 6000.00, 1600.20, 4399.80, 'update test');
+
 -- --------------------------------------------------------
 
 --
@@ -162,7 +172,7 @@ CREATE TABLE `payment` (
   `payment_by` int(11) NOT NULL COMMENT '1=sosona,2=area,3=group',
   `payment_date` date NOT NULL,
   `payment_amt` float(9,2) NOT NULL,
-  `payment_mode` varchar(255) NOT NULL COMMENT '1=cash deposit,2=bank transfer',
+  `payment_mode` int(11) NOT NULL COMMENT '1=cash deposit,2=bank transfer',
   `payment_ref_number` varchar(255) NOT NULL,
   `comments` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -345,7 +355,7 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT for table `order_new`
 --
 ALTER TABLE `order_new`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -357,7 +367,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `product_category`
