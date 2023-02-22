@@ -11,9 +11,9 @@ if($id==0){
 		echo '<input type="text" class="form-control" placeholder="consignee" name="consignee-type" value="'.$row['entry_type'].'" readonly>';
 		}
 	}
-}
+}else
 
-if($_POST['cid']){
+{
 $id=$_POST['cid'];
 
 if($id==0){
