@@ -71,43 +71,51 @@ include "includes/top-navbar.php";
                       <?php 
                        if(isset($_GET["id"]) && !empty($_GET["id"])){
                           $id=$_GET['id'];
-                          $sel="SELECT `id`,`product_id`, `naws_order_id`, `order_date`, `product_qty`, `product_price` FROM `order` WHERE id='$id'";
+                          $sel="SELECT * FROM order_new WHERE id='$id'";
                           $rs=$conn->query($sel);
-                          while($prow=$rs->fetch_assoc()){
+                          while($ord_row=$rs->fetch_assoc()){
                       ?>
                       <form action="controllers/order-add-edit-do.php" method="post">
                         <div class="form-group">
                           <label>Consignee Name:<span class="text-danger">*</span></label>
-                          <select class="form-control select-search consignee-title" data-fouc data-placeholder="-Select Consignee-" name="consignee_title" id="consignee-title" required>
+                          <select class="form-control select-search upd-consignee-title" data-fouc data-placeholder="-Select Consignee-" name="consignee_title" id="consignee-title" required>
                             <option></option>
                             <?php
-                            $sel="SELECT * FROM `product` LEFT JOIN `order` ON product.id=order.product_id";
-                             $rs=$conn->query($sel);
-                              while($row=$rs->fetch_assoc()){
+                             $sel="SELECT * FROM consignee";
+                               $rs=$conn->query($sel);
+                                while($row=$rs->fetch_assoc()){
+                                
+
                             ?>
-                            <option value="<?php echo $row['id'];?>"<?php if ($row['id'] == $row['product_id']) { echo 'selected'; }?>><?php echo $row['product_title'];?></option>
+                            <option value="<?php echo $row['id'];?>"<?php if ($row['id'] == $ord_row['consignee_id']) { echo 'selected'; }?>><?php echo $row['name'];?> (<?php echo $row['entry_type'];?>)</option>
+
+
                             <?php
                             }
                             ?>
                           </select>
                         </div>
+                        <div class="form-group updconsignee-type">
+                          <!-- <label>Consignee Type:<span class="text-danger"></span></label> -->
+                          <input type="text" class="form-control" placeholder="consignee" name="consignee-type">
+                        </div>
                         <div class="form-group">
                           <label>Naws Order Id:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="Enter naws order id" name="order-id" value="<?php echo $prow['naws_order_id'];?>" required>
+                          <input type="text" class="form-control" placeholder="Enter naws order id" name="order-id" value="<?php echo $ord_row['naws_order_id'];?>" required>
                         </div>
                         <div class="form-group">
                           <label>Order Date:<span class="text-danger">*</span></label>
-                          <input type="date" class="form-control" placeholder="" name="order-date" value="<?php echo $prow['order_date'];?>" required>
+                          <input type="date" class="form-control" placeholder="" name="order-date" value="<?php echo $ord_row['order_date'];?>" required>
                         </div>
                         <div class="form-group">
                           <label>Order Total:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="Enter order total" name="order-total" value="<?php echo $prow['product_price'];?>" required>
+                          <input type="text" class="form-control" placeholder="Enter order total" name="order-total" value="<?php echo $ord_row['order_total'];?>" required>
                         </div>
                         <div class="form-group">
                           <label>Comments:</label>
-                          <textarea rows="5" cols="5" class="form-control" placeholder="Enter your comments here" name="comments"></textarea>
+                          <textarea rows="5" cols="5" class="form-control" placeholder="Enter your comments here" name="comments"><?php echo $ord_row['comments'];?></textarea>
                         </div>
-                        <input type="hidden" name="id" value="<?php echo $prow['id']?>">
+                        <input type="hidden" name="id" value="<?php echo $ord_row['id']?>">
                         <div class="">
                           <button type="submit" class="btn btn-primary">Update</button>
                         </div>
@@ -128,15 +136,15 @@ include "includes/top-navbar.php";
                                 while($row=$rs->fetch_assoc()){
 
                             ?>
-                            <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?>(<?php echo $row['entry_type'];?>)</option>
+                            <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?> (<?php echo $row['entry_type'];?>)</option>
                             <?php
                             }
                             ?>
                           </select>
                         </div>
                         <div class="form-group consignee-type">
-                          <label>Consignee Type:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="consignee" name="consignee-type">
+                          <!-- <label>Consignee Type:<span class="text-danger"></span></label> -->
+                          <input type="hidden" class="form-control" placeholder="consignee" name="consignee-type">
                         </div>
                         <div class="form-group">
                           <label>Naws Order Id:<span class="text-danger">*</span></label>
@@ -179,6 +187,30 @@ include "includes/top-navbar.php";
                         success: function(cons)
                         {
                         $(".consignee-type").html(cons);
+                        } 
+                        });
+
+                        });
+                        });
+
+
+                        $(document).ready(function()
+                        {
+                        $(".upd-consignee-title").change(function()
+                        {
+                        var id=$(this).val();
+                        var post_id = 'cid='+ id;
+
+                        $.ajax
+                        ({
+                        type: "POST",
+                        url: "controllers/ajax-consignee-add-edit.php",
+                        data: post_id,
+                        cache: false,
+                        success: function(updcons)
+                        {
+                        $(".updconsignee-type").html(updcons);
+
                         } 
                         });
 
