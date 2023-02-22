@@ -128,11 +128,15 @@ include "includes/top-navbar.php";
                                 while($row=$rs->fetch_assoc()){
 
                             ?>
-                            <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
+                            <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?>(<?php echo $row['entry_type'];?>)</option>
                             <?php
                             }
                             ?>
                           </select>
+                        </div>
+                        <div class="form-group consignee-type">
+                          <label>Consignee Type:<span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" placeholder="consignee" name="consignee-type">
                         </div>
                         <div class="form-group">
                           <label>Naws Order Id:<span class="text-danger">*</span></label>
@@ -169,12 +173,12 @@ include "includes/top-navbar.php";
                         $.ajax
                         ({
                         type: "POST",
-                        url: "controllers/ajax-order-add-edit.php",
+                        url: "controllers/ajax-consignee-add-edit.php",
                         data: post_id,
                         cache: false,
-                        success: function(product_price)
+                        success: function(cons)
                         {
-                        $(".price").html(product_price);
+                        $(".consignee-type").html(cons);
                         } 
                         });
 

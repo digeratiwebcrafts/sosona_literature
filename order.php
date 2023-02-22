@@ -60,11 +60,12 @@ include "includes/top-navbar.php";
                   </thead>
                   <tbody> 
                     <?php
-                      $sel="SELECT * FROM `order_new` INNER JOIN `consignee` ON consignee.id=order.consignee_id";
+                      $sel="SELECT *  FROM `consignee` INNER JOIN `order_new` ON order_new.consignee_id=consignee.id ";
                       $counter = 0;
                       $rs=$conn->query($sel);
                       while($row=$rs->fetch_assoc()){
                     ?>
+                    
                     <tr>
                       <td><?php echo ++$counter; ?></td>
                       <td><?php echo $row['name'];?></td>
