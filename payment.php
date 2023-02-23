@@ -79,7 +79,7 @@ include "includes/top-navbar.php";
                                     </div>
                                 </div>
                                 <div class="col-sm-1 mt-1">
-                                  <button type="submit" name="btn-filter" class="btn btn-primary" onclick="alert()">Filter</button>
+                                  <button type="submit" name="btn-filter" class="btn btn-primary" >Filter</button>
                                 </div>
                             </div>
                         </form>
@@ -113,7 +113,7 @@ include "includes/top-navbar.php";
                                
 
                         if(isset($_POST['from-date'])  && isset($_POST['to-date']) OR isset($_POST['payment_by'])){
-                        $query="SELECT * FROM consignee INNER JOIN payment ON payment.payment_by=consignee.id WHERE payment_date BETWEEN '$form_date' AND '$to_date' OR payment_by='$payment_by'";
+                        $query="SELECT * FROM consignee INNER JOIN payment ON payment.payment_by=consignee.id WHERE payment_date BETWEEN '$form_date' AND '$to_date' AND payment_by='$payment_by' OR payment_by='$payment_by'";
                          $counter = 0;
                          $rs=$conn->query($query);
                           while($row=$rs->fetch_assoc()){
@@ -167,18 +167,9 @@ include "includes/top-navbar.php";
                         <?php
                     
                       }
-                      /*else{
-                        echo"No Record Found";
-                    }*/  
+                       
                     }
                 }
-                }else{
-                    echo "
-                    <script>
-                    
-                    window.alert('To Date is not lessthan from date');
-                    
-                    </script>";
                 }
 
                         ?>
