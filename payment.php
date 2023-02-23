@@ -45,16 +45,24 @@ include "includes/top-navbar.php";
 
                 <div class="card">
                     <div class="card-body">
-                        <form action="" method="">
+                        <form action="" method="post">
                             <div class="row d-flex align-items-center">
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                       <label>Payment By:</label>
-                                      <select class="form-control select-search" data-fouc data-placeholder="-Select Option-">
+                                      <select class="form-control select-search" name="payment_by" data-fouc data-placeholder="-Select Option-">
+                                        <?php
+                              $sel="SELECT * FROM consignee WHERE entry_type!='Region'";
+                               $rs=$conn->query($sel);
+                                while($row=$rs->fetch_assoc()){
+
+                            ?>
                                         <option></option>
-                                        <option>Region</option>
-                                        <option>Area</option>
-                                        <option>Group</option>
+                                        <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?> (<?php echo $row['entry_type'];?>)</option>
+
+                             <?php
+                            }
+                             ?>
                                       </select>
                                     </div>
                                 </div>
@@ -71,7 +79,7 @@ include "includes/top-navbar.php";
                                     </div>
                                 </div>
                                 <div class="col-sm-1 mt-1">
-                                  <button type="submit" class="btn btn-primary">Filter</button>
+                                  <button type="submit" name="btn-filter" class="btn btn-primary" onclick="alert()">Filter</button>
                                 </div>
                             </div>
                         </form>
@@ -94,7 +102,92 @@ include "includes/top-navbar.php";
                           <th>Action</th>
                         </tr>
                       </thead>
-                      <tbody> 
+                      <tbody>
+                        <?php
+                        if (isset($_POST["btn-filter"])){
+                            $form_date=$_POST['from-date'];
+                            $to_date=$_POST['to-date'];
+                            $payment_by=$_POST['payment_by'];
+
+                            if ($form_date < $to_date OR $payment_by== TRUE) {
+                               
+
+                        if(isset($_POST['from-date'])  && isset($_POST['to-date']) OR isset($_POST['payment_by'])){
+                        $query="SELECT * FROM consignee INNER JOIN payment ON payment.payment_by=consignee.id WHERE payment_date BETWEEN '$form_date' AND '$to_date' OR payment_by='$payment_by'";
+                         $counter = 0;
+                         $rs=$conn->query($query);
+                          while($row=$rs->fetch_assoc()){
+                         
+
+
+                        if($row > 0 ){
+                                        
+                         ?>
+                        
+                        
+                        <tr>
+                          <td><?php echo ++$counter; ?></td>
+                          <td><?php echo $row['name'];?> (<?php echo $row['entry_type'];?>)</td>
+                          <td><?php echo $row['payment_date'];?></td>
+                          <td><?php echo $row['payment_amt'];?></td>
+                          <td><?php echo $row['payment_mode'];?></td>
+                          <td><?php echo $row['payment_ref_number'];?></td>
+                          <td><?php echo $row['comments'];?></td>
+                          <td class="text-center">
+                            <div class="list-icons">
+                                <div class="dropdown">
+                                    <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                        <i class="icon-menu9"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="payment-add-edit.php?id=<?php echo $row['id'];?>" class="dropdown-item"><i class="icon-pencil7"></i> Edit</a>
+                                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#confirmDeletet<?php echo $row['id'] ?>"><i class="icon-trash"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        </tr>
+                        <!-- Basic modal -->
+                        <div id="confirmDeletet<?php echo $row['id'] ?>" class="modal fade" tabindex="-1">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title w-100 text-center mb-2">Are your sure want to delete</h5>
+                              </div>
+
+                              <div class="modal-footer justify-content-center">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                <a href="controllers/payment-del.php?id=<?php echo $row['id']?>" class="btn btn-danger">Yes</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /basic modal -->
+                        <?php
+                    
+                      }
+                      /*else{
+                        echo"No Record Found";
+                    }*/  
+                    }
+                }
+                }else{
+                    echo "
+                    <script>
+                    
+                    window.alert('To Date is not lessthan from date');
+                    
+                    </script>";
+                }
+
+                        ?>
+                         
+
+                        <?php
+
+                        }else{ ?>
+
                         <?php
                           $sel="SELECT *  FROM consignee INNER JOIN payment ON payment.payment_by=consignee.id";
                           $counter = 0;
@@ -143,6 +236,7 @@ include "includes/top-navbar.php";
                         <!-- /basic modal -->
                         <?php
                         }
+                    }
                         ?>
                       </tbody>
                     </table>
