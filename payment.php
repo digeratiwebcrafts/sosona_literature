@@ -96,7 +96,7 @@ include "includes/top-navbar.php";
                       </thead>
                       <tbody> 
                         <?php
-                          $sel="SELECT *  FROM `consignee` INNER JOIN `order_new` ON order_new.consignee_id=consignee.id ";
+                          $sel="SELECT *  FROM consignee INNER JOIN payment ON payment.payment_by=consignee.id";
                           $counter = 0;
                           $rs=$conn->query($sel);
                           while($row=$rs->fetch_assoc()){
@@ -104,11 +104,11 @@ include "includes/top-navbar.php";
                         
                         <tr>
                           <td><?php echo ++$counter; ?></td>
-                          <td><?php echo $row['name'];?></td>
-                          <td><?php echo $row['naws_order_id'];?></td>
-                          <td><?php echo $row['order_date'];?></td>
-                          <td><?php echo $row['order_total'];?></td>
-                          <td><?php echo $row['comments'];?></td>
+                          <td><?php echo $row['name'];?> (<?php echo $row['entry_type'];?>)</td>
+                          <td><?php echo $row['payment_date'];?></td>
+                          <td><?php echo $row['payment_amt'];?></td>
+                          <td><?php echo $row['payment_mode'];?></td>
+                          <td><?php echo $row['payment_ref_number'];?></td>
                           <td><?php echo $row['comments'];?></td>
                           <td class="text-center">
                             <div class="list-icons">

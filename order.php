@@ -68,7 +68,7 @@ include "includes/top-navbar.php";
                     
                     <tr>
                       <td><?php echo ++$counter; ?></td>
-                      <td><?php echo $row['name'];?></td>
+                      <td><?php echo $row['name'];?> (<?php echo $row['entry_type'];?>)</td>
                       <td><?php echo $row['naws_order_id'];?></td>
                       <td><?php echo $row['order_date'];?></td>
                       <td><?php echo $row['order_total'];?></td>

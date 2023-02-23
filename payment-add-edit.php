@@ -67,15 +67,81 @@ include "includes/top-navbar.php";
                   <!-- Basic layout-->
                   <div class="card">
                     <div class="card-body">
-
+                     <?php 
+                       if(isset($_GET["id"]) && !empty($_GET["id"])){
+                          $id=$_GET['id'];
+                          $sel="SELECT * FROM payment WHERE id='$id'";
+                          $rs=$conn->query($sel);
+                          while($pay_row=$rs->fetch_assoc()){
+                      ?>
                       <form action="controllers/payment-add-edit-do.php" method="post">
                         <div class="form-group">
                           <label>Payment By:<span class="text-danger">*</span></label>
-                          <select class="form-control select-search" data-fouc data-placeholder="-Select Option-" required>
+                          <select class="form-control select-search" name="payment-by" data-fouc data-placeholder="-Select Option-" required>
                             <option></option>
-                            <option>Region</option>
-                            <option>Area</option>
-                            <option>Group</option>
+                            <?php
+                              $sel="SELECT * FROM consignee WHERE entry_type!='Region'";
+                               $rs=$conn->query($sel);
+                                while($row=$rs->fetch_assoc()){
+
+                            ?>
+                            
+                            <option value="<?php echo $row['id'];?>"<?php if ($row['id'] == $pay_row['payment_by']) { echo 'selected'; }?>><?php echo $row['name'];?> (<?php echo $row['entry_type'];?>)</option>
+                            <?php
+                            }
+                            ?>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label>Payment Date:<span class="text-danger">*</span></label>
+                          <input type="date" class="form-control" placeholder="" name="payment-date" value="<?php echo $pay_row['payment_date'];?>" required>
+                        </div>
+                        <div class="form-group">
+                          <label>Payment Amount:<span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" placeholder="Enter payment amt" name="payment-amt" value="<?php echo $pay_row['payment_amt'];?>" required>
+                        </div>
+                        <div class="form-group">
+                          <label>Payment Mode:<span class="text-danger">*</span></label>
+                          <select class="form-control select-search" name="payment-mode" data-fouc data-placeholder="-Select Option-" required>
+                            <option></option>
+                            <option value="Cash Deposit"<?php if($pay_row['payment_mode'] =='Cash Deposit') echo "selected"; ?>>Cash Deposit</option>
+                            <option value="Bank Transfer"<?php if($pay_row['payment_mode'] =='Bank Transfer') echo "selected"; ?>>Bank Transfer</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label>Payment Ref. No.:<span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" placeholder="Enter Payment Ref. No." name="payment-ref-no" value="<?php echo $pay_row['payment_ref_number'];?>" required>
+                        </div>
+                        <div class="form-group">
+                          <label>Comments:</label>
+                          <textarea rows="5" cols="5" class="form-control" placeholder="Enter your comments here" name="comments"><?php echo $pay_row['comments'];?></textarea>
+                          <input type="hidden" name="id" value="<?php echo $pay_row['id'];?>">
+                        </div>
+                        <div class="">
+                          <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                      </form>
+                      <?php
+                    }
+                       }else
+                       {
+                      ?>
+                       
+                       <form action="controllers/payment-add-edit-do.php" method="post">
+                        <div class="form-group">
+                          <label>Payment By:<span class="text-danger">*</span></label>
+                          <select class="form-control select-search" name="payment-by" data-fouc data-placeholder="-Select Option-" required>
+                            <option></option>
+                            <?php
+                              $sel="SELECT * FROM consignee WHERE entry_type!='Region'";
+                               $rs=$conn->query($sel);
+                                while($row=$rs->fetch_assoc()){
+
+                            ?>
+                            <option value="<?php echo $row['id'];?>"><?php echo $row['name'];?> (<?php echo $row['entry_type'];?>)</option>
+                            <?php
+                            }
+                            ?>
                           </select>
                         </div>
                         <div class="form-group">
@@ -88,10 +154,10 @@ include "includes/top-navbar.php";
                         </div>
                         <div class="form-group">
                           <label>Payment Mode:<span class="text-danger">*</span></label>
-                          <select class="form-control select-search" data-fouc data-placeholder="-Select Option-" required>
+                          <select class="form-control select-search" name="payment-mode" data-fouc data-placeholder="-Select Option-" required>
                             <option></option>
-                            <option>Cash Deposit</option>
-                            <option>Bank Transfer</option>
+                            <option value="Cash Deposit">Cash Deposit</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
                           </select>
                         </div>
                         <div class="form-group">
@@ -107,6 +173,9 @@ include "includes/top-navbar.php";
                         </div>
                       </form>
 
+                      <?php
+                       }
+                      ?>
                     </div>
                   </div>
                   <!-- /basic layout -->
