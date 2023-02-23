@@ -9,7 +9,7 @@ if (!isset($_SESSION['loggedin'])) {
     exit;
 }
 ?>
-<!-- Main navbar -->
+<!-- Main navbar --> 
 <?php 
 include "includes/top-navbar.php";
  ?>
@@ -111,6 +111,10 @@ include "includes/top-navbar.php";
                           <input type="text" class="form-control" placeholder="Enter opening balance amt" name="opening_bal_amt" value="<?php echo $row['opening_bal_amt'];?>" required>
                         </div>
                         <div class="form-group">
+                          <label>As On Date:<span class="text-danger">*</span></label>
+                          <input type="date" class="form-control" placeholder="" name="as_on_date" value="<?php echo $row['as_on_date'];?>" required>
+                        </div>
+                        <div class="form-group">
                           <label>Comments:<span class="text-danger"></span></label>
                           <textarea rows="5" cols="5" class="form-control" placeholder="Enter your message here" name="msg_comments"  ><?php echo $row['comments'];?></textarea>
                           <input type="hidden" name="id" value="<?php echo $row['id']?>">
@@ -145,6 +149,10 @@ include "includes/top-navbar.php";
                         <div class="form-group">
                           <label>Opening Balance:<span class="text-danger">*</span></label>
                           <input type="text" class="form-control" placeholder="Enter opening balance amt" name="opening_bal_amt" required>
+                        </div>
+                        <div class="form-group">
+                          <label>As On Date:<span class="text-danger">*</span></label>
+                          <input type="date" class="form-control" placeholder="" name="as_on_date" required>
                         </div>
                         <div class="form-group">
                           <label>Comments:<span class="text-danger">*</span></label>

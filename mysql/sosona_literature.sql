@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2023 at 01:30 PM
+-- Generation Time: Feb 23, 2023 at 08:42 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -34,6 +34,7 @@ CREATE TABLE `consignee` (
   `entry_type` varchar(255) NOT NULL COMMENT '1=sosona,2=area,3=group',
   `city` varchar(255) NOT NULL,
   `opening_bal_amt` float(9,2) NOT NULL,
+  `as_on_date` date NOT NULL,
   `comments` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -41,10 +42,10 @@ CREATE TABLE `consignee` (
 -- Dumping data for table `consignee`
 --
 
-INSERT INTO `consignee` (`id`, `name`, `entry_type`, `city`, `opening_bal_amt`, `comments`) VALUES
-(1, 'Sosona', 'Region', 'Kolkata', 6000.00, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
-(5, 'Abu', 'Area', 'kolkata', 200000.00, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
-(10, 'Amit', 'Group', 'kolkata', 6000.00, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
+INSERT INTO `consignee` (`id`, `name`, `entry_type`, `city`, `opening_bal_amt`, `as_on_date`, `comments`) VALUES
+(1, 'Sosona', 'Region', 'Kolkata', 6000.00, '2023-02-21', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+(5, 'Abu', 'Area', 'kolkata', 200000.00, '2023-02-22', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'),
+(10, 'Amit', 'Group', 'kolkata', 6000.00, '2023-02-22', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
 
 -- --------------------------------------------------------
 
@@ -155,10 +156,7 @@ CREATE TABLE `order_new` (
 --
 
 INSERT INTO `order_new` (`id`, `consignee_id`, `naws_order_id`, `order_date`, `order_total`, `area_share_amt`, `area_billing_amt`, `sosona_share_amt`, `sosona_billing_amt`, `comments`) VALUES
-(11, 5, 'order-00-2', '2023-02-23', 2000.00, 133.40, 1866.60, 400.00, 1466.60, 'test update'),
-(13, 10, 'order-003', '2023-02-22', 1000.00, 1000.00, 0.00, 266.70, 733.30, 'test for group'),
-(14, 5, 'order-004', '2023-02-22', 999.00, 66.63, 932.37, 199.80, 732.57, 'test'),
-(15, 10, 'order-005', '2023-02-22', 6000.00, 0.00, 6000.00, 1600.20, 4399.80, 'update test');
+(16, 5, 'order-001', '2023-02-22', 1000.00, 66.70, 933.30, 200.00, 733.30, 'test area');
 
 -- --------------------------------------------------------
 
@@ -172,10 +170,28 @@ CREATE TABLE `payment` (
   `payment_by` int(11) NOT NULL COMMENT '1=sosona,2=area,3=group',
   `payment_date` date NOT NULL,
   `payment_amt` float(9,2) NOT NULL,
-  `payment_mode` int(11) NOT NULL COMMENT '1=cash deposit,2=bank transfer',
+  `payment_mode` varchar(255) NOT NULL COMMENT '1=cash deposit,2=bank transfer',
   `payment_ref_number` varchar(255) NOT NULL,
   `comments` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`id`, `payment_by`, `payment_date`, `payment_amt`, `payment_mode`, `payment_ref_number`, `comments`) VALUES
+(4, 5, '2023-02-23', 5000.00, 'Cash Deposit', 'test001', 'test'),
+(6, 10, '2023-02-23', 4000.00, 'Bank Transfer', 'test001', ''),
+(7, 5, '2023-02-22', 2500.00, 'Bank Transfer', 'test002', ''),
+(8, 5, '2023-02-23', 500.00, 'Cash Deposit', 'test001', ''),
+(9, 10, '2023-02-24', 5000.00, 'Bank Transfer', 'test002', ''),
+(10, 5, '2023-02-24', 5000.00, 'Cash Deposit', 'test002', ''),
+(11, 10, '2023-02-23', 500.00, 'Cash Deposit', 'test003', ''),
+(12, 5, '2023-02-24', 500.00, 'Cash Deposit', 'test002', ''),
+(13, 10, '2023-02-24', 5000.00, 'Bank Transfer', 'test003', ''),
+(14, 5, '2023-02-22', 500.00, 'Cash Deposit', 'test002', ''),
+(15, 5, '2023-02-23', 5000.00, 'Bank Transfer', 'test004', ''),
+(16, 10, '2023-02-24', 5000.00, 'Bank Transfer', 'test004', '');
 
 -- --------------------------------------------------------
 
@@ -355,13 +371,13 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT for table `order_new`
 --
 ALTER TABLE `order_new`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `product`

@@ -10,8 +10,9 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     $entry_type=$_POST['entry_type'];
     $city_name=$_POST['city_name'];
     $opening_bal_amt=$_POST['opening_bal_amt'];
+    $as_on_date=$_POST['as_on_date'];
     $msg_comments=$_POST['msg_comments'];
-    $upd="UPDATE consignee SET name='$name', entry_type='$entry_type', city='$city_name', opening_bal_amt='$opening_bal_amt',comments='$msg_comments' WHERE id='$id'";
+    $upd="UPDATE consignee SET name='$name', entry_type='$entry_type', city='$city_name', opening_bal_amt='$opening_bal_amt',as_on_date='$as_on_date',comments='$msg_comments' WHERE id='$id'";
 
   
     if ($conn->query($upd) === TRUE) {
@@ -32,8 +33,9 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     $entry_type=$_POST['entry_type'];
     $city_name=$_POST['city_name'];
     $opening_bal_amt=$_POST['opening_bal_amt'];
+    $as_on_date=$_POST['as_on_date'];
     $msg_comments=$_POST['msg_comments'];
-    $ins="insert into consignee(name,entry_type,city,opening_bal_amt,comments) values('$name','$entry_type','$city_name','$opening_bal_amt','$msg_comments')";
+    $ins="insert into consignee(name,entry_type,city,opening_bal_amt,as_on_date,comments) values('$name','$entry_type','$city_name','$opening_bal_amt','$as_on_date','$msg_comments')";
 
   
     if ($conn->query($ins) === TRUE) {

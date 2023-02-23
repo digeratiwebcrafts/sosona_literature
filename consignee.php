@@ -52,6 +52,7 @@ include "includes/top-navbar.php";
                                 <th>Type</th>
                                 <th>City</th>
                                 <th>Opening Bal.</th>
+                                <th>As On Date</th>
                                 <th>Comments</th>
                                 <th class="text-center">Actions</th>
                             </tr>
@@ -67,6 +68,7 @@ include "includes/top-navbar.php";
                                 <td><?php echo $row['entry_type']; ?></td>
                                 <td><?php echo $row['city']; ?></td>
                                 <td><?php echo $row['opening_bal_amt']; ?></td>
+                                <td><?php echo $row['as_on_date']; ?></td>
                                 <td><?php echo $row['comments']; ?></td>
                                 <td class="text-center">
                                     <div class="list-icons">
