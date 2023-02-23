@@ -18,3 +18,11 @@
 .bb-1{
     border-bottom: 1px solid #ddd;
 }
+.view-password{
+    right: 0;
+    left: auto!important;
+    cursor: pointer;
+}
+.pr-form-control-icon{
+    padding-right: 2.75rem;
+}

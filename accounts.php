@@ -32,8 +32,9 @@ include "includes/top-navbar.php";
             <!-- Page header -->
             <div class="page-header page-header-light">
                 <div class="page-header-content header-elements-lg-inline">
-                    <div class="page-title d-flex">
-                        <h4><span class="font-weight-semibold">Accounts</span></h4>
+                    <div class="page-title d-flex w-100">
+                        <h4 class="mr-auto"><span class="font-weight-semibold">Accounts</span></h4>
+                        <a href="#" class="btn btn-indigo"><i class="icon-file-pdf mr-2"></i> Export to .pdf</a>
                     </div>
                 </div>
             </div>
@@ -58,9 +59,6 @@ include "includes/top-navbar.php";
                                 <div class="col-sm-3 mt-0 mt-sm-2">
                                   <button type="submit" class="btn btn-primary">Filter</button>
                                 </div>
-                                <div class="col-sm-4 mt-3 mt-sm-2 text-sm-right">
-                                  <button type="button" class="btn btn-light ml-auto"><i class="icon-file-pdf mr-2"></i> Export to .pdf</button>
-                                </div>
                             </div>
                         </form>
                     </div>
@@ -74,12 +72,12 @@ include "includes/top-navbar.php";
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="col-7 col-sm-9">
-                                    <p><span class="font-weight-bold">Area Name (Type)</span> Opening Bal., as on <span class="font-weight-bold">insertion_date</span></p>
+                                    <p class="mb-0"><span class="font-weight-bold">Area Name (Type)</span> Opening Bal., as on <span class="font-weight-bold">insertion_date</span></p>
                                 </div>
                                 <div class="col-5 col-sm-3 text-right">
-                                    <span class="badge badge-warning font-weight-bold ml-auto">154210.00</span>
+                                    <span class="badge badge-teal font-weight-bold ml-auto">154210.00</span>
                                 </div>
                             </div>
                         </div>
@@ -179,7 +177,7 @@ include "includes/top-navbar.php";
                                             </tr>
                                             <tr>
                                                 <td colspan="3"><span class="font-weight-bold">Total Dues</span> to SOSONA as on <span class="font-weight-bold">(current_date):</span></td>
-                                                <td><span class="badge badge-danger font-weight-bold">50000.00</span></td>
+                                                <td><span class="badge badge-warning font-weight-bold">50000.00</span></td>
 
                                             </tr>
                                         </tbody>
@@ -200,12 +198,12 @@ include "includes/top-navbar.php";
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="col-7 col-sm-9">
-                                    <p><span class="font-weight-bold">Group Name (Type)</span> Opening Bal., as on <span class="font-weight-bold">insertion_date</span></p>
+                                    <p class="mb-0"><span class="font-weight-bold">Group Name (Type)</span> Opening Bal., as on <span class="font-weight-bold">insertion_date</span></p>
                                 </div>
                                 <div class="col-5 col-sm-3 text-right">
-                                    <span class="badge badge-warning font-weight-bold ml-auto">154210.00</span>
+                                    <span class="badge badge-teal font-weight-bold ml-auto">154210.00</span>
                                 </div>
                             </div>
                         </div>
@@ -305,7 +303,7 @@ include "includes/top-navbar.php";
                                             </tr>
                                             <tr>
                                                 <td colspan="3"><span class="font-weight-bold">Total Dues</span> to SOSONA as on <span class="font-weight-bold">(current_date):</span></td>
-                                                <td><span class="badge badge-danger font-weight-bold">50000.00</span></td>
+                                                <td><span class="badge badge-warning font-weight-bold">50000.00</span></td>
 
                                             </tr>
                                         </tbody>

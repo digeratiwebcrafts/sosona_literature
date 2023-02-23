@@ -69,19 +69,43 @@ include "includes/top-navbar.php";
                     <div class="card-body">
 
                       <form action="controllers/change-password-do.php" method="post">
-                        <div class="form-group">
+                        <div>
                           <label>Old Password:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="Enter your old password" name="old_pass" required>
+                          <div class="form-group form-group-feedback form-group-feedback-left">
+                            <input type="password" name="old_pass" class="form-control pr-form-control-icon" placeholder="Password" required>
+                            <div class="form-control-feedback">
+                              <i class="icon-lock2 text-muted"></i>
+                            </div>
+                            <div class="form-control-feedback view-password">
+                                <i class="icon-eye-blocked2 text-muted view-password-icon"></i>
+                            </div>
+                          </div>
                         </div>
-                        <div class="form-group">
+                        <div>
                           <label>New Password:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="Enter your old password" name="new_pass" required>
+                          <div class="form-group form-group-feedback form-group-feedback-left">
+                            <input type="password" name="new_pass" class="form-control npr-form-control-icon" placeholder="Password" required>
+                            <div class="form-control-feedback">
+                              <i class="icon-lock2 text-muted"></i>
+                            </div>
+                            <div class="form-control-feedback view-password">
+                                <i class="icon-eye-blocked2 text-muted new-password-icon"></i>
+                            </div>
+                          </div>
                         </div>
-                        <div class="form-group">
+                        <div>
                           <label>Confirm Password:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="Enter your confirm password" name="confirm_pass" required>
+                          <div class="form-group form-group-feedback form-group-feedback-left">
+                            <input type="password" name="confirm_pass" class="form-control cpr-form-control-icon" placeholder="Password" required>
+                            <div class="form-control-feedback">
+                              <i class="icon-lock2 text-muted"></i>
+                            </div>
+                            <div class="form-control-feedback view-password">
+                                <i class="icon-eye-blocked2 text-muted confirm-password-icon"></i>
+                            </div>
+                          </div>
                         </div>
-                        <input type="hidden" name="id" value="<?php echo $row['id']?>">
+                        <input type="hidden" name="id" value="<?php echo $_SESSION['id'];?>">
                         <div class="">
                           <button type="submit" name="submit" class="btn btn-primary">Change</button>
                         </div>

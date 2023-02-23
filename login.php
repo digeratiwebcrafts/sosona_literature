@@ -42,17 +42,20 @@ include "includes/header.php";
                                 
 
 							<div class="form-group form-group-feedback form-group-feedback-left">
-								<input type="text" name="username" class="form-control" placeholder="Username" required>
+								<input type="email" name="useremail" class="form-control" placeholder="Email Id" required>
 								<div class="form-control-feedback">
 									<i class="icon-user text-muted"></i>
 								</div>
 							</div>
 
 							<div class="form-group form-group-feedback form-group-feedback-left">
-								<input type="password" name="userpass" class="form-control" placeholder="Password" required>
+								<input type="password" name="userpass" class="form-control pr-form-control-icon" placeholder="Password" required>
 								<div class="form-control-feedback">
 									<i class="icon-lock2 text-muted"></i>
 								</div>
+								<div class="form-control-feedback view-password">
+	                                <i class="icon-eye-blocked2 text-muted view-password-icon"></i>
+	                            </div>
 							</div>
 
 							<div class="form-group">
@@ -65,7 +68,7 @@ include "includes/header.php";
 						</div>
 					</div>
 				</form>
-				<!-- /login form -->
+				<!-- /login form -->	
 
 			</div>
 			<!-- /content area -->

@@ -10,7 +10,7 @@ include "includes/db-connect.php";
 	<title>
 		<?php echo $pageTitle;?>
 	</title>
-
+	<link rel="icon" type="image/png" href="assets/images/fav-icon.png" sizes="16x16"/>
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 	<link href="assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
@@ -34,6 +34,7 @@ include "includes/db-connect.php";
 	<script src="assets/js/demo_pages/datatables_basic.js"></script>
 	<!-- /datatable -->
 	<script src="assets/js/app.js"></script>
+	<script src="assets/js/custom.js"></script>
 	<!-- /theme JS files -->
 
 </head>

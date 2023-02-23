@@ -31,33 +31,20 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="consignee.php" class="nav-link">
-						<i class="icon-user"></i> 
-						<span>Consignee</span>
-					</a>
-				</li>
-				<li class="nav-item nav-item-submenu">
-					<a href="#" class="nav-link"><i class="icon-coin-dollar"></i> <span>Finance</span></a>
-
-					<ul class="nav nav-group-sub" data-submenu-title="Finance">
-						<li class="nav-item"><a href="order.php" class="nav-link">Orders</a></li>
-						<li class="nav-item"><a href="payment.php" class="nav-link">Payments Received</a></li>
-						<li class="nav-item"><a href="#" class="nav-link">Payments to Naws</a></li>
-					</ul>
-				</li>
-				<li class="nav-item nav-item-submenu">
-					<a href="#" class="nav-link"><i class="icon-box"></i> <span>Products</span></a>
-
-					<ul class="nav nav-group-sub" data-submenu-title="Products">
-						<li class="nav-item"><a href="categories.php" class="nav-link">Category List</a></li>
-						<li class="nav-item"><a href="product.php" class="nav-link">Product List</a></li>
-					</ul>
-				</li>
-				<li class="nav-item">
 					<a href="accounts.php" class="nav-link">
 						<i class="icon-notebook"></i> 
 						<span>Accounts</span>
 					</a>
+				</li>
+				<li class="nav-item nav-item-submenu">
+					<a href="#" class="nav-link"><i class="icon-coin-dollar"></i> <span>Literature Operation</span></a>
+
+					<ul class="nav nav-group-sub" data-submenu-title="Finance">
+						<li class="nav-item"><a href="consignee.php" class="nav-link">Consignee</a></li>
+						<li class="nav-item"><a href="order.php" class="nav-link">Literature Orders</a></li>
+						<li class="nav-item"><a href="payment.php" class="nav-link">Payments Received</a></li>
+						<li class="nav-item"><a href="#" class="nav-link">Payments to Naws</a></li>
+					</ul>
 				</li>
 				<li class="nav-item">
 					<a href="settings.php" class="nav-link">
