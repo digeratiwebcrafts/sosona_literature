@@ -30,8 +30,13 @@ include "includes/header.php";
 									<i class="icon-mail5 text-muted"></i>
 								</div>
 							</div>
-
-							<button type="submit" class="btn btn-primary btn-block"><i class="icon-spinner11 mr-2"></i> Reset password</button>
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary btn-block"><i class="icon-spinner11 mr-2"></i> Reset password</button>
+							</div>
+							
+							<div class="text-center">
+								<a href="login.php">Log in</a>
+							</div>
 						</div>
 					</div>
 				</form>

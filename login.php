@@ -56,7 +56,7 @@ include "includes/header.php";
 							</div>
 
 							<div class="form-group">
-								<button type="submit" name="submit" class="btn btn-primary btn-block">Sign in</button>
+								<button type="submit" name="submit" class="btn btn-primary btn-block">Log in</button>
 							</div>
 
 							<div class="text-center">

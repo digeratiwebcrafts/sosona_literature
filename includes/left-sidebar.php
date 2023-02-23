@@ -42,6 +42,7 @@
 					<ul class="nav nav-group-sub" data-submenu-title="Finance">
 						<li class="nav-item"><a href="order.php" class="nav-link">Orders</a></li>
 						<li class="nav-item"><a href="payment.php" class="nav-link">Payments Received</a></li>
+						<li class="nav-item"><a href="#" class="nav-link">Payments to Naws</a></li>
 					</ul>
 				</li>
 				<li class="nav-item nav-item-submenu">
@@ -53,7 +54,7 @@
 					</ul>
 				</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link">
+					<a href="accounts.php" class="nav-link">
 						<i class="icon-notebook"></i> 
 						<span>Accounts</span>
 					</a>
@@ -65,7 +66,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link">
+					<a href="change-password.php" class="nav-link">
 						<i class="icon-lock2"></i> 
 						<span>Change Password</span>
 					</a>
