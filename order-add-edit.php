@@ -196,9 +196,9 @@ include "includes/top-navbar.php";
 
                         $(document).ready(function()
                         {
-                        $(".upd-consignee-title").change(function()
-                        {
-                        var id=$(this).val();
+                       var id= $(".upd-consignee-title").val();
+                        
+                        /*var id=$(this).val();*/
                         var post_id = 'cid='+ id;
 
                         $.ajax
@@ -215,7 +215,7 @@ include "includes/top-navbar.php";
                         });
 
                         });
-                        });
+                        
                       </script>
                     </div>
                   </div>
