@@ -43,7 +43,7 @@
 						<li class="nav-item"><a href="consignee.php" class="nav-link">Consignee</a></li>
 						<li class="nav-item"><a href="order.php" class="nav-link">Literature Orders</a></li>
 						<li class="nav-item"><a href="payment.php" class="nav-link">Payments Received</a></li>
-						<li class="nav-item"><a href="#" class="nav-link">Payments to Naws</a></li>
+						<li class="nav-item"><a href="payment-naws.php" class="nav-link">Payments to Naws</a></li>
 					</ul>
 				</li>
 				<li class="nav-item">
