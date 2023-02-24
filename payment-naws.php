@@ -87,13 +87,13 @@ include "includes/top-navbar.php";
                         if (isset($_POST["btn-filter"])){
                             $form_date=$_POST['from-date'];
                             $to_date=$_POST['to-date'];
-                            $payment_by=$_POST['payment_by'];
+                            
 
-                            if ($form_date < $to_date OR $payment_by== TRUE) {
+                            if ($form_date < $to_date) {
                                
 
                         if(isset($_POST['from-date'])  && isset($_POST['to-date']) OR isset($_POST['payment_by'])){
-                        $query="SELECT * FROM consignee INNER JOIN payment ON payment.payment_by=consignee.id WHERE payment_date BETWEEN '$form_date' AND '$to_date' AND payment_by='$payment_by' OR payment_by='$payment_by'";
+                        $query="SELECT * FROM consignee INNER JOIN payment ON payment.payment_by=consignee.id WHERE payment_date BETWEEN '$form_date' AND '$to_date' AND entry_type='Region'";
                          $counter = 0;
                          $rs=$conn->query($query);
                           while($row=$rs->fetch_assoc()){
@@ -159,7 +159,7 @@ include "includes/top-navbar.php";
                         }else{ ?>
 
                         <?php
-                          $sel="SELECT *  FROM consignee INNER JOIN payment ON payment.payment_by=consignee.id";
+                          $sel="SELECT *  FROM consignee INNER JOIN payment ON payment.payment_by=consignee.id WHERE entry_type='Region'";
                           $counter = 0;
                           $rs=$conn->query($sel);
                           while($row=$rs->fetch_assoc()){
@@ -180,7 +180,7 @@ include "includes/top-navbar.php";
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="payment-add-edit.php?id=<?php echo $row['id'];?>" class="dropdown-item"><i class="icon-pencil7"></i> Edit</a>
+                                        <a href="payment-naws-add-edit.php?id=<?php echo $row['id'];?>" class="dropdown-item"><i class="icon-pencil7"></i> Edit</a>
                                         <a href="#" class="dropdown-item" data-toggle="modal" data-target="#confirmDeletet<?php echo $row['id'] ?>"><i class="icon-trash"></i> Delete</a>
                                     </div>
                                 </div>
@@ -197,7 +197,7 @@ include "includes/top-navbar.php";
 
                               <div class="modal-footer justify-content-center">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                <a href="controllers/payment-del.php?id=<?php echo $row['id']?>" class="btn btn-danger">Yes</a>
+                                <a href="controllers/payment-naws-del.php?id=<?php echo $row['id']?>" class="btn btn-danger">Yes</a>
                               </div>
                             </div>
                           </div>

@@ -75,7 +75,15 @@ include "includes/top-navbar.php";
                           while($pay_row=$rs->fetch_assoc()){
                       ?>
                       <form action="controllers/payment-naws-add-edit-do.php" method="post">
-                        
+                        <?php
+                              $sel="SELECT * FROM consignee WHERE entry_type='Region'";
+                               $rs=$conn->query($sel);
+                                while($row=$rs->fetch_assoc()){
+
+                            ?>
+                            <input type="hidden" class="form-control" placeholder="" name="entry_type" value="<?php echo $row['id'];?>">
+
+                          <?php } ?>
                         <div class="form-group">
                           <label>Payment Date:<span class="text-danger">*</span></label>
                           <input type="date" class="form-control" placeholder="" name="payment-date" value="<?php echo $pay_row['payment_date'];?>" required>
@@ -111,8 +119,16 @@ include "includes/top-navbar.php";
                        {
                       ?>
                        
-                       <form action="controllers/payment-add-edit-do.php" method="post">
-                        
+                       <form action="controllers/payment-naws-add-edit-do.php" method="post">
+                        <?php
+                              $sel="SELECT * FROM consignee WHERE entry_type='Region'";
+                               $rs=$conn->query($sel);
+                                while($row=$rs->fetch_assoc()){
+
+                            ?>
+                            <input type="hidden" class="form-control" placeholder="" name="entry_type" value="<?php echo $row['id'];?>">
+
+                          <?php } ?>
                         <div class="form-group">
                           <label>Payment Date:<span class="text-danger">*</span></label>
                           <input type="date" class="form-control" placeholder="" name="payment-date" required>
