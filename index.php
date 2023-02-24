@@ -45,9 +45,38 @@ include "includes/top-navbar.php";
                     <div class="col-sm-3 mb-3">
                         <div class="card bg-info text-white h-100">
                             <div class="card-body">
-                                <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i>38,289</h3>
+                                <?php
+                                $sql = "SELECT SUM(order_total) FROM order_new";
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                  // output data of each row
+                                  while($row = $result->fetch_assoc()) {
+                                    //echo "Total Order: " . $row["SUM(order_total)"];
+                                 ?>
+                                <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i><?php echo $row['SUM(order_total)'];?></h3>
                                 <p class="mb-0">Total Order</p>
-                                <p class="mb-0 sm-lh opacity-75"><small>Last Order: <span class="">1000.00</span> | <span class="">Name (Type)</span> | <span class="">22-02-23</span></small></p>
+                                <?php 
+                                    }
+                                }
+                                 ?>
+                                 <?php
+                                $sql = "SELECT consignee.name, consignee.entry_type, order_new.consignee_id, order_new.order_date, order_new.order_total FROM order_new INNER JOIN consignee ON order_new.consignee_id=consignee.id ORDER BY order_new.id DESC LIMIT 1;";
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                  // output data of each row
+                                  while($row = $result->fetch_assoc()) {
+                                    //echo "Last Order: " . $row["order_total"] . "<br>";
+                                    //echo "Name (Type): " . $row["consignee_id"] . "<br>";
+                                    //echo "Last Order Date: " . $row["order_date"] . "<br>";
+
+                                 ?>
+                                <p class="mb-0 sm-lh opacity-75"><small>Last Order: <span class=""><?php echo $row['order_total'];?></span> | <span class=""><?php echo $row['name'];?></span> <span class="">(<?php echo $row['entry_type'];?>)</span> | <span class=""><?php echo $row['order_date'];?></span></small></p>
+                                <?php 
+                                    }
+                                }
+                                 ?>
                             </div>
                         </div>  
                     </div>
