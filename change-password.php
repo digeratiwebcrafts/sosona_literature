@@ -105,6 +105,24 @@ include "includes/top-navbar.php";
                             </div>
                           </div>
                         </div>
+                        <?php
+                        $id = $_SESSION['id'];
+                        $sql = "SELECT * FROM user WHERE id='$id'";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                          // output data of each row
+                          while($row = $result->fetch_assoc()) {
+                            //echo "id: " . $row["id"]. " - Email: " . $row["user_email"]. " " . $row["user_pass"]. "<br>";
+                         
+
+                         ?>
+                         <input type="hidden" name="old_pass_db" value="<?php echo $row['user_pass']?>">
+                         <?php
+                        }
+                        } 
+
+                         ?>
                         <input type="hidden" name="id" value="<?php echo $_SESSION['id'];?>">
                         <div class="">
                           <button type="submit" name="submit" class="btn btn-primary">Change</button>

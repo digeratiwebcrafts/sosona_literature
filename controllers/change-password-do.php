@@ -5,7 +5,8 @@ require('../includes/db-connect.php');
 
 if(isset($_POST["submit"])){
     $id=$_POST['id'];
-    $old_pass=$_POST['old_pass'];
+    $old_pass= md5 ($_POST['old_pass']);
+    $old_pass_db=$_POST['old_pass_db'];
     $new_pass= md5 ($_POST['new_pass']);
     $confirm_pass= md5 ($_POST['confirm_pass']);
     $upd="UPDATE user SET user_pass='$confirm_pass' WHERE id='$id'";
@@ -13,6 +14,11 @@ if(isset($_POST["submit"])){
     if ($new_pass != $confirm_pass) {
       $_SESSION['status'] = "error";
       $_SESSION['status_msg'] = "New Password and Confirm Password is not same.";
+      header("Location: ../change-password.php");
+    }
+    elseif ($old_pass != $old_pass_db) {
+      $_SESSION['status'] = "error";
+      $_SESSION['status_msg'] = "Old Password is not correct.";
       header("Location: ../change-password.php");
     }
 
