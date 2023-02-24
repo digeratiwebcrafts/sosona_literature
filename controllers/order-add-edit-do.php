@@ -19,7 +19,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
   $area_bill=round($order_total - $area_share_amount,2);
   $sosona_shr=$row['sosona_share_pct'];
   $sosona_shr_amount=round(($sosona_shr / 100) * $order_total,2);
-  $sosona_bill=round($area_bill - $sosona_shr_amount,2);
+  $sosona_bill=round($area_bill - $sosona_shr_amount,2); 
 
  
    $upd="UPDATE order_new SET consignee_id='$consignee_title',naws_order_id='$order_id',order_date='$order_date',order_total='$order_total',area_share_amt='$area_share_amount',area_billing_amt='$area_bill',sosona_share_amt='$sosona_shr_amount',sosona_billing_amt='$sosona_bill',comments='$comments' WHERE id='$id'";
