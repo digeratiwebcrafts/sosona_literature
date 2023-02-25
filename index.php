@@ -61,7 +61,7 @@ include "includes/top-navbar.php";
                                 }
                                  ?>
                                  <?php
-                                $sql = "SELECT consignee.name, consignee.entry_type, order_new.consignee_id, order_new.order_date, order_new.order_total FROM order_new INNER JOIN consignee ON order_new.consignee_id=consignee.id ORDER BY order_new.id DESC LIMIT 1;";
+                                $sql = "SELECT consignee.name, consignee.entry_type, order_new.consignee_id, order_new.order_date, order_new.order_total FROM order_new INNER JOIN consignee ON order_new.consignee_id=consignee.id ORDER BY order_new.order_date DESC LIMIT 1;";
                                 $result = $conn->query($sql);
 
                                 if ($result->num_rows > 0) {
