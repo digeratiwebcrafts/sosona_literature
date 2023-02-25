@@ -181,10 +181,10 @@ include "includes/top-navbar.php";
                                 if ($result->num_rows > 0) {
                                   // output data of each row
                                   while($row = $result->fetch_assoc()) {
-                                    $total_recev_all_areas = ($row["SUM(opening_bal_amt)"] + $row["SUM(area_billing_amt)"]) - $row["SUM(payment_amt)"]. "<br>";
-                                    //echo "Total receivable Area Amt: " . $total_recev_all_areas;
+                                    $total_recev_all_groups = ($row["SUM(opening_bal_amt)"] + $row["SUM(area_billing_amt)"]) - $row["SUM(payment_amt)"]. "<br>";
+                                    //echo "Total receivable Area Amt: " . $total_recev_all_groups;
                                  ?>
-                                <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i>38,289</h3>
+                                <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i><?php echo $total_recev_all_groups;?></h3>
                                 <p class="mb-0">Total receivable from Others</p>
                                 <?php 
                                     }
