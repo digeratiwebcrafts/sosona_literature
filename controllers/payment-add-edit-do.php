@@ -21,7 +21,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
       //echo "Record updated successfully";
       $_SESSION['status'] = "success";
       $_SESSION['status_msg'] = "Record Updated successfully.";
-      header("Location: ../consignee-add-edit.php");
+      header("Location: ../payment-add-edit.php");
     } else {
       //echo "Error: " . $upd . "<br>" . $con->error;
       $_SESSION['status'] = "error";

@@ -83,7 +83,40 @@ include "includes/top-navbar.php";
                     <div class="col-sm-3 mb-3">
                         <div class="card bg-pink text-white h-100">
                             <div class="card-body">
-                                <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i>38,289</h3>
+
+                                <?php
+                                 $sel_pay="SELECT  SUM(payment.payment_amt) AS naws_pay_sum FROM payment INNER JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Region'";
+                                      $pay_conn=$conn->query($sel_pay);
+                                      $naws_pay_sum=$pay_conn->fetch_assoc();
+                                      
+                                      
+                                      $sel_shr="SELECT * FROM lds_share";
+                                      $shr_conn=$conn->query($sel_shr);
+                                      $shr_row=$shr_conn->fetch_assoc();
+                                      $shr_total=$shr_row['sosona_share_pct'] + $shr_row['area_share_pct'];
+                                      
+
+                                      $sel_con="SELECT * FROM consignee WHERE entry_type='Region'";
+                                      $rs_con=$conn->query($sel_con);
+                                      $con_row=$rs_con->fetch_assoc();
+                                      $opening_bal=$con_row['opening_bal_amt'];
+                                      
+
+                                      $sel_order="SELECT SUM(order_new.order_total) AS order_total_sum  FROM order_new";
+                                      $rs=$conn->query($sel_order);
+                                      $order_total=$rs->fetch_assoc();
+                                      
+                                      
+                                      $total_shr_amt=($shr_total / 100) * implode('', $order_total);
+                                      
+                                      $opn_bal_ord_total_sum=$opening_bal+implode('', $order_total);
+                                      
+                                        $naws_total=round($opn_bal_ord_total_sum - $total_shr_amt - implode('', $naws_pay_sum),2);
+
+
+                                
+                               echo" <h3 class='font-weight-semibold mb-0'><i class='fas fa-rupee-sign'></i>$naws_total</h3>";
+                                ?>
                                 <p class="mb-0">Total payable to NAWS</p>
                                 <p class="mb-0 sm-lh opacity-75"><small>Last Payment: <span class="">1000.00</span> | <span class="">22-02-23</span></small></p>
                             </div>
