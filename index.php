@@ -118,7 +118,17 @@ include "includes/top-navbar.php";
                                echo" <h3 class='font-weight-semibold mb-0'><i class='fas fa-rupee-sign'></i>$naws_total</h3>";
                                 ?>
                                 <p class="mb-0">Total payable to NAWS</p>
-                                <p class="mb-0 sm-lh opacity-75"><small>Last Payment: <span class="">1000.00</span> | <span class="">22-02-23</span></small></p>
+                                 <?php
+                                $sql = "SELECT * FROM payment INNER JOIN consignee ON consignee.id=payment.payment_by WHERE entry_type='Region' ORDER BY payment.payment_date DESC LIMIT 1";
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                 while($row = $result->fetch_assoc()) {
+                                    ?>
+                                <p class="mb-0 sm-lh opacity-75"><small>Last Payment: <span class=""><?php  echo $row['payment_amt'] ?></span> | <span class=""><?php  echo $row['payment_date'] ?></span></small></p>
+                              <?php }  
+                               }
+                              ?>
                             </div>
                         </div>  
                     </div>

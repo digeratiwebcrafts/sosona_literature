@@ -97,7 +97,7 @@ include "includes/top-navbar.php";
                         </div>
                         <div class="form-group updconsignee-type">
                           <!-- <label>Consignee Type:<span class="text-danger"></span></label> -->
-                          <input type="text" class="form-control" placeholder="consignee" name="consignee-type">
+                          <input type="hidden" class="form-control" placeholder="consignee" name="consignee-type">
                         </div>
                         <div class="form-group">
                           <label>Naws Order Id:<span class="text-danger">*</span></label>
