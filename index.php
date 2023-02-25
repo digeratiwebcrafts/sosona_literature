@@ -155,18 +155,18 @@ include "includes/top-navbar.php";
                                 }
                                  ?>
                                  <?php
-                                $sql = "SELECT consignee.name, consignee.entry_type, order_new.consignee_id, order_new.order_date, order_new.order_total FROM order_new INNER JOIN consignee ON order_new.consignee_id=consignee.id WHERE consignee.entry_type = 'Area' ORDER BY order_new.order_date DESC LIMIT 1;";
+                                $sql = "SELECT consignee.name, consignee.entry_type, payment.payment_by, payment.payment_date, payment.payment_amt FROM payment INNER JOIN consignee ON payment.payment_by=consignee.id WHERE consignee.entry_type = 'Area' ORDER BY payment.payment_date DESC LIMIT 1";
                                 $result = $conn->query($sql);
 
                                 if ($result->num_rows > 0) {
                                   // output data of each row
                                   while($row = $result->fetch_assoc()) {
-                                    //echo "Last Order: " . $row["order_total"] . "<br>";
-                                    //echo "Name (Type): " . $row["consignee_id"] . "<br>";
-                                    //echo "Last Order Date: " . $row["order_date"] . "<br>";
+                                    //echo "Last Receipt: " . $row["payment_amt"] . "<br>";
+                                    //echo "Name (Type): " . $row["name"] . "<br>";
+                                    //echo "Last Order Date: " . $row["payment_date"] . "<br>";
 
                                  ?>
-                                <p class="mb-0 sm-lh opacity-75"><small>Last Receipt: <span class=""><?php echo $row['order_total'];?></span> | <span class=""><?php echo $row['name'];?></span> | <span class=""><?php echo $row['order_date'];?></span></small></p>
+                                <p class="mb-0 sm-lh opacity-75"><small>Last Receipt: <span class=""><?php echo $row['payment_amt'];?></span> | <span class=""><?php echo $row['name'];?></span> | <span class=""><?php echo $row['payment_date'];?></span></small></p>
                                 <?php 
                                     }
                                 }
