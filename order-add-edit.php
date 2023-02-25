@@ -215,6 +215,28 @@ include "includes/top-navbar.php";
                         });
 
                         });
+
+                        $(document).ready(function()
+                        {
+                        $(".upd-consignee-title").change(function()
+                        {
+                        var id=$(this).val();
+                        var post_id = 'pid='+ id;
+
+                        $.ajax
+                        ({
+                        type: "POST",
+                        url: "controllers/ajax-order-edit.php",
+                        data: post_id,
+                        cache: false,
+                        success: function(cons)
+                        {
+                        $(".updconsignee-type").html(cons);
+                        } 
+                        });
+
+                        });
+                        });
                         
                       </script>
                     </div>
