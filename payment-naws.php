@@ -42,7 +42,16 @@ include "includes/top-navbar.php";
 
             <!-- Content area -->
             <div class="content">
+            <?php
+                 if (isset($_SESSION['status']) && $_SESSION['status'] == "success") {
+                      unset($_SESSION['status']);
+                      ?>
 
+                      <div class="alert alert-success border-0 p-2">
+                          <span class="font-weight-semibold"><?php echo $_SESSION['status_msg']; ?></span>
+                      </div>
+
+                  <?php } ?>
                 <div class="card">
                     <div class="card-body">
                         <form action="" method="post">

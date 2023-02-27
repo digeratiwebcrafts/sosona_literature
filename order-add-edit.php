@@ -55,15 +55,7 @@ include "includes/top-navbar.php";
                       </div>
 
                       <?php
-                  } else if (isset($_SESSION['status']) && $_SESSION['status'] == "success") {
-                      unset($_SESSION['status']);
-                      ?>
-
-                      <div class="alert alert-success border-0 p-2">
-                          <span class="font-weight-semibold"><?php echo $_SESSION['status_msg']; ?></span>
-                      </div>
-
-                  <?php } ?>
+                  } ?>
                   <!-- Basic layout-->
                   <div class="card">
                     <div class="card-body">
@@ -100,8 +92,8 @@ include "includes/top-navbar.php";
                           <input type="hidden" class="form-control" placeholder="consignee" name="consignee-type">
                         </div>
                         <div class="form-group">
-                          <label>Naws Order Id:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="Enter naws order id" name="order-id" value="<?php echo $ord_row['naws_order_id'];?>" required>
+                          <label>Naws Order Id:<span class="text-danger"></span></label>
+                          <input type="text" class="form-control" placeholder="Enter naws order id" name="order-id" value="<?php echo $ord_row['naws_order_id'];?>">
                         </div>
                         <div class="form-group">
                           <label>Order Date:<span class="text-danger">*</span></label>
@@ -147,8 +139,8 @@ include "includes/top-navbar.php";
                           <input type="hidden" class="form-control" placeholder="consignee" name="consignee-type">
                         </div>
                         <div class="form-group">
-                          <label>Naws Order Id:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="Enter naws order id" name="order-id" required>
+                          <label>Naws Order Id:<span class="text-danger"></span></label>
+                          <input type="text" class="form-control" placeholder="Enter naws order id" name="order-id">
                         </div>
                         <div class="form-group">
                           <label>Order Date:<span class="text-danger">*</span></label>

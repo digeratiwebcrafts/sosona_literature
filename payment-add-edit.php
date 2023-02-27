@@ -55,15 +55,7 @@ include "includes/top-navbar.php";
                       </div>
 
                       <?php
-                  } else if (isset($_SESSION['status']) && $_SESSION['status'] == "success") {
-                      unset($_SESSION['status']);
-                      ?>
-
-                      <div class="alert alert-success border-0 p-2">
-                          <span class="font-weight-semibold"><?php echo $_SESSION['status_msg']; ?></span>
-                      </div>
-
-                  <?php } ?>
+                  } ?>
                   <!-- Basic layout-->
                   <div class="card">
                     <div class="card-body">
@@ -109,8 +101,8 @@ include "includes/top-navbar.php";
                           </select>
                         </div>
                         <div class="form-group">
-                          <label>Payment Ref. No.:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="Enter Payment Ref. No." name="payment-ref-no" value="<?php echo $pay_row['payment_ref_number'];?>" required>
+                          <label>Payment Ref. No.:<span class="text-danger"></span></label>
+                          <input type="text" class="form-control" placeholder="Enter Payment Ref. No." name="payment-ref-no" value="<?php echo $pay_row['payment_ref_number'];?>">
                         </div>
                         <div class="form-group">
                           <label>Comments:</label>
@@ -161,8 +153,8 @@ include "includes/top-navbar.php";
                           </select>
                         </div>
                         <div class="form-group">
-                          <label>Payment Ref. No.:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="Enter Payment Ref. No." name="payment-ref-no" required>
+                          <label>Payment Ref. No.:<span class="text-danger"></span></label>
+                          <input type="text" class="form-control" placeholder="Enter Payment Ref. No." name="payment-ref-no">
                         </div>
                         <div class="form-group">
                           <label>Comments:</label>

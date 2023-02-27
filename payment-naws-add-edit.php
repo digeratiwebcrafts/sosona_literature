@@ -55,15 +55,7 @@ include "includes/top-navbar.php";
                       </div>
 
                       <?php
-                  } else if (isset($_SESSION['status']) && $_SESSION['status'] == "success") {
-                      unset($_SESSION['status']);
-                      ?>
-
-                      <div class="alert alert-success border-0 p-2">
-                          <span class="font-weight-semibold"><?php echo $_SESSION['status_msg']; ?></span>
-                      </div>
-
-                  <?php } ?>
+                  } ?>
                   <!-- Basic layout-->
                   <div class="card">
                     <div class="card-body">

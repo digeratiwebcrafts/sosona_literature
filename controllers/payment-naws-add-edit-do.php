@@ -21,12 +21,12 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
       //echo "Record updated successfully";
       $_SESSION['status'] = "success";
       $_SESSION['status_msg'] = "Record Updated successfully.";
-      header("Location: ../consignee-add-edit.php");
+      header("Location: ../payment-naws.php");
     } else {
       //echo "Error: " . $upd . "<br>" . $con->error;
       $_SESSION['status'] = "error";
       $_SESSION['status_msg'] = "Something is wrong.";
-      header("Location: ../payment-add-edit.php");
+      header("Location: ../payment-naws-add-edit.php");
     }
 
 }else
@@ -45,7 +45,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
       //echo "Record updated successfully";
       $_SESSION['status'] = "success";
       $_SESSION['status_msg'] = "Record inserted successfully.";
-      header("Location: ../payment-naws-add-edit.php");
+      header("Location: ../payment-naws.php");
     } else {
       //echo "Error: " . $upd . "<br>" . $con->error;
       $_SESSION['status'] = "error";
