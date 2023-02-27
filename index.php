@@ -46,28 +46,31 @@ include "includes/top-navbar.php";
                         <div class="card bg-info text-white h-100">
                             <div class="card-body">
                                 <?php
-                                //$sql = "SELECT SUM(order_total) FROM order_new";
-                                //$result = $conn->query($sql);
-
-                                //if ($result->num_rows > 0) {
-                                  // output data of each row
-                                  //while($row = $result->fetch_assoc()) {
-                                    //echo "Total Order: " . $row["SUM(order_total)"];
-                                $sel="SELECT as_on_date FROM `consignee` WHERE entry_type='Region'";
+                                 $sel="SELECT as_on_date FROM `consignee` WHERE entry_type='Region'";
                                 $rs=$conn->query($sel);
                                 $row=$rs->fetch_assoc();
                                 $date=$row['as_on_date'];
+
+                                 $sql = "SELECT SUM(order_total) FROM order_new";
+                                 $result = $conn->query($sql);
+
+                                  if ($result->num_rows > 0) {
+                                  //output data of each row
+                                  while($row = $result->fetch_assoc()) {
+                                    //echo "Total Order: " . $row["SUM(order_total)"];
+
+                                
                                 
 
-                                $sel_ord="SELECT SUM(order_total)  FROM `order_new` WHERE order_date>='$date'";
-                                $rs=$conn->query($sel_ord);
-                                while($row=$rs->fetch_assoc()){
+                                //$sel_ord="SELECT SUM(order_total)  FROM `order_new` WHERE order_date>='$date'";
+                                //$rs=$conn->query($sel_ord);
+                                //while($row=$rs->fetch_assoc()){
                                  ?>
                                 <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i><?php echo $row['SUM(order_total)'];?></h3>
-                                <p class="mb-0">Total Order</p>
+                                <p class="mb-0">Total Order Since <?php echo $date ?> </p>
                                 <?php 
                                     }
-                                
+                                }
                                  ?>
                                  <?php
                                 $sql = "SELECT consignee.name, consignee.entry_type, order_new.consignee_id, order_new.order_date, order_new.order_total FROM order_new INNER JOIN consignee ON order_new.consignee_id=consignee.id ORDER BY order_new.order_date DESC LIMIT 1;";
