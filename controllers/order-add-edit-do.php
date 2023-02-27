@@ -27,7 +27,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
   if ($conn->query($upd) === TRUE) {
     //echo "New record created successfully";
     $_SESSION['status'] = "success";
-    $_SESSION['status_msg'] = "New record created successfully.";
+    $_SESSION['status_msg'] = "Order Updated Successfully.";
     header("Location: ../order.php");
   } else {
     //echo "Error: " . $ins . "<br>" . $conn->error;
@@ -53,7 +53,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
   if ($conn->query($upd) === TRUE) {
     //echo "New record created successfully";
     $_SESSION['status'] = "success";
-    $_SESSION['status_msg'] = "New record created successfully.";
+    $_SESSION['status_msg'] = "Order Updated Successfully.";
     header("Location: ../order.php");
   } else {
     //echo "Error: " . $ins . "<br>" . $conn->error;
@@ -91,7 +91,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
   if ($conn->query($ins) === TRUE) {
     //echo "New record created successfully";
     $_SESSION['status'] = "success";
-    $_SESSION['status_msg'] = "New record created successfully.";
+    $_SESSION['status_msg'] = "New Order Created Successfully.";
     header("Location: ../order.php");
   } else {
     //echo "Error: " . $ins . "<br>" . $conn->error;
@@ -116,7 +116,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
   if ($conn->query($ins) === TRUE) {
     //echo "New record created successfully";
     $_SESSION['status'] = "success";
-    $_SESSION['status_msg'] = "New record created successfully.";
+    $_SESSION['status_msg'] = "New Order Created Successfully.";
     header("Location: ../order.php");
   } else {
     //echo "Error: " . $ins . "<br>" . $conn->error;

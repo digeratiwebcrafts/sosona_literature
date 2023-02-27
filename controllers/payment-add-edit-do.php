@@ -20,7 +20,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     if ($conn->query($upd) === TRUE) {
       //echo "Record updated successfully";
       $_SESSION['status'] = "success";
-      $_SESSION['status_msg'] = "Record Updated successfully.";
+      $_SESSION['status_msg'] = "Payment Record Updated Successfully.";
       header("Location: ../payment.php");
     } else {
       //echo "Error: " . $upd . "<br>" . $con->error;
@@ -44,7 +44,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     if ($conn->query($ins) === TRUE) {
       //echo "Record updated successfully";
       $_SESSION['status'] = "success";
-      $_SESSION['status_msg'] = "Record inserted successfully.";
+      $_SESSION['status_msg'] = "New Payment Record Inserted Successfully.";
       header("Location: ../payment.php");
     } else {
       //echo "Error: " . $upd . "<br>" . $con->error;

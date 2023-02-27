@@ -96,7 +96,7 @@ include "includes/top-navbar.php";
                       <?php
                       } ?>
                         <div class="form-group">
-                          <label>City:<span class="text-danger"></span></label>
+                          <label>City:</label>
                           <input type="text" class="form-control" placeholder="Enter city name" name="city_name" value="<?php echo $row['city'];?>" >
                         </div>
                         <div class="form-group">
@@ -136,8 +136,8 @@ include "includes/top-navbar.php";
                           </select>
                         </div>
                         <div class="form-group">
-                          <label>City:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="Enter city name" name="city_name" required>
+                          <label>City:</label>
+                          <input type="text" class="form-control" placeholder="Enter city name" name="city_name">
                         </div>
                         <div class="form-group">
                           <label>Opening Balance:<span class="text-danger">*</span></label>
@@ -148,7 +148,7 @@ include "includes/top-navbar.php";
                           <input type="date" class="form-control" placeholder="" name="as_on_date" required>
                         </div>
                         <div class="form-group">
-                          <label>Comments:<span class="text-danger">*</span></label>
+                          <label>Comments:</label>
                           <textarea rows="5" cols="5" class="form-control" placeholder="Enter your message here" name="msg_comments"></textarea>
                         </div>
                         <div class="">
