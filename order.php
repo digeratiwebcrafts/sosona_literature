@@ -55,7 +55,7 @@ include "includes/top-navbar.php";
             <!-- Striped rows -->
             <div class="card">
               <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table datatable-basic">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -82,11 +82,19 @@ include "includes/top-navbar.php";
                       <td><?php echo $row['order_date'];?></td>
                       <td><?php echo $row['order_total'];?></td>
                       <td><?php echo $row['comments'];?></td>
-                      <td>
-                        <div class="list-icons">
-                          <a href="order-add-edit.php?id=<?php echo $row['id'];?>" class="list-icons-item text-primary"><i class="icon-pencil7"></i></a>
-                          <a href="#" data-toggle="modal" data-target="#confirmDeletet<?php echo $row['id'] ?>" class="list-icons-item text-danger"><i class="icon-trash"></i></a>
-                        </div>
+                      <td class="text-center">
+                          <div class="list-icons">
+                              <div class="dropdown">
+                                  <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                      <i class="icon-menu9"></i>
+                                  </a>
+
+                                  <div class="dropdown-menu dropdown-menu-right">
+                                      <a href="order-add-edit.php?id=<?php echo $row['id'];?>" class="dropdown-item"><i class="icon-pencil7"></i> Edit</a>
+                                      <a href="#" class="dropdown-item" data-toggle="modal" data-target="#confirmDeletet<?php echo $row['id'] ?>"><i class="icon-trash"></i> Delete</a>
+                                  </div>
+                              </div>
+                          </div>
                       </td>
                     </tr>
                     <!-- Basic modal -->

@@ -67,7 +67,7 @@ include "includes/top-navbar.php";
                                 //while($row=$rs->fetch_assoc()){
                                  ?>
                                 <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i><?php echo $row['SUM(order_total)'];?></h3>
-                                <p class="mb-0">Total Order Since <?php echo $date ?> </p>
+                                <p class="mb-0">Total Order Since <span class="font-weight-bold"><?php echo $date ?></span> </p>
                                 <?php 
                                     }
                                 }
