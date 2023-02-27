@@ -86,10 +86,9 @@ include "includes/top-navbar.php";
                         </div>
                     </div>
                     <div class="row">
-
                         <div class="col-md-6">
                             <!-- Basic table -->
-                            <div class="card">
+                            <div class="card h-100">
                                 <div class="table-responsive">
                                     <table class="table">  
                                         <thead>
@@ -142,7 +141,7 @@ include "includes/top-navbar.php";
                         </div>
                         <div class="col-md-6">
                             <!-- Basic table -->
-                            <div class="card">
+                            <div class="card h-100">
                                 <div class="table-responsive">
                                     <table class="table"> 
                                         <thead>
@@ -175,17 +174,27 @@ include "includes/top-navbar.php";
                                                 <td class="font-weight-bold">Total:</td>
                                                 <td colspan="3">1000.00</td>
                                             </tr>
-                                            <tr>
-                                                <td colspan="3"><span class="font-weight-bold">Total Dues</span> to SOSONA as on <span class="font-weight-bold">(current_date):</span></td>
-                                                <td><span class="badge badge-warning font-weight-bold">50000.00</span></td>
-
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                             <!-- /basic table -->
                         </div> 
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mt-3">
+                                <div class="col-7 col-sm-9">
+                                    <p class="mb-0"><span class="font-weight-bold">Total Dues</span> to SOSONA as on <span class="font-weight-bold">current_date</span></p>
+                                </div>
+                                <div class="col-5 col-sm-3 text-right">
+                                    <span class="badge badge-warning font-weight-bold ml-auto">50000.00</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- /area -->
@@ -212,10 +221,9 @@ include "includes/top-navbar.php";
                         </div>
                     </div>
                     <div class="row">
-
                         <div class="col-md-6">
                             <!-- Basic table -->
-                            <div class="card">
+                            <div class="card h-100">
                                 <div class="table-responsive">
                                     <table class="table">  
                                         <thead>
@@ -268,7 +276,7 @@ include "includes/top-navbar.php";
                         </div>
                         <div class="col-md-6">
                             <!-- Basic table -->
-                            <div class="card">
+                            <div class="card h-100">
                                 <div class="table-responsive">
                                     <table class="table"> 
                                         <thead>
@@ -301,17 +309,27 @@ include "includes/top-navbar.php";
                                                 <td class="font-weight-bold">Total:</td>
                                                 <td colspan="3">1000.00</td>
                                             </tr>
-                                            <tr>
-                                                <td colspan="3"><span class="font-weight-bold">Total Dues</span> to SOSONA as on <span class="font-weight-bold">(current_date):</span></td>
-                                                <td><span class="badge badge-warning font-weight-bold">50000.00</span></td>
-
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                             <!-- /basic table -->
                         </div> 
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mt-3">
+                                <div class="col-7 col-sm-9">
+                                    <p class="mb-0"><span class="font-weight-bold">Total Dues</span> to SOSONA as on <span class="font-weight-bold">current_date</span></p>
+                                </div>
+                                <div class="col-5 col-sm-3 text-right">
+                                    <span class="badge badge-warning font-weight-bold ml-auto">50000.00</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- /group -->
