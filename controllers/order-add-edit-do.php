@@ -92,7 +92,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     //echo "New record created successfully";
     $_SESSION['status'] = "success";
     $_SESSION['status_msg'] = "New record created successfully.";
-    header("Location: ../order-add-edit.php");
+    header("Location: ../order.php");
   } else {
     //echo "Error: " . $ins . "<br>" . $conn->error;
     $_SESSION['status'] = "error";
@@ -117,7 +117,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     //echo "New record created successfully";
     $_SESSION['status'] = "success";
     $_SESSION['status_msg'] = "New record created successfully.";
-    header("Location: ../order-add-edit.php");
+    header("Location: ../order.php");
   } else {
     //echo "Error: " . $ins . "<br>" . $conn->error;
     $_SESSION['status'] = "error";
