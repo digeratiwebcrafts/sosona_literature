@@ -145,21 +145,24 @@ include "includes/top-navbar.php";
                         <div class="card bg-teal text-white h-100">
                             <div class="card-body">
                                 <?php
-                                $sql = "SELECT SUM(opening_bal_amt), SUM(area_billing_amt), SUM(payment_amt) FROM consignee LEFT JOIN order_new ON order_new.consignee_id=consignee.id LEFT JOIN payment ON payment.payment_by=consignee.id WHERE consignee.entry_type = 'Area'";
-                                $result = $conn->query($sql);
-
-                                if ($result->num_rows > 0) {
-                                  // output data of each row
-                                  while($row = $result->fetch_assoc()) {
-                                    $total_recev_all_areas = ($row["SUM(opening_bal_amt)"] + $row["SUM(area_billing_amt)"]) - $row["SUM(payment_amt)"]. "<br>";
+                                $sel_con="SELECT SUM(opening_bal_amt) AS sum_opening_bal_amt  FROM consignee WHERE entry_type='Area'";
+                                $rs_con=$conn->query($sel_con);
+                                $con_row=$rs_con->fetch_assoc();
+                                
+                                $sel_ord_bill="SELECT SUM(order_new.area_billing_amt) AS area_billing_sum FROM order_new INNER JOIN consignee ON order_new.consignee_id=consignee.id WHERE entry_type='Area'";
+                                $rs_con=$conn->query($sel_ord_bill);
+                                $Area_bill_row=$rs_con->fetch_assoc();
+                                
+                                $sel_pay="SELECT  SUM(payment.payment_amt) AS area_pay_sum FROM payment INNER JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Area'";
+                                $pay_conn=$conn->query($sel_pay);
+                                $Area_pay_sum=$pay_conn->fetch_assoc();
+                                
+                                $total_recev_all_areas=implode('', $con_row)+implode('',$Area_bill_row)-implode('',$Area_pay_sum);
                                     //echo "Total receivable Area Amt: " . $total_recev_all_areas;
                                  ?>
                                 <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i><?php echo $total_recev_all_areas;?></h3>
                                 <p class="mb-0">Total receivable from All Areas</p>
-                                <?php 
-                                    }
-                                }
-                                 ?>
+                                
                                  <?php
                                 $sql = "SELECT consignee.name, consignee.entry_type, payment.payment_by, payment.payment_date, payment.payment_amt FROM payment INNER JOIN consignee ON payment.payment_by=consignee.id WHERE consignee.entry_type = 'Area' ORDER BY payment.payment_date DESC LIMIT 1";
                                 $result = $conn->query($sql);
