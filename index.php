@@ -142,7 +142,7 @@ include "includes/top-navbar.php";
                                }
                               ?>
                             </div>
-                        </div>  
+                        </div>   
                     </div>
                     <div class="col-sm-3 mb-3">
                         <div class="card bg-teal text-white h-100">
@@ -248,18 +248,32 @@ include "includes/top-navbar.php";
                                         <label class="font-weight-bold">Total Receivable</label>
                                     </div>       
                                 </div>
+                                <?php
+                                $sel_ar_billing="SELECT SUM(order_new.area_billing_amt) AS area_billing_sum  FROM order_new INNER JOIN consignee ON order_new.consignee_id=consignee.id WHERE entry_type='Area' group by order_new.consignee_id";
+                                 $arbilling_conn=$conn->query($sel_ar_billing);
+
+                                 $sel="SELECT SUM(payment.payment_amt) AS Area_pay_sum,consignee.name,consignee.opening_bal_amt FROM payment INNER JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Area' group by payment.payment_by";
+                                 $rs=$conn->query($sel);
+                                 $counter = 0;
+                                while ($row=$arbilling_conn->fetch_assoc() AND $row1=$rs->fetch_assoc()){
+
+
+                                $sum=$row1['opening_bal_amt']+$row['area_billing_sum']-$row1['Area_pay_sum'];
+
+                                ?>
                                 <div class="row alternate-row">
                                     <div class="col-1">
-                                        <p class="mb-0">1</p>
+                                        <p class="mb-0"><?php echo ++$counter; ?></p>
                                     </div>
                                     <div class="col-6">
-                                        <p class="mb-0"><a href="#">Abced Name</a></p>
+                                        <p class="mb-0"><a href="#"><?php  echo $row1['name'] ?></a></p>
                                     </div>
                                     <div class="col-5">
-                                        <p class="mb-0">5000.00</p>
+                                        <p class="mb-0"><?php  echo $sum ?></p>
                                     </div>       
                                 </div>
-                                <div class="row alternate-row">
+                            <?php } ?>
+                                <!-- <div class="row alternate-row">
                                     <div class="col-1">
                                         <p class="mb-0">2</p>
                                     </div>
@@ -280,7 +294,7 @@ include "includes/top-navbar.php";
                                     <div class="col-5">
                                         <p class="mb-0">5000.00</p>
                                     </div>       
-                                </div>
+                                </div> -->
                             </div>
                         </div>  
                     </div>
@@ -290,6 +304,7 @@ include "includes/top-navbar.php";
                                 <h5 class="card-title bb-1 mb-0 px-3 py-2">Others</h5>
                             </div>
                             <div class="card-body">
+                               
                                 <div class="row">
                                     <div class="col-1">
                                         <label class="font-weight-bold">#</label>
@@ -301,18 +316,34 @@ include "includes/top-navbar.php";
                                         <label class="font-weight-bold">Total Receivable</label>
                                     </div>       
                                 </div>
+
+                            
+                             <?php
+                                $sel_gr_billing="SELECT SUM(order_new.area_billing_amt) AS group_billing_sum  FROM order_new INNER JOIN consignee ON order_new.consignee_id=consignee.id WHERE entry_type='Group' group by order_new.consignee_id";
+                                    $grbilling_conn=$conn->query($sel_gr_billing);
+
+                                 $sel="SELECT SUM(payment.payment_amt) AS group_pay_sum,consignee.name,consignee.opening_bal_amt FROM payment INNER JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Group' group by payment.payment_by";
+                                 $rs=$conn->query($sel);
+                                 $counter = 0;
+                                while ($row=$grbilling_conn->fetch_assoc() AND $row1=$rs->fetch_assoc()){
+
+
+                                $sum=$row1['opening_bal_amt']+$row['group_billing_sum']-$row1['group_pay_sum'];
+
+                                ?>
                                 <div class="row alternate-row">
                                     <div class="col-1">
-                                        <p class="mb-0">1</p>
+                                        <p class="mb-0"><?php echo ++$counter; ?></p>
                                     </div>
                                     <div class="col-6">
-                                        <p class="mb-0"><a href="#">Abced Name</a></p>
+                                        <p class="mb-0"><a href="#"><?php  echo $row1['name'] ?></a></p>
                                     </div>
                                     <div class="col-5">
-                                        <p class="mb-0">5000.00</p>
+                                        <p class="mb-0"><?php  echo $sum ?></p>
                                     </div>       
                                 </div>
-                                <div class="row alternate-row">
+                                <?php }?>
+                                <!-- <div class="row alternate-row">
                                     <div class="col-1">
                                         <p class="mb-0">2</p>
                                     </div>
@@ -333,7 +364,7 @@ include "includes/top-navbar.php";
                                     <div class="col-5">
                                         <p class="mb-0">5000.00</p>
                                     </div>       
-                                </div>
+                                </div> -->
                             </div>
                         </div>  
                     </div>
