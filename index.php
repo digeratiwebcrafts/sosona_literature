@@ -249,16 +249,18 @@ include "includes/top-navbar.php";
                                     </div>       
                                 </div>
                                 <?php
-                                $sel_ar_billing="SELECT SUM(order_new.area_billing_amt) AS area_billing_sum  FROM order_new INNER JOIN consignee ON order_new.consignee_id=consignee.id WHERE entry_type='Area' group by order_new.consignee_id";
+                                $sel_ar_billing="SELECT SUM(order_new.area_billing_amt) AS area_billing_sum ,consignee.name,consignee.opening_bal_amt  FROM order_new RIGHT JOIN consignee ON order_new.consignee_id=consignee.id WHERE entry_type='Area' group by consignee.id";
+
                                  $arbilling_conn=$conn->query($sel_ar_billing);
 
-                                 $sel="SELECT SUM(payment.payment_amt) AS Area_pay_sum,consignee.name,consignee.opening_bal_amt FROM payment RIGHT JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Area' group by consignee.id";
+                                 $sel="SELECT SUM(payment.payment_amt) AS Area_pay_sum FROM payment RIGHT JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Area' group by consignee.id";
                                  $rs=$conn->query($sel);
+
                                  $counter = 0;
-                                while ($row=$arbilling_conn->fetch_assoc() AND $row1=$rs->fetch_assoc()){
+                                while (($row=$arbilling_conn->fetch_assoc() AND $row1=$rs->fetch_assoc()) || ($row=$arbilling_conn->fetch_assoc() OR $row1=$rs->fetch_assoc())){
 
 
-                                $sum=$row1['opening_bal_amt']+$row['area_billing_sum']-$row1['Area_pay_sum'];
+                                $sum=$row['opening_bal_amt'] + $row['area_billing_sum'] - $row1['Area_pay_sum'];
 
                                 ?>
                                 <div class="row alternate-row">
@@ -266,7 +268,7 @@ include "includes/top-navbar.php";
                                         <p class="mb-0"><?php echo ++$counter; ?></p>
                                     </div>
                                     <div class="col-6">
-                                        <p class="mb-0"><a href="#"><?php  echo $row1['name'] ?></a></p>
+                                        <p class="mb-0"><a href="#"><?php  echo $row['name'] ?></a></p>
                                     </div>
                                     <div class="col-5">
                                         <p class="mb-0"><?php  echo $sum ?></p>
@@ -319,16 +321,18 @@ include "includes/top-navbar.php";
 
                             
                              <?php
-                                $sel_gr_billing="SELECT SUM(order_new.area_billing_amt) AS group_billing_sum  FROM order_new INNER JOIN consignee ON order_new.consignee_id=consignee.id WHERE entry_type='Group' group by order_new.consignee_id";
-                                    $grbilling_conn=$conn->query($sel_gr_billing);
+                                
+                                 $sel_gr_billing="SELECT SUM(order_new.area_billing_amt) AS group_billing_sum ,consignee.name,consignee.opening_bal_amt  FROM order_new RIGHT JOIN consignee ON order_new.consignee_id=consignee.id WHERE entry_type='Group' group by consignee.id";
 
-                                 $sel="SELECT SUM(payment.payment_amt) AS group_pay_sum,consignee.name,consignee.opening_bal_amt FROM payment RIGHT JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Group' group by consignee.id";
+                                 $grbilling_conn=$conn->query($sel_gr_billing);
+
+                                 $sel="SELECT SUM(payment.payment_amt) AS group_pay_sum FROM payment RIGHT JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Group' group by consignee.id";
                                  $rs=$conn->query($sel);
                                  $counter = 0;
-                                while ($row=$grbilling_conn->fetch_assoc() AND $row1=$rs->fetch_assoc()){
+                                while (($row=$grbilling_conn->fetch_assoc() AND $row1=$rs->fetch_assoc()) || ($row=$grbilling_conn->fetch_assoc() OR $row1=$rs->fetch_assoc())){
 
 
-                                $sum=$row1['opening_bal_amt']+$row['group_billing_sum']-$row1['group_pay_sum'];
+                                $sum=$row['opening_bal_amt']+$row['group_billing_sum']-$row1['group_pay_sum'];
 
                                 ?>
                                 <div class="row alternate-row">
@@ -336,10 +340,10 @@ include "includes/top-navbar.php";
                                         <p class="mb-0"><?php echo ++$counter; ?></p>
                                     </div>
                                     <div class="col-6">
-                                        <p class="mb-0"><a href="#"><?php  echo $row1['name'] ?></a></p>
+                                        <p class="mb-0"><a href="#"><?php  echo $row['name'] ?></a></p>
                                     </div>
                                     <div class="col-5">
-                                        <p class="mb-0"><?php  echo $sum ?></p>
+                                        <p class="mb-0"><?php echo $sum?></p>
                                     </div>       
                                 </div>
                                 <?php }?>
