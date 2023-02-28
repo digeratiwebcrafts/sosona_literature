@@ -252,7 +252,7 @@ include "includes/top-navbar.php";
                                 $sel_ar_billing="SELECT SUM(order_new.area_billing_amt) AS area_billing_sum  FROM order_new INNER JOIN consignee ON order_new.consignee_id=consignee.id WHERE entry_type='Area' group by order_new.consignee_id";
                                  $arbilling_conn=$conn->query($sel_ar_billing);
 
-                                 $sel="SELECT SUM(payment.payment_amt) AS Area_pay_sum,consignee.name,consignee.opening_bal_amt FROM payment INNER JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Area' group by payment.payment_by";
+                                 $sel="SELECT SUM(payment.payment_amt) AS Area_pay_sum,consignee.name,consignee.opening_bal_amt FROM payment RIGHT JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Area' group by consignee.id";
                                  $rs=$conn->query($sel);
                                  $counter = 0;
                                 while ($row=$arbilling_conn->fetch_assoc() AND $row1=$rs->fetch_assoc()){
@@ -322,7 +322,7 @@ include "includes/top-navbar.php";
                                 $sel_gr_billing="SELECT SUM(order_new.area_billing_amt) AS group_billing_sum  FROM order_new INNER JOIN consignee ON order_new.consignee_id=consignee.id WHERE entry_type='Group' group by order_new.consignee_id";
                                     $grbilling_conn=$conn->query($sel_gr_billing);
 
-                                 $sel="SELECT SUM(payment.payment_amt) AS group_pay_sum,consignee.name,consignee.opening_bal_amt FROM payment INNER JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Group' group by payment.payment_by";
+                                 $sel="SELECT SUM(payment.payment_amt) AS group_pay_sum,consignee.name,consignee.opening_bal_amt FROM payment RIGHT JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Group' group by consignee.id";
                                  $rs=$conn->query($sel);
                                  $counter = 0;
                                 while ($row=$grbilling_conn->fetch_assoc() AND $row1=$rs->fetch_assoc()){
