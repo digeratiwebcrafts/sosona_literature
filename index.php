@@ -260,7 +260,7 @@ include "includes/top-navbar.php";
                                 while (($row=$arbilling_conn->fetch_assoc() AND $row1=$rs->fetch_assoc()) || ($row=$arbilling_conn->fetch_assoc() OR $row1=$rs->fetch_assoc())){
 
 
-                                $sum=$row['opening_bal_amt'] + $row['area_billing_sum'] - $row1['Area_pay_sum'];
+                                $sum=round($row['opening_bal_amt'] + $row['area_billing_sum'] - $row1['Area_pay_sum'],2);
 
                                 ?>
                                 <div class="row alternate-row">
@@ -332,7 +332,7 @@ include "includes/top-navbar.php";
                                 while (($row=$grbilling_conn->fetch_assoc() AND $row1=$rs->fetch_assoc()) || ($row=$grbilling_conn->fetch_assoc() OR $row1=$rs->fetch_assoc())){
 
 
-                                $sum=$row['opening_bal_amt']+$row['group_billing_sum']-$row1['group_pay_sum'];
+                                $sum=round($row['opening_bal_amt']+$row['group_billing_sum']-$row1['group_pay_sum'],2);
 
                                 ?>
                                 <div class="row alternate-row">
