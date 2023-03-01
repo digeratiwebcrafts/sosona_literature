@@ -14,7 +14,7 @@ if(isset($_POST["submit"])){
     if ($new_pass != $confirm_pass) {
       $_SESSION['status'] = "error";
       $_SESSION['status_msg'] = "New Password and Confirm Password is not same.";
-      header("Location: ../change-password.php");
+      header("Location: ../reset-password-recovery.php");
     }
     elseif ($old_pass != $old_pass_db) {
       $_SESSION['status'] = "error";
