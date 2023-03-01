@@ -48,8 +48,8 @@ include "includes/top-navbar.php";
                                 <?php
                                  $sel="SELECT as_on_date FROM `consignee` WHERE entry_type='Region'";
                                 $rs=$conn->query($sel);
-                                $row=$rs->fetch_assoc();
-                                $date=$row['as_on_date'];
+                                $row_date=$rs->fetch_assoc();
+                                $date=$row_date['as_on_date'];
 
                                  $sql = "SELECT SUM(order_total) FROM order_new";
                                  $result = $conn->query($sql);
@@ -66,11 +66,17 @@ include "includes/top-navbar.php";
                                 //$rs=$conn->query($sel_ord);
                                 //while($row=$rs->fetch_assoc()){
                                  ?>
-                                <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i><?php echo $row['SUM(order_total)'];?></h3>
+                                <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i><?php echo round($row['SUM(order_total)'],2);?></h3>
                                 <p class="mb-0">Total Order Since <span class="font-weight-bold"><?php echo $date ?></span> </p>
                                 <?php 
                                     }
-                                }
+                                }else{ 
+
+                                ?>
+                                   <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i><?php echo round($row['SUM(order_total)'],2);?></h3>
+                                    <p class="mb-0">Total Order Since <span class="font-weight-bold">No Record Found</span> </p>
+                                <?php 
+                                    }
                                  ?>
                                  <?php
                                 $sql = "SELECT consignee.name, consignee.entry_type, order_new.consignee_id, order_new.order_date, order_new.order_total FROM order_new INNER JOIN consignee ON order_new.consignee_id=consignee.id ORDER BY order_new.order_date DESC LIMIT 1;";
@@ -87,8 +93,13 @@ include "includes/top-navbar.php";
                                 <p class="mb-0 sm-lh opacity-75"><small>Last Order: <span class=""><?php echo $row['order_total'];?></span> | <span class=""><?php echo $row['name'];?></span> <span class="">(<?php echo $row['entry_type'];?>)</span> | <span class=""><?php echo $row['order_date'];?></span></small></p>
                                 <?php 
                                     }
+                                }else{
+                                    ?>
+                                    <p class="mb-0 sm-lh opacity-75"><small>Last Order: <span class="">0.00</span> | <span class="">No Record Found</span> <span class=""></span> | <span class="">No Record Found</span></small></p>
+
+                                 <?php
                                 }
-                                 ?>
+                            ?>
                             </div>
                         </div>  
                     </div>
@@ -139,6 +150,10 @@ include "includes/top-navbar.php";
                                     ?>
                                 <p class="mb-0 sm-lh opacity-75"><small>Last Payment: <span class=""><?php  echo $row['payment_amt'] ?></span> | <span class=""><?php  echo $row['payment_date'] ?></span></small></p>
                               <?php }  
+                               }else{
+                                ?>
+                                <p class="mb-0 sm-lh opacity-75"><small>Last Payment: <span class="">0.00</span> | <span class="">No Record Found</span></small></p>
+                                <?php
                                }
                               ?>
                             </div>
@@ -181,6 +196,12 @@ include "includes/top-navbar.php";
                                 <p class="mb-0 sm-lh opacity-75"><small>Last Receipt: <span class=""><?php echo $row['payment_amt'];?></span> | <span class=""><?php echo $row['name'];?></span> | <span class=""><?php echo $row['payment_date'];?></span></small></p>
                                 <?php 
                                     }
+                                }else{ 
+                                ?>
+
+                                <p class="mb-0 sm-lh opacity-75"><small>Last Receipt: <span class="">0.00</span> | <span class="">No Record Found</span> | <span class="">No Record Found</span></small></p>
+
+                                <?php 
                                 }
                                  ?>
                             </div>
@@ -224,8 +245,13 @@ include "includes/top-navbar.php";
                                 <p class="mb-0 sm-lh opacity-75"><small>Last Receipt: <span class=""><?php echo $row['payment_amt'];?></span> | <span class=""><?php echo $row['name'];?></span> | <span class=""><?php echo $row['payment_date'];?></span></small></p>
                                 <?php 
                                     }
+                                }else{ 
+
+                                ?>
+                                <p class="mb-0 sm-lh opacity-75"><small>Last Receipt: <span class="">0.00</span> | <span class="">No Record Found</span> | <span class="">No Record Found</span></small></p>
+                                <?php
                                 }
-                                 ?>
+                                ?>
                             </div>
                         </div>  
                     </div>
@@ -256,6 +282,8 @@ include "includes/top-navbar.php";
                                  $sel="SELECT SUM(payment.payment_amt) AS Area_pay_sum FROM payment RIGHT JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Area' group by consignee.id";
                                  $rs=$conn->query($sel);
 
+                                 if($rs->num_rows > 0){
+
                                  $counter = 0;
                                 while (($row=$arbilling_conn->fetch_assoc() AND $row1=$rs->fetch_assoc()) || ($row=$arbilling_conn->fetch_assoc() OR $row1=$rs->fetch_assoc())){
 
@@ -274,7 +302,18 @@ include "includes/top-navbar.php";
                                         <p class="mb-0"><?php  echo $sum ?></p>
                                     </div>       
                                 </div>
-                            <?php } ?>
+                            <?php 
+                          }
+                      }else{
+                        ?>
+                        <div class="row alternate-row">
+                           <div class="col-12 text-center">No Record Found</div>               
+                        </div>
+
+                      <?php 
+                        }
+
+                             ?>
                                 <!-- <div class="row alternate-row">
                                     <div class="col-1">
                                         <p class="mb-0">2</p>
@@ -328,6 +367,7 @@ include "includes/top-navbar.php";
 
                                  $sel="SELECT SUM(payment.payment_amt) AS group_pay_sum FROM payment RIGHT JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Group' group by consignee.id";
                                  $rs=$conn->query($sel);
+                                 if($rs->num_rows > 0){
                                  $counter = 0;
                                 while (($row=$grbilling_conn->fetch_assoc() AND $row1=$rs->fetch_assoc()) || ($row=$grbilling_conn->fetch_assoc() OR $row1=$rs->fetch_assoc())){
 
@@ -346,7 +386,19 @@ include "includes/top-navbar.php";
                                         <p class="mb-0"><?php echo $sum?></p>
                                     </div>       
                                 </div>
-                                <?php }?>
+                                <?php }
+                                    }
+
+                                else{
+                                ?>
+                        <div class="row alternate-row">
+                           <div class="col-12 text-center">No Record Found</div>               
+                        </div>
+
+                      <?php 
+                        }
+
+                             ?>
                                 <!-- <div class="row alternate-row">
                                     <div class="col-1">
                                         <p class="mb-0">2</p>
