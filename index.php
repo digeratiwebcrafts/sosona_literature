@@ -79,7 +79,7 @@ include "includes/top-navbar.php";
                                     }
                                  ?>
                                  <?php
-                                $sql = "SELECT consignee.name, consignee.entry_type, order_new.consignee_id, order_new.order_date, order_new.order_total FROM order_new INNER JOIN consignee ON order_new.consignee_id=consignee.id ORDER BY order_new.order_date DESC LIMIT 1;";
+                                $sql = "SELECT consignee.name, consignee.entry_type, order_new.consignee_id, order_new.order_date, order_new.order_total FROM order_new INNER JOIN consignee ON order_new.consignee_id=consignee.id ORDER BY order_new.id DESC, order_new.order_date DESC LIMIT 1;";
                                 $result = $conn->query($sql);
 
                                 if ($result->num_rows > 0) {
@@ -142,7 +142,7 @@ include "includes/top-navbar.php";
                                 ?>
                                 <p class="mb-0">Total payable to NAWS</p>
                                  <?php
-                                $sql = "SELECT * FROM payment INNER JOIN consignee ON consignee.id=payment.payment_by WHERE entry_type='Region' ORDER BY payment.payment_date DESC LIMIT 1";
+                                $sql = "SELECT * FROM payment INNER JOIN consignee ON consignee.id=payment.payment_by WHERE entry_type='Region' ORDER BY payment.id DESC, payment.payment_date DESC LIMIT 1";
                                 $result = $conn->query($sql);
 
                                 if ($result->num_rows > 0) {
@@ -182,7 +182,7 @@ include "includes/top-navbar.php";
                                 <p class="mb-0">Total receivable from All Areas</p>
                                 
                                  <?php
-                                $sql = "SELECT consignee.name, consignee.entry_type, payment.payment_by, payment.payment_date, payment.payment_amt FROM payment INNER JOIN consignee ON payment.payment_by=consignee.id WHERE consignee.entry_type = 'Area' ORDER BY payment.payment_date DESC LIMIT 1";
+                                $sql = "SELECT consignee.name, consignee.entry_type, payment.payment_by, payment.payment_date, payment.payment_amt FROM payment INNER JOIN consignee ON payment.payment_by=consignee.id WHERE consignee.entry_type = 'Area' ORDER BY payment.id DESC, payment.payment_date DESC LIMIT 1";
                                 $result = $conn->query($sql);
 
                                 if ($result->num_rows > 0) {
@@ -231,7 +231,7 @@ include "includes/top-navbar.php";
                                 <p class="mb-0">Total receivable from Others</p>
                                  
                                  <?php
-                                $sql = "SELECT consignee.name, consignee.entry_type, payment.payment_by, payment.payment_date, payment.payment_amt FROM payment INNER JOIN consignee ON payment.payment_by=consignee.id WHERE consignee.entry_type = 'Group' ORDER BY payment.payment_date DESC LIMIT 1";
+                                $sql = "SELECT consignee.name, consignee.entry_type, payment.payment_by, payment.payment_date, payment.payment_amt FROM payment INNER JOIN consignee ON payment.payment_by=consignee.id WHERE consignee.entry_type = 'Group' ORDER BY payment.id DESC, payment.payment_date DESC LIMIT 1";
                                 $result = $conn->query($sql);
 
                                 if ($result->num_rows > 0) {
