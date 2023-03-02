@@ -93,8 +93,8 @@ include "includes/top-navbar.php";
                           </select>
                         </div>
                         <div class="form-group">
-                          <label>Payment Ref. No.:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="Enter Payment Ref. No." name="payment-ref-no" value="<?php echo $pay_row['payment_ref_number'];?>" required>
+                          <label>Payment Ref. No.:</label>
+                          <input type="text" class="form-control" placeholder="Enter Payment Ref. No." name="payment-ref-no" value="<?php echo $pay_row['payment_ref_number'];?>">
                         </div>
                         <div class="form-group">
                           <label>Comments:</label>
@@ -138,8 +138,8 @@ include "includes/top-navbar.php";
                           </select>
                         </div>
                         <div class="form-group">
-                          <label>Payment Ref. No.:<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" placeholder="Enter Payment Ref. No." name="payment-ref-no" required>
+                          <label>Payment Ref. No.:</label>
+                          <input type="text" class="form-control" placeholder="Enter Payment Ref. No." name="payment-ref-no">
                         </div>
                         <div class="form-group">
                           <label>Comments:</label>

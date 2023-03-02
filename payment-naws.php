@@ -87,7 +87,7 @@ include "includes/top-navbar.php";
                           <th>Payment Amount</th>
                           <th>Payment Mode</th>
                           <th>Payment Ref. No</th>
-                          <th>Comments</th>
+                          <th class="table-comment-width">Comments</th>
                           <th>Action</th>
                         </tr>
                       </thead>

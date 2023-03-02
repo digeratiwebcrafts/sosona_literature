@@ -58,22 +58,25 @@ include "includes/top-navbar.php";
                     <table class="table datatable-basic">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Name</th>
                                 <th>Type</th>
                                 <th>City</th>
                                 <th>Opening Bal.</th>
                                 <th>As On Date</th>
-                                <th>Comments</th>
+                                <th class="table-comment-width">Comments</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                               $sel="SELECT *  FROM  consignee";
+                              $counter = 0;
                               $rs=$conn->query($sel);
                               while($row=$rs->fetch_assoc()){
                             ?>
                             <tr>
+                                <td><?php echo ++$counter; ?></td>
                                 <td><?php echo $row['name']; ?></td>
                                 <td><?php echo $row['entry_type']; ?></td>
                                 <td><?php echo $row['city']; ?></td>

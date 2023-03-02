@@ -63,7 +63,7 @@ include "includes/top-navbar.php";
                       <th>Naws Order Id</th>
                       <th>Order Date</th>
                       <th>Order Total</th>
-                       <th>Comments</th>
+                      <th class="table-comment-width">Comments</th>
                       <th>Action</th>
                     </tr>
                   </thead>

@@ -23,7 +23,7 @@
 			<ul class="nav nav-sidebar" data-nav-type="accordion">
 
 				<li class="nav-item">
-					<a href="index.php" class="nav-link active">
+					<a href="index.php" class="nav-link <?= ($activePage == 'index') ? 'active':''; ?>">
 						<i class="icon-home4"></i>
 						<span>
 							Dashboard
@@ -31,7 +31,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="accounts.php" class="nav-link">
+					<a href="accounts.php" class="nav-link <?= ($activePage == 'accounts') ? 'active':''; ?>">
 						<i class="icon-notebook"></i> 
 						<span>Accounts</span>
 					</a>
@@ -40,20 +40,20 @@
 					<a href="#" class="nav-link"><i class="icon-coin-dollar"></i> <span>Literature Operation</span></a>
 
 					<ul class="nav nav-group-sub" data-submenu-title="Finance">
-						<li class="nav-item"><a href="consignee.php" class="nav-link">Consignee</a></li>
-						<li class="nav-item"><a href="order.php" class="nav-link">Literature Orders</a></li>
-						<li class="nav-item"><a href="payment.php" class="nav-link">Payments Received</a></li>
-						<li class="nav-item"><a href="payment-naws.php" class="nav-link">Payments to Naws</a></li>
+						<li class="nav-item"><a href="consignee.php" class="nav-link <?= ($activePage == 'consignee') ? 'active':''; ?>">Consignee</a></li>
+						<li class="nav-item"><a href="order.php" class="nav-link <?= ($activePage == 'order') ? 'active':''; ?>">Literature Orders</a></li>
+						<li class="nav-item"><a href="payment.php" class="nav-link <?= ($activePage == 'payment') ? 'active':''; ?>">Payments Received</a></li>
+						<li class="nav-item"><a href="payment-naws.php" class="nav-link <?= ($activePage == 'payment-naws') ? 'active':''; ?>">Payments to Naws</a></li>
 					</ul>
 				</li>
 				<li class="nav-item">
-					<a href="settings.php" class="nav-link">
+					<a href="settings.php" class="nav-link <?= ($activePage == 'settings') ? 'active':''; ?>">
 						<i class="icon-gear"></i> 
 						<span>Settings</span>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="change-password.php" class="nav-link">
+					<a href="change-password.php" class="nav-link <?= ($activePage == 'change-password') ? 'active':''; ?>">
 						<i class="icon-lock2"></i> 
 						<span>Change Password</span>
 					</a>
