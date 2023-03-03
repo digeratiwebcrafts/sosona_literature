@@ -27,7 +27,7 @@ include "includes/top-navbar.php";
                 <div class="page-header-content header-elements-lg-inline">
                     <div class="page-title d-flex w-100">
                         <h4 class="mr-auto"><span class="font-weight-semibold">Accounts</span></h4>
-                        <a href="#" class="btn btn-indigo"><i class="icon-file-pdf mr-2"></i> Export to .pdf</a>
+                        <a href="pdf.php" class="btn btn-indigo"><i class="icon-file-pdf mr-2"></i> Export to .pdf</a>
                     </div>
                 </div>
             </div>
