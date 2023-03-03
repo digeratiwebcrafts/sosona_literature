@@ -25,6 +25,11 @@ include "includes/header.php";
 								<h5 class="mb-0 font-weight-bold">Password recovery</h5>
 								<span class="d-block text-muted">Update your Password here</span>
 							</div>
+							<?php
+
+							if (isset($_SESSION['emailuser']) == TRUE) {
+
+							 ?>
 							<div>
 								<?php
 					              if (isset($_SESSION['status']) && $_SESSION['status'] == "error") {
@@ -47,18 +52,6 @@ include "includes/header.php";
 					            <?php } ?>
 							</div>
 
-							<div>
-	                          <label>Old Password:<span class="text-danger">*</span></label>
-	                          <div class="form-group form-group-feedback form-group-feedback-left">
-	                            <input type="password" name="old_pass" class="form-control pr-form-control-icon" placeholder="Password" required>
-	                            <div class="form-control-feedback">
-	                              <i class="icon-lock2 text-muted"></i>
-	                            </div>
-	                            <div class="form-control-feedback view-password">
-	                                <i class="icon-eye-blocked2 text-muted view-password-icon"></i>
-	                            </div>
-	                          </div>
-	                        </div>
 	                        <div>
 	                          <label>New Password:<span class="text-danger">*</span></label>
 	                          <div class="form-group form-group-feedback form-group-feedback-left">
@@ -83,28 +76,24 @@ include "includes/header.php";
 	                            </div>
 	                          </div>
 	                        </div>
-	                        <?php
-	                        $id = $_SESSION['id'];
-	                        $sql = "SELECT * FROM user WHERE id='$id'";
-	                        $result = $conn->query($sql);
-
-	                        if ($result->num_rows > 0) {
-	                          // output data of each row
-	                          while($row = $result->fetch_assoc()) {
-	                            //echo "id: " . $row["id"]. " - Email: " . $row["user_email"]. " " . $row["user_pass"]. "<br>";
-	                         
-
-	                         ?>
-	                         <input type="hidden" name="old_pass_db" value="<?php echo $row['user_pass']?>">
-	                         <?php
-	                        }
-	                        } 
-
-	                         ?>
-	                        <input type="hidden" name="id" value="<?php echo $_SESSION['id'];?>">
-	                        <div class="">
-	                          <button type="submit" name="submit" class="btn btn-primary">Change</button>
+	                        <input type="hidden" name="usermail" value="<?php echo $_SESSION['emailuser']; ?>">
+	                        <div class="form-group">
+	                          <button type="submit" name="submit" class="btn btn-primary btn-block">Change</button>
 	                        </div>
+	                        <div class="text-center">
+								<a href="login.php">Log in</a>
+							</div>
+	                        <?php 
+
+	                         }
+	                         else{	                 
+							?>
+							<div class="alert alert-danger border-0 p-2 text-center">
+		                      <span class="font-weight-semibold">Link Expired</span>
+		                  	</div>
+		                  	<?php 
+		                  	}
+							?>
 						</div>
 					</div>
 				</form>

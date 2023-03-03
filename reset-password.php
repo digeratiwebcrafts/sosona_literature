@@ -1,4 +1,6 @@
 <?php
+// We need to use sessions, so you should always start sessions using the below code.
+session_start();
 $pageTitle = 'SOSONA | Reset Password';
 include "includes/header.php";
 ?>
@@ -15,7 +17,7 @@ include "includes/header.php";
 			<div class="content d-flex justify-content-center align-items-center">
 
 				<!-- Password recovery form -->
-				<form class="login-form" action="">
+				<form class="login-form" action="controllers/reset-password-do.php" method="post">
 					<div class="card mb-0">
 						<div class="card-body">
 							<div class="text-center mb-3">
@@ -23,15 +25,36 @@ include "includes/header.php";
 								<h5 class="mb-0 font-weight-bold">Password recovery</h5>
 								<span class="d-block text-muted">We'll send you instructions in email</span>
 							</div>
+							<div>
+								<?php
+					              if (isset($_SESSION['status']) && $_SESSION['status'] == "error") {
+					                  unset($_SESSION['status']);
+					                  ?>
+
+					                  <div class="alert alert-danger border-0 p-2">
+					                      <span class="font-weight-semibold"><?php echo $_SESSION['status_msg']; ?></span>
+					                  </div>
+
+					                  <?php
+					              } else if (isset($_SESSION['status']) && $_SESSION['status'] == "success") {
+					                  unset($_SESSION['status']);
+					                  ?>
+
+					                  <div class="alert alert-success border-0 p-2">
+					                      <span class="font-weight-semibold"><?php echo $_SESSION['status_msg']; ?></span>
+					                  </div>
+
+					            <?php } ?>
+							</div>
 
 							<div class="form-group form-group-feedback form-group-feedback-right">
-								<input type="email" class="form-control" placeholder="Your email">
+								<input type="email" class="form-control" name="useremail" placeholder="Your email" required>
 								<div class="form-control-feedback">
 									<i class="icon-mail5 text-muted"></i>
 								</div>
 							</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-primary btn-block"><i class="icon-spinner11 mr-2"></i> Reset password</button>
+								<button type="submit" name="submit" class="btn btn-primary btn-block"><i class="icon-spinner11 mr-2"></i> Reset password</button>
 							</div>
 							
 							<div class="text-center">
