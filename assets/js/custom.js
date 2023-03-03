@@ -74,3 +74,13 @@ $(function() {
       $('.alert').fadeOut('fast');
     }, 5000);
 });
+
+//alert to date not less than from date
+function myFunction() {
+    var startDate = new Date($('#startDate').val());
+    var endDate = new Date($('#endDate').val());
+
+    if (endDate < startDate){
+    alert('To Date not less than From Date');
+    }
+}
