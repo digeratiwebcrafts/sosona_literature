@@ -59,17 +59,17 @@ include "includes/top-navbar.php";
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                       <label>From Date:</label>
-                                      <input type="date" class="form-control" placeholder="" name="from-date">
+                                      <input type="date" class="form-control" id="startDate" placeholder="" name="from-date">
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                       <label>To Date:</label>
-                                      <input type="date" class="form-control" placeholder="" name="to-date">
+                                      <input type="date" class="form-control" id="endDate" placeholder="" name="to-date">
                                     </div>
                                 </div>
                                 <div class="col-sm-1 mt-1">
-                                  <button type="submit" name="btn-filter" class="btn btn-primary" >Filter</button>
+                                  <button type="submit" name="btn-filter" class="btn btn-primary" onclick="myFunction()">Filter</button>
                                 </div>
                             </div>
                         </form>
@@ -221,6 +221,17 @@ include "includes/top-navbar.php";
                   </div>
                 </div>
                 <!-- /striped rows -->
+                <script>
+                    
+                    function myFunction() {
+                        var startDate = new Date($('#startDate').val());
+                        var endDate = new Date($('#endDate').val());
+
+                        if (endDate < startDate){
+                        alert('To Date not less than From Date');
+                        }
+                    }
+                </script>   
 
             </div>
             <!-- /content area -->
