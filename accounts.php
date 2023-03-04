@@ -9,6 +9,7 @@ $functions = new functions();
 $functions->validUser();
 $command = isset($_POST['command'])?$_POST['command']:'';
 $flag = isset($_REQUEST['flag'])?$_REQUEST['flag']:'';
+$consigneeId = isset($_REQUEST['consigneeId'])?$_REQUEST['consigneeId']:'';
 $currtime = date("Y-m-d h:i:s");
 $pageTitle = 'Accounts';
 
@@ -44,7 +45,16 @@ if($flag == 'reset')
 	exit;
 }
 $filterType = $_SESSION['filter_name'];
-$consigneeLists = $functions->consigneeLists($filterType,'N');
+
+if(!empty($consigneeId))
+{
+$consigneeLists = $functions->consigneeLists($consigneeId,'','N');	
+}
+else
+{
+$consigneeLists = $functions->consigneeLists('',$filterType,'N');	
+}
+
 /// Includes the html Body
 include_once('templates/accountsBody.php');
 ?>

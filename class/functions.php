@@ -2,21 +2,32 @@
 class functions extends Db
 
 {
-		public function consigneeLists($entryType='' ,$paginate = "N")
+		public function consigneeLists($consigneeId,$entryType='' ,$paginate = "N")
 		{
 		    $sql = "SELECT * FROM `consignee` ";
 		    
-		    if(!empty($entryType))
+		     if(!empty($consigneeId))
 		    {
-				$sql .= " WHERE `entry_type` = '".$entryType."' ";
+				$sql .= " WHERE `id` = '".$consigneeId."' ";
 			}
 			else
 			{
-				$sql .= " WHERE `entry_type` = 'Area' OR `entry_type` = 'Group' ";
-				
+				 if(!empty($entryType))
+			    {
+					$sql .= " WHERE `entry_type` = '".$entryType."' ";
+				}
+				else
+				{
+					$sql .= " WHERE `entry_type` = 'Area' OR `entry_type` = 'Group' ";
+					
+				}
 			}
 		    
+		   
+		    
 		    $sql .= " ORDER BY `entry_type`";
+		    
+		   
 		  
 		    $result = $this->execute_query($sql);
 		    $consigneeLists = array();

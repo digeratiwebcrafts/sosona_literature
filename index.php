@@ -275,7 +275,7 @@ include "includes/top-navbar.php";
                                     </div>       
                                 </div>
                                 <?php
-                                $sel_ar_billing="SELECT SUM(order_new.area_billing_amt) AS area_billing_sum ,consignee.name,consignee.opening_bal_amt  FROM order_new RIGHT JOIN consignee ON order_new.consignee_id=consignee.id WHERE entry_type='Area' group by consignee.id";
+                                $sel_ar_billing="SELECT SUM(order_new.area_billing_amt) AS area_billing_sum ,consignee.name,consignee.opening_bal_amt,consignee_id  FROM order_new RIGHT JOIN consignee ON order_new.consignee_id=consignee.id WHERE entry_type='Area' group by consignee.id";
 
                                  $arbilling_conn=$conn->query($sel_ar_billing);
 
@@ -296,7 +296,7 @@ include "includes/top-navbar.php";
                                         <p class="mb-0"><?php echo ++$counter; ?></p>
                                     </div>
                                     <div class="col-6">
-                                        <p class="mb-0"><a href="#"><?php  echo $row['name'] ?></a></p>
+                                        <p class="mb-0"><a href="accounts.php?&consigneeId=<?=$row['consignee_id']?>"><?php  echo $row['name'] ?></a></p>
                                     </div>
                                     <div class="col-5">
                                         <p class="mb-0"><?php  echo $sum ?></p>
@@ -361,7 +361,7 @@ include "includes/top-navbar.php";
                             
                              <?php
                                 
-                                 $sel_gr_billing="SELECT SUM(order_new.area_billing_amt) AS group_billing_sum ,consignee.name,consignee.opening_bal_amt  FROM order_new RIGHT JOIN consignee ON order_new.consignee_id=consignee.id WHERE entry_type='Group' group by consignee.id";
+                                 $sel_gr_billing="SELECT SUM(order_new.area_billing_amt) AS group_billing_sum ,consignee.name,consignee.opening_bal_amt,consignee_id  FROM order_new RIGHT JOIN consignee ON order_new.consignee_id=consignee.id WHERE entry_type='Group' group by consignee.id";
 
                                  $grbilling_conn=$conn->query($sel_gr_billing);
 
@@ -380,7 +380,7 @@ include "includes/top-navbar.php";
                                         <p class="mb-0"><?php echo ++$counter; ?></p>
                                     </div>
                                     <div class="col-6">
-                                        <p class="mb-0"><a href="#"><?php  echo $row['name'] ?></a></p>
+                                        <p class="mb-0"><a href="accounts.php?&consigneeId=<?=$row['consignee_id']?>"><?php  echo $row['name'] ?></a></p>
                                     </div>
                                     <div class="col-5">
                                         <p class="mb-0"><?php echo $sum?></p>

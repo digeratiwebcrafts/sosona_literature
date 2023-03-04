@@ -28,6 +28,19 @@ include "includes/top-navbar.php";
                     <div class="page-title d-flex w-100">
                         <h4 class="mr-auto"><span class="font-weight-semibold">Accounts</span></h4>
                         <a href="pdf.php" class="btn btn-indigo"><i class="icon-file-pdf mr-2"></i> Export to .pdf</a>
+                          <?php
+                    if(!empty($consigneeId))
+					{
+                    ?>
+                        &nbsp;&nbsp;&nbsp;<a href="index.php" class="btn btn-primary">Back</a>&nbsp;&nbsp;&nbsp;
+                    <?php
+					}
+					else
+					{
+					
+					}
+				
+					?>
                     </div>
                 </div>
             </div>
@@ -35,9 +48,24 @@ include "includes/top-navbar.php";
 
             <!-- Content area -->
             <div class="content">
-                <div class="card">
-                    <div class="card-body">
-                        <form action="" method="POST">
+              
+                    <?php
+                    if(!empty($consigneeId))
+					{
+                    ?>
+                	<!--<div class="card">
+                    	<div class="card-body">
+                        <a href="index.php" class="btn btn-primary">Back</a>
+                        </div>
+                	</div>-->
+                    <?php
+					}
+					else
+					{
+					?> 
+					 <div class="card">
+                    	<div class="card-body">
+						<form action="" method="POST">
                             <div class="row d-flex align-items-center">
                                 <div class="col-sm-5">
                                     <div class="form-group">
@@ -56,8 +84,12 @@ include "includes/top-navbar.php";
                                 </div>
                             </div>
                         </form>
-                    </div>
-                </div>
+						</div>
+               		 </div>
+                    <?php
+					}
+                    ?>
+                    
                 <!-- area -->
                 <?php
                 
@@ -71,7 +103,7 @@ include "includes/top-navbar.php";
 					<div class="mb-3">
                     <div class="row mb-3">
                         <div class="col-sm-12">
-                            <h5 class="bg-dark text-white text-center p-2"><?=$consigneeListsVal['entry_type']?> Accounts</h5>
+                            <h5 class="bg-dark text-white text-center p-2"><?=$consigneeListsVal['name'].' '?><?=$consigneeListsVal['entry_type']?> Account</h5>
                         </div>
                     </div>
                     <div class="row">
