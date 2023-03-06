@@ -63,6 +63,8 @@ include "includes/top-navbar.php";
                       <th>Naws Order Id</th>
                       <th>Order Date</th>
                       <th>Order Total</th>
+                      <th>Share Amt.</th>
+                      <th>Billing Amt.</th>
                       <th class="table-comment-width">Comments</th>
                       <th>Action</th>
                     </tr>
@@ -81,6 +83,8 @@ include "includes/top-navbar.php";
                       <td><?php echo $row['naws_order_id'];?></td>
                       <td><?php echo $row['order_date'];?></td>
                       <td><?php echo $row['order_total'];?></td>
+                      <td><?php echo $row['area_share_amt'];?></td>
+                      <td><?php echo $row['area_billing_amt'];?></td>
                       <td><?php echo $row['comments'];?></td>
                       <td class="text-center">
                           <div class="list-icons">

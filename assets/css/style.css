@@ -29,3 +29,6 @@
 .table-comment-width{
     width: 250px!important;
 }
+.cursor-none .select2-container{
+    pointer-events: none;
+}

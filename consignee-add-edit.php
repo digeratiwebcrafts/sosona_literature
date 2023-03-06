@@ -76,7 +76,7 @@ include "includes/top-navbar.php";
                         if ($row['entry_type']!=='Region') {
                           
                         ?>
-                        <div class="form-group">
+                        <div class="form-group cursor-none">
                           <label>Entry Type:<span class="text-danger">*</span></label>
                           <select class="form-control select-search" data-fouc data-placeholder="-Select Area-" name="entry_type" required >
                                   <option></option>
@@ -87,7 +87,7 @@ include "includes/top-navbar.php";
                           </select>
                         </div>
                       <?php }else{ ?>
-                        <div class="form-group">
+                        <div class="form-group cursor-none">
                           <label>Entry Type:<span class="text-danger">*</span></label>
                           <select class="form-control select-search" data-fouc data-placeholder="-Select Area-" name="entry_type" required >
                           
