@@ -78,17 +78,18 @@ include "includes/top-navbar.php";
                         ?>
                         <div class="form-group">
                           <label>Entry Type:<span class="text-danger">*</span></label>
-                          <select class="form-control select-search" data-fouc data-placeholder="-Select Area-" name="entry_type" required>
+                          <select class="form-control select-search" data-fouc data-placeholder="-Select Area-" name="entry_type" required disabled>
                                   <option></option>
                               <option value="Area"<?php if($row['entry_type'] == 'Area') echo "selected"; ?>>Area</option>
                               <option value="Group"<?php if($row['entry_type'] == 'Group') echo "selected"; ?>>Group</option>
+
                               
                           </select>
                         </div>
                       <?php }else{ ?>
                         <div class="form-group">
                           <label>Entry Type:<span class="text-danger">*</span></label>
-                          <select class="form-control select-search" data-fouc data-placeholder="-Select Area-" name="entry_type" required>
+                          <select class="form-control select-search" data-fouc data-placeholder="-Select Area-" name="entry_type" required disabled>
                           
                               <option value="Region"<?php if($row['entry_type'] == 'Region') echo "selected"; ?>>Region</option>
                           </select>
