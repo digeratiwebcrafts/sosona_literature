@@ -58,6 +58,7 @@ include "includes/top-navbar.php";
                                   //output data of each row
                                   while($row = $result->fetch_assoc()) {
                                     //echo "Total Order: " . $row["SUM(order_total)"];
+                                    $total_order = round($row['SUM(order_total)'],2);
 
                                 
                                 
@@ -66,7 +67,7 @@ include "includes/top-navbar.php";
                                 //$rs=$conn->query($sel_ord);
                                 //while($row=$rs->fetch_assoc()){
                                  ?>
-                                <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i><?php echo round($row['SUM(order_total)'],2);?></h3>
+                                <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i><?php echo number_format((float)$total_order, 2, '.', '');?></h3>
                                 <p class="mb-0">Total Order Since <span class="font-weight-bold"><?php echo $date ?></span> </p>
                                 <?php 
                                     }
@@ -138,7 +139,7 @@ include "includes/top-navbar.php";
 
 
                                 
-                               echo" <h3 class='font-weight-semibold mb-0'><i class='fas fa-rupee-sign'></i>$naws_total</h3>";
+                               echo" <h3 class='font-weight-semibold mb-0'><i class='fas fa-rupee-sign'></i>". number_format((float)$naws_total, 2, '.', '') . "</h3>";
                                 ?>
                                 <p class="mb-0">Total payable to NAWS</p>
                                  <?php
@@ -175,10 +176,10 @@ include "includes/top-navbar.php";
                                 $pay_conn=$conn->query($sel_pay);
                                 $Area_pay_sum=$pay_conn->fetch_assoc();
                                 
-                                $total_recev_all_areas=implode('', $con_row)+implode('',$Area_bill_row)-implode('',$Area_pay_sum);
+                                $total_recev_all_areas= round(implode('', $con_row)+implode('',$Area_bill_row)-implode('',$Area_pay_sum),2);
                                     //echo "Total receivable Area Amt: " . $total_recev_all_areas;
                                  ?>
-                                <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i><?php echo $total_recev_all_areas;?></h3>
+                                <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i><?php echo number_format((float)$total_recev_all_areas, 2, '.', '');?></h3>
                                 <p class="mb-0">Total receivable from All Areas</p>
                                 
                                  <?php
@@ -223,11 +224,10 @@ include "includes/top-navbar.php";
                                 $pay_conn=$conn->query($sel_pay);
                                 $Group_pay_sum=$pay_conn->fetch_assoc();
                                 
-                                $total_recev_all_groups=implode('', $con_row)+implode('',$G_bill_row)-implode('',$Group_pay_sum);
-                                   
+                                $total_recev_all_groups= round(implode('', $con_row)+implode('',$G_bill_row)-implode('',$Group_pay_sum),2);
                                     //echo "Total receivable Area Amt: " . $total_recev_all_groups;
                                 ?>
-                                <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i><?php echo $total_recev_all_groups;?></h3>
+                                <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i><?php echo number_format((float)$total_recev_all_groups, 2, '.', '');?></h3>
                                 <p class="mb-0">Total receivable from Others</p>
                                  
                                  <?php
@@ -299,7 +299,7 @@ include "includes/top-navbar.php";
                                         <p class="mb-0"><a href="accounts.php?&consigneeId=<?=$row['consignee_id']?>"><?php  echo $row['name'] ?></a></p>
                                     </div>
                                     <div class="col-5">
-                                        <p class="mb-0"><?php  echo $sum ?></p>
+                                        <p class="mb-0"><i class="fas fa-rupee-sign sm-icon"></i><?php echo number_format((float)$sum, 2, '.', '');?></p>
                                     </div>       
                                 </div>
                             <?php 
@@ -383,7 +383,7 @@ include "includes/top-navbar.php";
                                         <p class="mb-0"><a href="accounts.php?&consigneeId=<?=$row['consignee_id']?>"><?php  echo $row['name'] ?></a></p>
                                     </div>
                                     <div class="col-5">
-                                        <p class="mb-0"><?php echo $sum?></p>
+                                        <p class="mb-0"><i class="fas fa-rupee-sign sm-icon"></i><?php echo number_format((float)$sum, 2, '.', '');?></p>
                                     </div>       
                                 </div>
                                 <?php }

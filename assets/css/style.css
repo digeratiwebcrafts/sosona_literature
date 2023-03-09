@@ -32,3 +32,6 @@
 .cursor-none .select2-container{
     pointer-events: none;
 }
+.sm-icon{
+    font-size: 10px;
+}
