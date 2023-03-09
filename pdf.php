@@ -47,7 +47,7 @@
                     </div>
                     <div class="row">
 
-                        <div class="col-6" style="width: 49%;">
+                        <div class="col-6" style="width: 50%;">
                             <div class="row" style="display: flex;">
                                 <div class="col" style="width:70%;display: flex;float: left;">
                                     <p style="font-size:12px;width:100%;"><strong>Abu (Area )</strong> Opening Bal., as on <strong>09-03-2023</strong></p>
