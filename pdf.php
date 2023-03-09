@@ -6,7 +6,7 @@
   <title></title>
   <style>
   .tb-heading th{
-    font-size:8pt !important;
+    font-size:9pt !important;
     padding:5px 10px !important;
     border:1px solid #000 !important;
     
@@ -17,12 +17,12 @@
     border:1px solid #000 !important;
    
   }
-  ord-table td{
+  /*.ord-table td{
    font-size:9pt !important;
    padding:6px 10px !important;
     border:1px solid #000 !important;
       
-  }
+  }*/
   td{
      font-size:8pt !important;
      padding:5px 10px !important;
@@ -30,11 +30,13 @@
      
   }
  .col-heading{
-  font-size:14pt !important;
+  font-size:12pt !important;
  }
  table{
   width:100%;
+
  }
+
   </style>
 </head>
 
@@ -53,7 +55,7 @@
                                     <p style="font-size:12px;width:100%;"><strong>Abu (Area )</strong> Opening Bal., as on <strong>09-03-2023</strong></p>
                                 </div>
                                 <div class="col" style="width: 30%;float: right;display: flex;">
-                                    <p style="font-size:12px;color: #fff;background: #26a69a;text-align: center;padding: 5px 7px;border-radius: 5px;width:100%;"><strong>200000.00</strong></p>
+                                    <p style="font-size:12px;color: #fff;background: #26a69a;text-align: center;padding: 5px 7px;width:100%;"><strong>200000.00</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +96,17 @@
                                             <td>3802.17</td>
                                             <td>53173.83</td>
                                         </tr>
+                                        
                                         </tbody>
+                                        <tfoot class="tb-footer">
+                                           <tr>
+                                            <td colspan="2">Total:</td>
+                                            <td>56974.00</td>
+                                            <td>3800.17</td>
+                                            <td>53173.83</td>
+
+                                        </tr> 
+                                        </tfoot>
                                     </table>
                             
                         </div>
@@ -119,19 +131,27 @@
                                         <tbody>
                                         <tr>
                                             <td>21-02-2023</td>
-                                            <td>#order-001</td>
                                             <td>56974.00</td>
-                                            <td>3800.17</td>
+                                            <td>Bank Transfer</td>
+                                            <td>#0012</td>
                                             
                                         </tr>
                                         <tr>
                                             <td>05-02-2023</td>
-                                            <td>#order-002</td>
-                                            <td>56654.00</td>
-                                            <td>3802.17</td>
+                                            <td>56974.00</td>
+                                            <td>Bank Transfer</td>
+                                            <td>#0015</td>
                                             
                                         </tr>
                                         </tbody>
+                                        <tfoot class="tb-footer">
+                                           <tr>
+                                            <td>Total:</td>
+                                            <td colspan="3">56974.00</td>
+                                            
+
+                                        </tr> 
+                                        </tfoot>
                                     </table>
                               
                         </div> 
@@ -144,7 +164,7 @@
                                     <p style="font-size:12px;margin-right:15px;width:100%;"><strong>Total Dues</strong> to SOSONA as on <strong>09-03-2023</strong></p>
                                 </div>
                                 <div class="col" style="width: 30%;float: right;display: flex;">
-                                    <p style="font-size:12px;color: #fff;background: #f58646;text-align: center;padding: 5px 7px;border-radius: 5px;width:100%;"><strong>200000.00</strong></p>
+                                    <p style="font-size:12px;color: #fff;background: #f58646;text-align: center;padding: 5px 7px;width:100%;"><strong>200000.00</strong></p>
                                 </div>
                             </div>
                         </div>
