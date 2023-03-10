@@ -92,7 +92,7 @@ include "includes/top-navbar.php";
 
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a href="consignee-add-edit.php?id=<?php echo $row['id'];?>" class="dropdown-item"><i class="icon-pencil7"></i> Edit</a>
-                                                <a href="#" class="dropdown-item" data-toggle="modal" data-target="#confirmDeletet<?php echo $row['id'] ?>"><i class="icon-trash"></i> Delete</a>
+                                                <!-- <a href="#" class="dropdown-item" data-toggle="modal" data-target="#confirmDeletet<?php echo $row['id'] ?>"><i class="icon-trash"></i> Delete</a> -->
                                             </div>
                                         </div>
                                     </div>

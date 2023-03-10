@@ -112,7 +112,7 @@ include "includes/top-navbar.php";
                                  $sel_pay="SELECT  SUM(payment.payment_amt) AS naws_pay_sum FROM payment INNER JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Region'";
                                       $pay_conn=$conn->query($sel_pay);
                                       $naws_pay_sum=$pay_conn->fetch_assoc();
-                                      
+                                      $naws_psum=implode('', $naws_pay_sum);
                                       
                                       $sel_shr="SELECT * FROM lds_share";
                                       $shr_conn=$conn->query($sel_shr);
@@ -131,11 +131,11 @@ include "includes/top-navbar.php";
                                       $order_total=$rs->fetch_assoc();
                                       
                                       
-                                      $total_shr_amt=($shr_total / 100) * implode('', $order_total);
+                                      $total_shr_amt=($shr_total / 100) * (float)implode('', $order_total);
                                       
-                                      $opn_bal_ord_total_sum=$opening_bal+implode('', $order_total);
+                                      $opn_bal_ord_total_sum=$opening_bal+ (float)implode('', $order_total);
                                       
-                                        $naws_total=round($opn_bal_ord_total_sum - $total_shr_amt - implode('', $naws_pay_sum),2);
+                                        $naws_total=$opn_bal_ord_total_sum - $total_shr_amt - (float)$naws_psum;
 
 
                                 
@@ -176,7 +176,7 @@ include "includes/top-navbar.php";
                                 $pay_conn=$conn->query($sel_pay);
                                 $Area_pay_sum=$pay_conn->fetch_assoc();
                                 
-                                $total_recev_all_areas= round(implode('', $con_row)+implode('',$Area_bill_row)-implode('',$Area_pay_sum),2);
+                                $total_recev_all_areas= round((float)implode('', $con_row)+(float)implode('',$Area_bill_row)-(float)implode('',$Area_pay_sum),2);
                                     //echo "Total receivable Area Amt: " . $total_recev_all_areas;
                                  ?>
                                 <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i><?php echo number_format((float)$total_recev_all_areas, 2, '.', '');?></h3>
@@ -224,7 +224,7 @@ include "includes/top-navbar.php";
                                 $pay_conn=$conn->query($sel_pay);
                                 $Group_pay_sum=$pay_conn->fetch_assoc();
                                 
-                                $total_recev_all_groups= round(implode('', $con_row)+implode('',$G_bill_row)-implode('',$Group_pay_sum),2);
+                                $total_recev_all_groups= round((float)implode('', $con_row)+(float)implode('',$G_bill_row)-(float)implode('',$Group_pay_sum),2);
                                     //echo "Total receivable Area Amt: " . $total_recev_all_groups;
                                 ?>
                                 <h3 class="font-weight-semibold mb-0"><i class="fas fa-rupee-sign"></i><?php echo number_format((float)$total_recev_all_groups, 2, '.', '');?></h3>
