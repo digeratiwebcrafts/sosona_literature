@@ -122,7 +122,7 @@ include "includes/top-navbar.php";
                             $to_date=$_POST['to-date'];
                             $order_by=$_POST['consignee-id'];
 
-                            if (($form_date <= $to_date) && $order_by== TRUE) {
+                            if ((($form_date < $to_date) && $order_by== TRUE) || (($form_date = $to_date) && $order_by== TRUE )) {
                                
 
                         if(isset($_POST['from-date'])  && isset($_POST['to-date']) && isset($_POST['consignee-id'])){
@@ -180,7 +180,7 @@ include "includes/top-navbar.php";
                        
                     }
                 }
-                }elseif ($form_date <= $to_date || $order_by== TRUE) {
+                }elseif (($order_by == TRUE || $form_date < $to_date)) {
                     
                       if(isset($_POST['from-date'])  && isset($_POST['to-date']) && isset($_POST['consignee-id'])){
                         $query="SELECT *  FROM consignee INNER JOIN order_new ON order_new.consignee_id=consignee.id WHERE order_date BETWEEN '$form_date' AND '$to_date' OR consignee_id='$order_by' ";
@@ -239,9 +239,8 @@ include "includes/top-navbar.php";
                 }
                    
 
-                }
+                } ?>
 
-                ?>
                 <?php
 
                    }else{ ?>
