@@ -122,7 +122,7 @@ include "includes/top-navbar.php";
                             $to_date=$_POST['to-date'];
                             $order_by=$_POST['consignee-id'];
 
-                            if ((($form_date < $to_date) && $order_by== TRUE) || (($form_date = $to_date) && $order_by== TRUE )) {
+                            if (($form_date <= $to_date) && $order_by== TRUE) {
                                
 
                         if(isset($_POST['from-date'])  && isset($_POST['to-date']) && isset($_POST['consignee-id'])){
