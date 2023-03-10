@@ -275,11 +275,11 @@ include "includes/top-navbar.php";
                                     </div>       
                                 </div>
                                 <?php
-                                $sel_ar_billing="SELECT SUM(order_new.area_billing_amt) AS area_billing_sum ,consignee.name,consignee.opening_bal_amt,consignee.id AS consignee_id  FROM order_new RIGHT JOIN consignee ON order_new.consignee_id=consignee.id WHERE entry_type='Area' group by consignee.id";
+                                $sel_ar_billing="SELECT SUM(order_new.area_billing_amt) AS area_billing_sum ,consignee.name,consignee.opening_bal_amt,consignee.id AS consignee_id  FROM order_new RIGHT JOIN consignee ON order_new.consignee_id=consignee.id WHERE entry_type='Area' group by consignee.id ORDER BY name ASC";
 
                                  $arbilling_conn=$conn->query($sel_ar_billing);
 
-                                 $sel="SELECT SUM(payment.payment_amt) AS Area_pay_sum FROM payment RIGHT JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Area' group by consignee.id";
+                                 $sel="SELECT SUM(payment.payment_amt) AS Area_pay_sum FROM payment RIGHT JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Area' group by consignee.id ORDER BY name ASC";
                                  $rs=$conn->query($sel);
 
                                  if($rs->num_rows > 0){
@@ -361,11 +361,11 @@ include "includes/top-navbar.php";
                             
                              <?php
                                 
-                                 $sel_gr_billing="SELECT SUM(order_new.area_billing_amt) AS group_billing_sum ,consignee.name,consignee.opening_bal_amt,consignee.id AS consignee_id  FROM order_new RIGHT JOIN consignee ON order_new.consignee_id=consignee.id WHERE entry_type='Group' group by consignee.id";
+                                 $sel_gr_billing="SELECT SUM(order_new.area_billing_amt) AS group_billing_sum ,consignee.name,consignee.opening_bal_amt,consignee.id AS consignee_id  FROM order_new RIGHT JOIN consignee ON order_new.consignee_id=consignee.id WHERE entry_type='Group' group by consignee.id ORDER BY name ASC";
 
                                  $grbilling_conn=$conn->query($sel_gr_billing);
 
-                                 $sel="SELECT SUM(payment.payment_amt) AS group_pay_sum FROM payment RIGHT JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Group' group by consignee.id";
+                                 $sel="SELECT SUM(payment.payment_amt) AS group_pay_sum FROM payment RIGHT JOIN consignee ON payment.payment_by=consignee.id WHERE entry_type='Group' group by consignee.id ORDER BY name ASC";
                                  $rs=$conn->query($sel);
                                  if($rs->num_rows > 0){
                                  $counter = 0;
