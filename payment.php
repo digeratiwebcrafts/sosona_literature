@@ -87,8 +87,9 @@ include "includes/top-navbar.php";
                                       <input type="date" class="form-control" id="endDate" placeholder="" name="to-date">
                                     </div>
                                 </div>
-                                <div class="col-sm-1 mt-1">
-                                  <button type="submit" name="btn-filter" class="btn btn-primary" onclick="myFunction()">Filter</button>
+                                <div class="col-sm-3 mt-1">
+                                  <button type="submit" name="btn-filter" class="btn btn-primary mr-2" onclick="myFunction()">Filter</button>
+                                  <a href="payment.php" class="btn btn-warning">Reset</a>
                                 </div>
                             </div>
                         </form>

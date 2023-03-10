@@ -33,7 +33,15 @@ include "includes/top-navbar.php";
             <div class="page-header page-header-light">
                 <div class="page-header-content header-elements-lg-inline">
                     <div class="page-title d-flex">
-                        <h4><span class="font-weight-semibold">Payment NAWS Add / Edit</span></h4>
+                        
+                        <?php
+                      if(isset($_GET["id"]) && !empty($_GET["id"])){
+                        echo'<h4><span class="font-weight-semibold">Payment NAWS Edit</span></h4>';
+                      
+                       }else{
+                        echo'<h4><span class="font-weight-semibold">Payment NAWS Add</span></h4></h4>';
+                       }
+                       ?>
                     </div>
                 </div>
             </div>
