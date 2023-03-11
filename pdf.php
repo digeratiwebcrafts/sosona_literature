@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html>  
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  <style>
+<?php
+include("lib/start.php");
+include("lib/config.php");
+include("lib/connect.php");
+include("class/functions.php"); 
+require_once('vendor/autoload.php'); 
+$mpdf = new \Mpdf\Mpdf();  
+$functions = new functions();
+$functions->validUser();
+$consigneeId = isset($_REQUEST['consigneeId'])?$_REQUEST['consigneeId']:'';
+$currtime = date("Y-m-d h:i:s");
+?>
+<style>
   .tb-heading th{
     font-size:9pt !important;
     padding:5px 10px !important;
@@ -17,12 +23,6 @@
     border:1px solid #000 !important;
    
   }
-  /*.ord-table td{
-   font-size:9pt !important;
-   padding:6px 10px !important;
-    border:1px solid #000 !important;
-      
-  }*/
   td{
      font-size:8pt !important;
      padding:5px 10px !important;
@@ -36,32 +36,47 @@
   width:100%;
 
  }
+</style>
+<?php
+if(!empty($consigneeId))
+{
+$consigneeLists = $functions->consigneeLists($consigneeId,'','N');	
+}
+else
+{
+$consigneeId = $_SESSION['filter_name'];
+$consigneeLists = $functions->consigneeLists($consigneeId,'','N');	
+}
 
-  </style>
-</head>
 
-<body style="background:#f5f5f5;">
-                   <div class="container">
-                    <div class="row">
+$content = '';
+if(!empty($consigneeLists))
+{
+	
+	foreach($consigneeLists AS $consigneeListsVal)
+					{
+						
+			$content .= '<div class="content_holder">';
+			$content .=	'<div class="row">
                         
-                            <h5 style="background:#252b36;color: #fff;font-size: 1.125rem;text-align: center;  margin-bottom:0.625rem;font-weight: 400;line-height:1.5715;padding:10px;">Area Account</h5>
+                            <h5 style="background:#252b36;color: #fff;font-size: 1.125rem;text-align: center;  margin-bottom:0.625rem;font-weight: 400;line-height:1.5715;padding:10px;">'.$consigneeListsVal['name'].' '.$consigneeListsVal['entry_type'].' Account</h5>
                         
-                    </div>
-                    <div class="row">
+                    </div>';
+            $content .=	 '<div class="row">
 
                         <div class="col-6" style="width: 50%;">
                             <div class="row" style="display: flex;">
                                 <div class="col" style="width:70%;display: flex;float: left;">
-                                    <p style="font-size:12px;width:100%;"><strong>Abu (Area )</strong> Opening Bal., as on <strong>09-03-2023</strong></p>
+                                    <p style="font-size:12px;width:100%;"><strong>'.$consigneeListsVal['name'].' ( '.$consigneeListsVal['entry_type'].' )</strong> Opening Bal., as on <strong>'.$consigneeListsVal['as_on_date'].'</strong></p>
                                 </div>
                                 <div class="col" style="width: 30%;float: right;display: flex;">
-                                    <p style="font-size:12px;color: #fff;background: #26a69a;text-align: center;padding: 5px 7px;width:100%;"><strong>200000.00</strong></p>
+                                    <p style="font-size:12px;color: #fff;background: #26a69a;text-align: center;padding: 5px 7px;width:100%;"><strong>'.$consigneeListsVal['opening_bal_amt'].'</strong></p>
                                 </div>
                             </div>
                         </div>
                      
-                    </div>
-                    <div class="row" >
+                    </div>';
+                      $content .=	 '<div class="row" >
                         <div class="col-order" style="width:50%;float:left;display:flex;">
                            
                                 
@@ -81,36 +96,54 @@
 
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>21-02-2023</td>
-                                            <td>#order-001</td>
-                                            <td>56974.00</td>
-                                            <td>3800.17</td>
-                                            <td>53173.83</td>
-                                        </tr>
-                                        <tr>
-                                            <td>05-02-2023</td>
-                                            <td>#order-002</td>
-                                            <td>56654.00</td>
-                                            <td>3802.17</td>
-                                            <td>53173.83</td>
-                                        </tr>
-                                        
-                                        </tbody>
-                                        <tfoot class="tb-footer">
-                                           <tr>
-                                            <td colspan="2">Total:</td>
-                                            <td>56974.00</td>
-                                            <td>3800.17</td>
-                                            <td>53173.83</td>
-
-                                        </tr> 
-                                        </tfoot>
+                                        <tbody>';
+                                       $consigneeOrderLists = $functions->consigneeOrderLists($consigneeListsVal['id'],'N');
+                                         	 if(!empty($consigneeOrderLists))
+                                         	 {
+                                         	 	$total_order_amnt = 0.00;
+							                    $total_area_share_amnt = 0.00;
+							                    $total_area_billing_amnt = 0.00;
+                    
+											 	foreach($consigneeOrderLists AS $consigneeOrderListsVal)
+											 	{
+											 		
+											 		$content .='<tr>
+		                                                <td>'.date("d-m-Y", strtotime($consigneeOrderListsVal['order_date']) ).'</td>
+		                                                <td>#'.$consigneeOrderListsVal['naws_order_id'].'</td>
+		                                                <td>'.$consigneeOrderListsVal['order_total'].'</td>
+		                                                <td>'.$consigneeOrderListsVal['area_share_amt'].'</td>
+		                                                <td>'.$consigneeOrderListsVal['area_billing_amt'].'</td>
+                                            		</tr>';
+                                           
+											 		
+														$total_order_amnt =  $total_order_amnt + (float)$consigneeOrderListsVal['order_total'];
+														$total_area_share_amnt =  $total_area_share_amnt + (float)$consigneeOrderListsVal['area_share_amt'];
+														$total_area_billing_amnt =  $total_area_billing_amnt + (float)$consigneeOrderListsVal['area_billing_amt'];
+												}
+												
+												
+												$content .='<tr class="bg-purple-100">
+                                                <td colspan="2" class="font-weight-bold">Total:</td>
+                                                <td>'.number_format((float)$total_order_amnt, 2, '.', '').'</td>
+                                                <td>'.number_format((float)$total_area_share_amnt, 2, '.', '').'</td>
+                                                <td>'.number_format((float)$total_area_billing_amnt, 2, '.', '').'</td>
+                                            	</tr>';
+												
+											 }
+											 else
+											 {
+											 	
+											 	$content .= '<tr><td colspan=4> Sorry No Order Found</td></tr>';
+											 	$total_order_amnt = 0.00;
+							                    $total_area_share_amnt = 0.00;
+							                    $total_area_billing_amnt = 0.00;
+											 }
+                                       $content .= ' </tbody>
+                                   
                                     </table>
                             
-                        </div>
-                        <div class="col-payment" style="width:49%;float:right;display:flex;" >
+                        </div>';
+                          $content .= '<div class="col-payment" style="width:49%;float:right;display:flex;" >
                         
                                 
                                     <table class="table">  
@@ -128,48 +161,84 @@
                                                 
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>21-02-2023</td>
-                                            <td>56974.00</td>
-                                            <td>Bank Transfer</td>
-                                            <td>#0012</td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>05-02-2023</td>
-                                            <td>56974.00</td>
-                                            <td>Bank Transfer</td>
-                                            <td>#0015</td>
-                                            
-                                        </tr>
-                                        </tbody>
-                                        <tfoot class="tb-footer">
-                                           <tr>
-                                            <td>Total:</td>
-                                            <td colspan="3">56974.00</td>
-                                            
-
-                                        </tr> 
-                                        </tfoot>
+                                        <tbody>';
+                                        
+                                        	$consigneePaymentLists = $functions->consigneePaymentLists($consigneeListsVal['id'],'N');
+                                        		if(!empty($consigneePaymentLists))
+                                        		{
+                                        			$total_payment_amnt = 0.00;
+                                        			foreach($consigneePaymentLists AS $consigneePaymentListsVal)
+                                        			{
+			                                        		$content .= '<tr>
+			                                                <td>'.date("d-m-Y", strtotime($consigneePaymentListsVal['payment_date']) ).'</td>
+			                                                <td>'.$consigneePaymentListsVal['payment_amt'].'</td>
+			                                                <td>'.$consigneePaymentListsVal['payment_mode'].'</td>
+			                                                <td>'.$consigneePaymentListsVal['payment_ref_number'].'</td>			                                                		</tr>';
+                                        				
+                                        				
+                                        				
+														$total_payment_amnt =  $total_payment_amnt + (float)$consigneePaymentListsVal['payment_amt'];
+													}
+													
+															$content .='<tr class="bg-purple-100">
+		                                                	<td class="font-weight-bold">Total:</td>
+		                                                	<td colspan="3">'.number_format((float)$total_payment_amnt, 2, '.', '').'</td>
+		                                            		</tr>';
+												
+													
+													
+												}
+												else
+												{
+													$content .= '<tr><td colspan=4> Sorry No Payment Record Found</td></tr>';
+													$total_payment_amnt = 0.00;
+												}
+                                      
+                                       $content .= ' </tbody>
+                                        
                                     </table>
                               
                         </div> 
-                    </div>
-                  <div class="row">
+                    </div>';
+                     $dues = (number_format((float)$consigneeListsVal['opening_bal_amt'], 2, '.', '')+ number_format((float)$total_area_billing_amnt, 2, '.', ''))- number_format((float)$total_payment_amnt, 2, '.', '');
+                     $content .= '<div class="row">
 
                         <div class="col-6" style="width: 49%;float: right;">
                             <div class="row" style="display: flex;">
                                 <div class="col" style="width:70%;display: flex;float: left;">
-                                    <p style="font-size:12px;margin-right:15px;width:100%;"><strong>Total Dues</strong> to SOSONA as on <strong>09-03-2023</strong></p>
+                                    <p style="font-size:12px;margin-right:15px;width:100%;"><strong>Total Dues</strong> to SOSONA as on <strong>'.date('d-m-Y').'</strong></p>
                                 </div>
                                 <div class="col" style="width: 30%;float: right;display: flex;">
-                                    <p style="font-size:12px;color: #fff;background: #f58646;text-align: center;padding: 5px 7px;width:100%;"><strong>200000.00</strong></p>
+                                    <p style="font-size:12px;color: #fff;background: #f58646;text-align: center;padding: 5px 7px;width:100%;"><strong>'.number_format((float)$dues, 2, '.', '').'</strong></p>
                                 </div>
                             </div>
                         </div>
                      
                     </div>
-                </div>
-            </body>
-            </html>
+						</div>
+						<div class="" style="clear: both"></div>';
+						         
+                 
+                
+						
+					
+						
+					}
+}
+
+$dirHandle = opendir('pdfs');
+$randFileName = time();
+
+$mpdf->pdf_version = '1.5';
+$mpdf->SetDisplayMode('fullpage');
+$mpdf->shrink_tables_to_fit = 1;
+$mpdf->use_kwt = true;
+$mpdf->AddPage('','A4-L','','','','5','5','2','0','0','0');
+$mpdf->WriteHTML($content,2);
+
+$mpdf->Output('pdfs/'.$randFileName.'.pdf' , 'D');
+$file = 'pdfs/'.$randFileName.'.pdf';
+
+
+
+          

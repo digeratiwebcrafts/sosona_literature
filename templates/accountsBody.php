@@ -27,16 +27,20 @@ include "includes/top-navbar.php";
                 <div class="page-header-content header-elements-lg-inline">
                     <div class="page-title d-flex w-100">
                         <h4 class="mr-auto"><span class="font-weight-semibold">Accounts</span></h4>
-                        <a href="pdf.php" class="btn btn-indigo"><i class="icon-file-pdf mr-2"></i> Export to .pdf</a>
+                       
                           <?php
                     if(!empty($consigneeId))
 					{
                     ?>
+                    	 <a href="pdf.php?consigneeId=<?=$consigneeId?>" class="btn btn-indigo"><i class="icon-file-pdf mr-2"></i> Export to .pdf</a>
                         &nbsp;&nbsp;&nbsp;<a href="index.php" class="btn btn-primary">Back</a>&nbsp;&nbsp;&nbsp;
                     <?php
 					}
 					else
 					{
+						?>
+						 <a href="pdf.php" class="btn btn-indigo"><i class="icon-file-pdf mr-2"></i> Export to .pdf</a>
+						<?php
 					
 					}
 				
@@ -72,8 +76,23 @@ include "includes/top-navbar.php";
                                       <label>Select Area / Group:</label>
                                       <select class="form-control " name="filter_name"  >
                                         <option >All</option>
-                                        <option value="Area"   <?php if($_SESSION['filter_name'] == 'Area'){echo 'selected';} ?> >Area</option>
-                                        <option value="Group" <?php if($_SESSION['filter_name'] == 'Group'){echo 'selected';} ?>>Group</option>
+                                        
+                                        <?php
+											if(!empty($allConsigneeLists))   
+											{
+												
+												foreach($allConsigneeLists AS $allConsigneeListsVal)
+												{
+													?>
+													 <option value="<?=$allConsigneeListsVal['id']?>"   <?php if($filterType == $allConsigneeListsVal['id']){echo 'selected';} ?> ><?=$allConsigneeListsVal['name']?>( <?=$allConsigneeListsVal['entry_type']?> )</option>
+													<?php
+													
+													
+												}
+											}                                     
+                                        ?>
+                                       
+                                       
                                       </select>
                                     </div>
                                 </div>

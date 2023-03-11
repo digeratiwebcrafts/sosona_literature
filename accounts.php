@@ -13,6 +13,7 @@ $consigneeId = isset($_REQUEST['consigneeId'])?$_REQUEST['consigneeId']:'';
 $currtime = date("Y-m-d h:i:s");
 $pageTitle = 'Accounts';
 
+
 if($command == '1')
 {
 	
@@ -52,9 +53,10 @@ $consigneeLists = $functions->consigneeLists($consigneeId,'','N');
 }
 else
 {
-$consigneeLists = $functions->consigneeLists('',$filterType,'N');	
+$consigneeLists = $functions->consigneeLists($filterType,'','N');	
 }
 
+$allConsigneeLists = $functions->consigneeLists('','','N');	
 /// Includes the html Body
 include_once('templates/accountsBody.php');
 ?>
