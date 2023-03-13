@@ -29,8 +29,8 @@ if(!empty($consigneeLists))
 	
 	foreach($consigneeLists AS $consigneeListsVal)
 					{
-						
-			$content .= '<div class="content_holder">';
+				
+			$content .= '<div class="content_holder" style="page-break-after:auto;">';
 			$content .=	'<div class="row">
                         
                             <h5 style="background:#252b36;color: #fff;font-size: 1.125rem;text-align: center;  margin-bottom:0.625rem;font-weight: 400;line-height:1.5715;padding:10px;margin-top:20px;">'.$consigneeListsVal['name'].' '.$consigneeListsVal['entry_type'].' Account</h5>
@@ -50,11 +50,13 @@ if(!empty($consigneeLists))
                         </div>
                      
                     </div>';
-                      $content .=	 '<div class="row" >
-                        <div class="col-order" style="width:50%;float:left;display:flex;">
-                           
+                      $content .=	 '<div class="row">
+                         <table>
+                        <tr>
+                            <td width="50%" style="vertical-align: top;">
+                          
                                 
-                                    <table class="ord-table">  
+                                    <table class="ord-table" style="page-break-inside:auto">  
                                         <thead>
                                             <tr style="background:#c5c5c5;text-align:center;padding:15px 0">
                                                 <th colspan="5" class="col-heading" style="padding:10px">Orders</th>
@@ -116,11 +118,11 @@ if(!empty($consigneeLists))
                                    
                                     </table>
                             
-                        </div>';
-                          $content .= '<div class="col-payment" style="width:49%;float:right;display:flex;" >
+                           </td>';
+                          $content .= '
                         
-                                
-                                    <table class="table">  
+                                <td  width="50%" style="vertical-align: top;">
+                                    <table class="table" style="page-break-inside:auto">  
                                         <thead>
                                             <tr style="background:#c5c5c5;text-align:center;">
                                                 <th colspan="4" class="col-heading" style="padding:10px">Payments</th>
@@ -170,9 +172,11 @@ if(!empty($consigneeLists))
                                       
                                        $content .= ' </tbody>
                                         
+                                    </table> </td>
+                                    </tr>
                                     </table>
                               
-                        </div> 
+                         
                     </div>';
                      $dues = (number_format((float)$consigneeListsVal['opening_bal_amt'], 2, '.', '')+ number_format((float)$total_area_billing_amnt, 2, '.', ''))- number_format((float)$total_payment_amnt, 2, '.', '');
                      $content .= '<div class="row">
