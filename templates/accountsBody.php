@@ -74,7 +74,7 @@ include "includes/top-navbar.php";
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                       <label>Select Area / Group:</label>
-                                      <select class="form-control " name="filter_name"  >
+                                      <select class="form-control select-search" name="filter_name"  >
                                         <option >All</option>
                                         
                                         <?php
