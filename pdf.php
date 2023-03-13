@@ -10,33 +10,7 @@ $functions->validUser();
 $consigneeId = isset($_REQUEST['consigneeId'])?$_REQUEST['consigneeId']:'';
 $currtime = date("Y-m-d h:i:s");
 ?>
-<style>
-  .tb-heading th{
-    font-size:9pt !important;
-    padding:5px 10px !important;
-    border:1px solid #000 !important;
-    
-  }
-  .or-heading th{
-    font-size:9pt !important;
-    padding:5px 10px !important;
-    border:1px solid #000 !important;
-   
-  }
-  td{
-     font-size:8pt !important;
-     padding:5px 10px !important;
-     border:1px solid #000 !important;
-     
-  }
- .col-heading{
-  font-size:12pt !important;
- }
- table{
-  width:100%;
 
- }
-</style>
 <?php
 if(!empty($consigneeId))
 {
@@ -59,7 +33,7 @@ if(!empty($consigneeLists))
 			$content .= '<div class="content_holder">';
 			$content .=	'<div class="row">
                         
-                            <h5 style="background:#252b36;color: #fff;font-size: 1.125rem;text-align: center;  margin-bottom:0.625rem;font-weight: 400;line-height:1.5715;padding:10px;">'.$consigneeListsVal['name'].' '.$consigneeListsVal['entry_type'].' Account</h5>
+                            <h5 style="background:#252b36;color: #fff;font-size: 1.125rem;text-align: center;  margin-bottom:0.625rem;font-weight: 400;line-height:1.5715;padding:10px;margin-top:20px;">'.$consigneeListsVal['name'].' '.$consigneeListsVal['entry_type'].' Account</h5>
                         
                     </div>';
             $content .=	 '<div class="row">
@@ -83,16 +57,16 @@ if(!empty($consigneeLists))
                                     <table class="ord-table">  
                                         <thead>
                                             <tr style="background:#c5c5c5;text-align:center;padding:15px 0">
-                                                <th colspan="5" class="col-heading">Orders</th>
+                                                <th colspan="5" class="col-heading" style="padding:10px">Orders</th>
                                             </tr>
                                         </thead>
                                         <thead class="or-heading">
                                             <tr>
-                                                <th>Order Date</th>
-                                                <th>Naws Order Id</th>
-                                                <th>Order Total</th>
-                                                <th>Area Share</th>
-                                                <th>Area Billing</th>
+                                                <th style="border:1px solid #000;font-size:10pt">Order Date</th>
+                                                <th style="border:1px solid #000;font-size:10pt">Naws Order Id</th>
+                                                <th style="border:1px solid #000;font-size:10pt">Order Total</th>
+                                                <th style="border:1px solid #000;font-size:10pt">Area Share</th>
+                                                <th style="border:1px solid #000;font-size:10pt">Area Billing</th>
 
                                             </tr>
                                         </thead>
@@ -108,11 +82,11 @@ if(!empty($consigneeLists))
 											 	{
 											 		
 											 		$content .='<tr>
-		                                                <td>'.date("d-m-Y", strtotime($consigneeOrderListsVal['order_date']) ).'</td>
-		                                                <td>#'.$consigneeOrderListsVal['naws_order_id'].'</td>
-		                                                <td>'.$consigneeOrderListsVal['order_total'].'</td>
-		                                                <td>'.$consigneeOrderListsVal['area_share_amt'].'</td>
-		                                                <td>'.$consigneeOrderListsVal['area_billing_amt'].'</td>
+		                                                <td style="border:1px solid #000">'.date("d-m-Y", strtotime($consigneeOrderListsVal['order_date']) ).'</td>
+		                                                <td style="border:1px solid #000">#'.$consigneeOrderListsVal['naws_order_id'].'</td>
+		                                                <td style="border:1px solid #000">'.$consigneeOrderListsVal['order_total'].'</td>
+		                                                <td style="border:1px solid #000">'.$consigneeOrderListsVal['area_share_amt'].'</td>
+		                                                <td style="border:1px solid #000">'.$consigneeOrderListsVal['area_billing_amt'].'</td>
                                             		</tr>';
                                            
 											 		
@@ -123,17 +97,17 @@ if(!empty($consigneeLists))
 												
 												
 												$content .='<tr class="bg-purple-100">
-                                                <td colspan="2" class="font-weight-bold">Total:</td>
-                                                <td>'.number_format((float)$total_order_amnt, 2, '.', '').'</td>
-                                                <td>'.number_format((float)$total_area_share_amnt, 2, '.', '').'</td>
-                                                <td>'.number_format((float)$total_area_billing_amnt, 2, '.', '').'</td>
+                                                <td colspan="2" class="font-weight-bold" style="border:1px solid #000">Total:</td>
+                                                <td style="border:1px solid #000">'.number_format((float)$total_order_amnt, 2, '.', '').'</td>
+                                                <td style="border:1px solid #000">'.number_format((float)$total_area_share_amnt, 2, '.', '').'</td>
+                                                <td style="border:1px solid #000">'.number_format((float)$total_area_billing_amnt, 2, '.', '').'</td>
                                             	</tr>';
 												
 											 }
 											 else
 											 {
 											 	
-											 	$content .= '<tr><td colspan=4> Sorry No Order Found</td></tr>';
+											 	$content .= '<tr><td colspan="5" style="border:1px solid #000"> Sorry No Order Record Found</td></tr>';
 											 	$total_order_amnt = 0.00;
 							                    $total_area_share_amnt = 0.00;
 							                    $total_area_billing_amnt = 0.00;
@@ -149,15 +123,15 @@ if(!empty($consigneeLists))
                                     <table class="table">  
                                         <thead>
                                             <tr style="background:#c5c5c5;text-align:center;">
-                                                <th colspan="4" class="col-heading">Payments</th>
+                                                <th colspan="4" class="col-heading" style="padding:10px">Payments</th>
                                             </tr>
                                         </thead>
                                         <thead class="tb-heading">
                                             <tr>
-                                                <th>Payment Date</th>
-                                                <th>Payment Amount</th>
-                                                <th>Payment Mode</th>
-                                                <th>Payment Ref. No.</th>
+                                                <th style="border:1px solid #000;font-size:10pt">Payment Date</th>
+                                                <th style="border:1px solid #000;font-size:10pt">Payment Amount</th>
+                                                <th style="border:1px solid #000;font-size:10pt">Payment Mode</th>
+                                                <th style="border:1px solid #000;font-size:10pt">Payment Ref. No.</th>
                                                 
                                             </tr>
                                         </thead>
@@ -170,10 +144,10 @@ if(!empty($consigneeLists))
                                         			foreach($consigneePaymentLists AS $consigneePaymentListsVal)
                                         			{
 			                                        		$content .= '<tr>
-			                                                <td>'.date("d-m-Y", strtotime($consigneePaymentListsVal['payment_date']) ).'</td>
-			                                                <td>'.$consigneePaymentListsVal['payment_amt'].'</td>
-			                                                <td>'.$consigneePaymentListsVal['payment_mode'].'</td>
-			                                                <td>'.$consigneePaymentListsVal['payment_ref_number'].'</td>			                                                		</tr>';
+			                                                <td style="border:1px solid #000">'.date("d-m-Y", strtotime($consigneePaymentListsVal['payment_date']) ).'</td>
+			                                                <td style="border:1px solid #000">'.$consigneePaymentListsVal['payment_amt'].'</td>
+			                                                <td style="border:1px solid #000">'.$consigneePaymentListsVal['payment_mode'].'</td>
+			                                                <td style="border:1px solid #000">'.$consigneePaymentListsVal['payment_ref_number'].'</td>			                                                		</tr>';
                                         				
                                         				
                                         				
@@ -181,8 +155,8 @@ if(!empty($consigneeLists))
 													}
 													
 															$content .='<tr class="bg-purple-100">
-		                                                	<td class="font-weight-bold">Total:</td>
-		                                                	<td colspan="3">'.number_format((float)$total_payment_amnt, 2, '.', '').'</td>
+		                                                	<td class="font-weight-bold" style="border:1px solid #000">Total:</td>
+		                                                	<td colspan="3" style="border:1px solid #000">'.number_format((float)$total_payment_amnt, 2, '.', '').'</td>
 		                                            		</tr>';
 												
 													
@@ -190,7 +164,7 @@ if(!empty($consigneeLists))
 												}
 												else
 												{
-													$content .= '<tr><td colspan=4> Sorry No Payment Record Found</td></tr>';
+													$content .= '<tr><td colspan="4" style="border:1px solid #000"> Sorry No Payment Record Found</td></tr>';
 													$total_payment_amnt = 0.00;
 												}
                                       
