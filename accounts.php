@@ -12,7 +12,7 @@ $flag = isset($_REQUEST['flag'])?$_REQUEST['flag']:'';
 $consigneeId = isset($_REQUEST['consigneeId'])?$_REQUEST['consigneeId']:'';
 $currtime = date("Y-m-d h:i:s");
 $pageTitle = 'Accounts';
-
+$_SESSION['filter_name']= '';
 
 if($command == '1')
 {
@@ -45,6 +45,7 @@ if($flag == 'reset')
 	header("location:accounts.php");
 	exit;
 }
+
 $filterType = $_SESSION['filter_name'];
 
 if(!empty($consigneeId))
