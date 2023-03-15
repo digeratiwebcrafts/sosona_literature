@@ -21,7 +21,25 @@ else
 $consigneeId = $_SESSION['filter_name'];
 $consigneeLists = $functions->consigneeLists($consigneeId,'','N');	
 }
+$countConsignee = count($consigneeLists);
 
+if($countConsignee > 1)
+{
+    $pdfName  =  'All-Areas-Groups-LDS-Accounts-'.date("d/m/Y");
+}
+else
+{
+	$pdfName = '';
+	if(!empty($consigneeLists))
+		{
+	
+	foreach($consigneeLists AS $consigneeListsVal)
+					{
+						$pdfName .= $consigneeListsVal['name'].'-'.$consigneeListsVal['entry_type'].'-LDS-Accounts-'.date("d/m/Y");
+					}
+		}
+	
+}
 
 $content = '';
 if(!empty($consigneeLists))
@@ -205,7 +223,7 @@ if(!empty($consigneeLists))
 }
 
 $dirHandle = opendir('pdfs');
-$randFileName = time();
+$randFileName =$pdfName;
 
 $mpdf->pdf_version = '1.5';
 $mpdf->SetDisplayMode('fullpage');
@@ -214,7 +232,7 @@ $mpdf->use_kwt = true;
 $mpdf->AddPage('','A4-L','','','','5','5','2','0','0','0');
 $mpdf->WriteHTML($content,2);
 
-$mpdf->Output('pdfs/'.$randFileName.'.pdf' , 'D');
+$mpdf->Output(''.$randFileName.'.pdf' , 'D');
 $file = 'pdfs/'.$randFileName.'.pdf';
 
 
