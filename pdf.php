@@ -57,11 +57,11 @@ if(!empty($consigneeLists))
             $content .=	 '<div class="row">
 
                         <div class="col-6" style="width: 50%;">
-                            <div class="row" style="display: flex;">
-                                <div class="col" style="width:70%;display: flex;float: left;">
+                            <div class="row">
+                                <div class="col" style="width:60%;display: flex;float: left;">
                                     <p style="font-size:12px;width:100%;"><strong>'.$consigneeListsVal['name'].' ( '.$consigneeListsVal['entry_type'].' )</strong> Opening Bal., as on <strong>'.$consigneeListsVal['as_on_date'].'</strong></p>
                                 </div>
-                                <div class="col" style="width: 30%;float: right;display: flex;">
+                                <div class="col" style="width: 35%;float: right;display: flex;padding-left:10px">
                                     <p style="font-size:12px;color: #fff;background: #26a69a;text-align: center;padding: 5px 7px;width:100%;"><strong>'.$consigneeListsVal['opening_bal_amt'].'</strong></p>
                                 </div>
                             </div>
