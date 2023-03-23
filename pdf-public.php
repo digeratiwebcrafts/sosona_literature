@@ -6,7 +6,7 @@ include("class/functions.php");
 require_once('vendor/autoload.php'); 
 $mpdf = new \Mpdf\Mpdf();  
 $functions = new functions();
-//$functions->validUser();
+$functions->validUser();
 $consigneeId = isset($_REQUEST['consigneeId'])?$_REQUEST['consigneeId']:'';
 $currtime = date("Y-m-d h:i:s");
 ?>

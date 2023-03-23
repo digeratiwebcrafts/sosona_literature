@@ -6,7 +6,7 @@ include("lib/config.php");
 include("lib/connect.php");
 include("class/functions.php"); 
 $functions = new functions();
-//$functions->validUser();
+$functions->validUser();
 $command = isset($_POST['command'])?$_POST['command']:'';
 $flag = isset($_REQUEST['flag'])?$_REQUEST['flag']:'';
 $consigneeId = isset($_REQUEST['consigneeId'])?$_REQUEST['consigneeId']:'';

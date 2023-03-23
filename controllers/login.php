@@ -9,7 +9,7 @@ include "../includes/db-connect.php";
     //     exit('Please fill both the username and password fields!');
     // }
     // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-    if ($stmt = $conn->prepare('SELECT id, user_pass FROM user WHERE user_email = ?')) {
+    if ($stmt = $conn->prepare('SELECT id, user_pass, user_type FROM user WHERE user_email = ?')) {
         // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
         $stmt->bind_param('s', $_POST['useremail']);
         $mypassword = md5 ($_POST['userpass']);
@@ -18,7 +18,7 @@ include "../includes/db-connect.php";
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($id, $password);
+            $stmt->bind_result($id, $password, $usertype);
             $stmt->fetch();
             // Account exists, now we verify the password.
             // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -29,8 +29,16 @@ include "../includes/db-connect.php";
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['name'] = $_POST['useremail'];
                 $_SESSION['id'] = $id;
-                //echo 'Welcome ' . $_SESSION['name'] . '!';
-                header("Location: ../index.php");
+                $_SESSION['user_type'] = $usertype;
+                // echo 'Welcome ' . $_SESSION['name'] . '<br>';
+                // echo 'Welcome ' . $_SESSION['user_type'] . '<br>';
+                // exit();
+                if ($_SESSION['user_type'] == 'Member') {
+                    header("Location: ../dashboard-public.php");
+                }else{
+                    header("Location: ../index.php");
+                }
+                
             } else {
                 // Incorrect password
                 //echo 'Incorrect username and/or password!';
