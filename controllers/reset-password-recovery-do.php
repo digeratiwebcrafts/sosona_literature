@@ -25,7 +25,7 @@ if(isset($_POST["submit"])){
       //echo "Error: " . $upd . "<br>" . $con->error;
       $_SESSION['status'] = "error";
       $_SESSION['status_msg'] = "Something is wrong.";
-      header("Location: ../change-password.php");
+      header("Location: ../reset-password-recovery.php");
     }
 
 }
