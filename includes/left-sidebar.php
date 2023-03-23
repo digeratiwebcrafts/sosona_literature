@@ -59,6 +59,12 @@
 					</a>
 				</li>
 				<li class="nav-item">
+					<a href="member-access.php" class="nav-link <?= ($activePage == 'member-access') ? 'active':''; ?>">
+						<i class="icon-user"></i> 
+						<span>Member Access</span>
+					</a>
+				</li>
+				<li class="nav-item">
 					<a href="logout.php" class="nav-link">
 						<i class="icon-switch2"></i> 
 						<span>Logout</span>
