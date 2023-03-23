@@ -9,6 +9,13 @@ if (!isset($_SESSION['loggedin'])) {
     exit;
 }
 ?>
+ <?php
+if ($_SESSION['user_type'] == 'Member') {
+    header('Location: dashboard-public.php');
+    exit;
+}
+
+?> 
 <!-- Main navbar -->
 <?php 
 include "includes/top-navbar.php";

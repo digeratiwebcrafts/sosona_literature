@@ -4,18 +4,21 @@ require('../includes/db-connect.php');
 
 if(isset($_POST["submit"])){
     $useremail=$_POST['useremail'];
-    $sql = "SELECT * FROM user WHERE (user_email = '$useremail')";
+    $sql = "SELECT * FROM user WHERE (user_email = '$useremail') ";
     $result = mysqli_query($conn, $sql);
     if ($result->num_rows > 0) {
         // output data of each row
         while ($row = $result->fetch_assoc()){
             $id = $row["id"];
             $email = $row["user_email"];
+            $user_type=$row['user_type'];
             $_SESSION['emailuser'] = $email;
-            //echo "id:" . $id . "<br>";
-            //echo "Email:" . $email . "<br>";
-            //echo "Session Email:" . $_SESSION['emailuser'] . "<br>";
-            //exit();
+            $_SESSION['user_type']= $user_type;
+            /*echo "id:" . $id . "<br>";
+            echo "Email:" . $email . "<br>";
+            echo "Session Email:" . $_SESSION['emailuser'] . "<br>";
+            echo $_SESSION['user_type'];
+            exit();*/
             $to = $row["user_email"];
             $subject = "Login Password Recovery";
 
@@ -27,12 +30,19 @@ if(isset($_POST["submit"])){
 
             // More headers
             $headers .= 'From: Sosona <noreply@sosona.com>' . "\r\n";
+            if ($_SESSION['user_type']!='Member') {
 
-            mail($to, $subject, $message, $headers);
+                mail($to, $subject, $message, $headers);
 
-            $_SESSION['status'] = "success";
-            $_SESSION['status_msg'] = "Mail sent Successfully.";
-            header("Location: ../reset-password.php");
+                $_SESSION['status'] = "success";
+                $_SESSION['status_msg'] = "Mail sent Successfully.";
+                header("Location: ../reset-password.php"); 
+            }else{
+                $_SESSION['status'] = "error";
+                $_SESSION['status_msg'] = "Please Contact Admin to Change Password.";
+                header("Location: ../reset-password.php");
+            }
+
         }
 
     }
