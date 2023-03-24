@@ -5,6 +5,7 @@ include("lib/start.php");
 include("lib/config.php");
 include("lib/connect.php");
 include("class/functions.php"); 
+include "includes/loggedin-checker.php";
 $functions = new functions();
 $functions->validUser();
 $command = isset($_POST['command'])?$_POST['command']:'';

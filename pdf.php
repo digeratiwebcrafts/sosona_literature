@@ -2,7 +2,8 @@
 include("lib/start.php");
 include("lib/config.php");
 include("lib/connect.php");
-include("class/functions.php"); 
+include("class/functions.php");
+include "includes/loggedin-checker.php";
 require_once('vendor/autoload.php'); 
 $mpdf = new \Mpdf\Mpdf();  
 $functions = new functions();

@@ -8,6 +8,7 @@ if (!isset($_SESSION['loggedin'])) {
     header('Location: login.php');
     exit;
 }
+include "includes/loggedin-checker.php";
 ?> 
 <!-- Main navbar -->
 <?php 
