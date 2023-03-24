@@ -113,6 +113,7 @@ include "includes/top-navbar.php";
                     </div>
                   </div>
                   <!-- /basic layout -->
+                  <p class="font-weight-semibold">View Public Dashboard: <a href="dashboard-public.php" target="_blank"><i class="fas fa-external-link-alt"></i></a></p>
                 </div>  
               </div>
 
