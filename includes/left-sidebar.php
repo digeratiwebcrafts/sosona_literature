@@ -65,6 +65,12 @@
 					</a>
 				</li>
 				<li class="nav-item">
+					<a href="backup.php" class="nav-link <?= ($activePage == 'backup') ? 'active':''; ?>">
+						<i class="icon-database-export"></i> 
+						<span>Backup</span>
+					</a>
+				</li>
+				<li class="nav-item">
 					<a href="logout.php" class="nav-link">
 						<i class="icon-switch2"></i> 
 						<span>Logout</span>

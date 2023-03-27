@@ -1,4 +1,5 @@
 <?php
+ob_start();
 // We need to use sessions, so you should always start sessions using the below code.
 session_start();
 $pageTitle = 'Dashboard';
@@ -430,4 +431,4 @@ include "includes/top-navbar.php";
             </div>
             <!-- /content area -->
 
-<?php include "includes/footer.php"; ?>
+<?php include "includes/footer.php"; ob_end_flush();?>

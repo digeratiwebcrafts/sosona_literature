@@ -1,5 +1,6 @@
 <?php
-include "includes/db-connect.php";
+ob_start();
+include "../includes/db-connect.php";
 
 
 if ($conn->connect_errno) {
@@ -56,7 +57,7 @@ foreach ($tables as $table) {
 
     $return .= "\n\n\n";
 }
-$backupDir= 'mysql/';
+$backupDir= '../mysql/';
 $date = date('Y-m-d_H-i-s');
 
 // Set the backup filename
@@ -75,14 +76,14 @@ die("Failed to open file $backupFile for writing");
 // Download the backup file to the local system
 header('Content-Description: File Transfer');
 header('Content-Type: application/octet-stream');
-header('Content-Disposition: attachment; filename="' . $dbName . '_' . $date . '.sql"');
+header('Content-Disposition: attachment; filename="' . $dbname . '_' . $date . '.sql"');
 header('Content-Transfer-Encoding: binary');
 header('Expires: 0');
 header('Cache-Control: must-revalidate');
 header('Pragma: public');
 header('Content-Length: ' . filesize($backupFile));
 ob_clean();
-flush();
+ob_end_flush();
 readfile($backupFile);
 exit;
 
