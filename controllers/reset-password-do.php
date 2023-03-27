@@ -29,7 +29,7 @@ if(isset($_POST["submit"])){
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
             // More headers
-            $headers .= 'From: Sosona <noreply@sosona.com>' . "\r\n";
+            $headers .= 'From: Sosona <noreply@naindia.in>' . "\r\n";
             if ($_SESSION['user_type']!='Member') {
 
                 mail($to, $subject, $message, $headers);

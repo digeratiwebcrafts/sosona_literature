@@ -265,10 +265,10 @@ include "includes/top-navbar.php";
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-1">
+                                    <div class="col-2 data-show-col">
                                         <label class="font-weight-bold">#</label>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-5">
                                         <label class="font-weight-bold">Area Name</label>
                                     </div>
                                     <div class="col-5">
@@ -293,10 +293,10 @@ include "includes/top-navbar.php";
 
                                 ?>
                                 <div class="row alternate-row">
-                                    <div class="col-1">
+                                    <div class="col-2 data-show-col">
                                         <p class="mb-0"><?php echo ++$counter; ?></p>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-5">
                                         <p class="mb-0"><a href="accounts.php?&consigneeId=<?=$row['consignee_id']?>"><?php  echo $row['name'] ?></a></p>
                                     </div>
                                     <div class="col-5">
@@ -348,10 +348,10 @@ include "includes/top-navbar.php";
                             <div class="card-body">
                                
                                 <div class="row">
-                                    <div class="col-1">
+                                    <div class="col-2 data-show-col">
                                         <label class="font-weight-bold">#</label>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-5">
                                         <label class="font-weight-bold">Other Name</label>
                                     </div>
                                     <div class="col-5">
@@ -377,10 +377,10 @@ include "includes/top-navbar.php";
 
                                 ?>
                                 <div class="row alternate-row">
-                                    <div class="col-1">
+                                    <div class="col-2 data-show-col">
                                         <p class="mb-0"><?php echo ++$counter; ?></p>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-5">
                                         <p class="mb-0"><a href="accounts.php?&consigneeId=<?=$row['consignee_id']?>"><?php  echo $row['name'] ?></a></p>
                                     </div>
                                     <div class="col-5">

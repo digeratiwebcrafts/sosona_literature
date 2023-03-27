@@ -38,3 +38,9 @@
 .site-logo{
     width: 60px;
 }
+/*---------media query--------*/
+@media(min-width: 400px){
+    .data-show-col{
+        max-width: 50px;
+    }
+}
