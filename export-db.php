@@ -72,6 +72,20 @@ echo "Successfully backed up to $backupFile";
 die("Failed to open file $backupFile for writing");
 }
 
+// Download the backup file to the local system
+header('Content-Description: File Transfer');
+header('Content-Type: application/octet-stream');
+header('Content-Disposition: attachment; filename="' . $dbName . '_' . $date . '.sql"');
+header('Content-Transfer-Encoding: binary');
+header('Expires: 0');
+header('Cache-Control: must-revalidate');
+header('Pragma: public');
+header('Content-Length: ' . filesize($backupFile));
+ob_clean();
+flush();
+readfile($backupFile);
+exit;
+
 // Close database connection
 $conn->close();
 
