@@ -10,7 +10,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
   $order_total=$_POST['order-total'];
   $comments=$_POST['comments'];
   
-  if ($consignee_type==Area) {
+  if ($consignee_type=="Area") {
   $sel="SELECT * FROM lds_share";
   $rs=$conn->query($sel);
   while($row=$rs->fetch_assoc()){
