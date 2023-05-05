@@ -225,7 +225,7 @@ include "includes/top-navbar.php";
                         $.ajax
                         ({
                         type: "POST",
-                        url: "controllers/ajax-order-edit.php",
+                        url: "controllers/ajax-order-edit-v2.php",
                         data: post_id,
                         cache: false,
                         success: function(cons)

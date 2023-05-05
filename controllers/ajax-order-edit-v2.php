@@ -1,7 +1,7 @@
 <?php
-include('../includes/db-connect.php');
-if($_POST['cid']){
-$id=$_POST['cid'];
+
+if($_POST['pid']){
+$id=$_POST['pid'];
 
 if($id==0){
 	echo '<input type="hidden" class="form-control" placeholder="consignee" name="consignee-type">';
@@ -12,6 +12,5 @@ if($id==0){
 		}
 	}
 }
-
 
 ?>
