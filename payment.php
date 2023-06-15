@@ -245,7 +245,7 @@ include "includes/top-navbar.php";
                         }else{ ?>
 
                         <?php
-                          $sel="SELECT *  FROM consignee INNER JOIN payment ON payment.payment_by=consignee.id";
+                          $sel="SELECT *  FROM consignee INNER JOIN payment ON payment.payment_by=consignee.id WHERE entry_type!='Region'";
                           $counter = 0;
                           $rs=$conn->query($sel);
                           while($row=$rs->fetch_assoc()){
